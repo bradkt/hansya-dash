@@ -1,0 +1,24 @@
+<div class="vertical-scroll">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <!--<th class="table-id">#</th>-->
+      <th>Select to upload</th>
+      <!--<th>Select to upload</th>-->
+      <th>Industry</th>
+      <th>Email</th>
+      <th>Dashboard</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in customerListTableData">
+      <!--<td class="table-id">{{item.key}}</td>-->
+      <td><a ng-click="viewCustDetails(item.key)">{{item.name}}</a></td>
+      <!--<td>{{item.lastName}}</td>-->
+      <td>{{item.name}}</td>
+      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
+      <td><a ui-sref="dashboard({ uid:item.key })">{{item.name}}</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

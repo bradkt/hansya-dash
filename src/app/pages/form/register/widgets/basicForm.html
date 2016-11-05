@@ -1,0 +1,74 @@
+<form ng-submit="submit()"name="rc.personalInfoForm" novalidate>
+  <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group has-feedback"
+             ng-class="{'has-error': rc.personalInfoForm.custname.$invalid && (rc.personalInfoForm.custname.$dirty || rc.personalInfoForm.$submitted)}">
+          <label for="registerCompanyName">Company name</label>
+          <input type="text" class="form-control" id="registerCompanyName" name="compayName" placeholder="Company Name" ng-model="rc.personalInfo.companyName" required>
+          <span class="help-block error-block basic-block">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.email.$invalid && (rc.personalInfoForm.email.$dirty || rc.personalInfoForm.$submitted)}">
+          <label for="registerEmail">Email address</label>
+          <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Email" ng-model="rc.personalInfo.email" required>
+          <span class="help-block error-block basic-block">Proper email required</span>
+        </div>
+        <div class="form-group">
+          <label for="registerContactName">Contact Name</label>
+          <input type="text" class="form-control" id="registerContactName" name="contactName" placeholder="Contact Name" ng-model="rc.personalInfo.contactName">
+          <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
+        </div>
+        <div class="form-group">
+          <label for="registerPhone">Contact Number</label>
+          <input type="text" class="form-control" id="registerPhone" name="phone" placeholder="Phone" ng-model="rc.personalInfo.phone">
+          <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group has-feedback"
+             ng-class="{'has-error': rc.personalInfoForm.productName.$invalid && (rc.personalInfoForm.productName.$dirty || rc.personalInfoForm.$submitted)}">
+          <label for="registerKeywords">Competitive Keywords</label>
+          <input type="text" class="form-control" id="registerKeywords" name="productName" placeholder="Keywords" ng-model="rc.personalInfo.keywords" required>
+          <span class="help-block error-block basic-block">Required</span>
+        </div>
+        <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.productId.$invalid && (rc.personalInfoForm.productId.$dirty || rc.personalInfoForm.$submitted)}">
+          <label for="registerBizType">Business Type</label>
+          <input type="text" class="form-control" id="registerBizType" name="productId" placeholder="ex: service, non-profit, etc." ng-model="rc.personalInfo.businessType" required>
+          <span class="help-block error-block basic-block">Required</span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Industry</label>
+          <select class="form-control" title="Industry" ng-model="rc.personalInfo.industry" selectpicker>
+            <option selected>Medical</option>
+            <option>Electronics</option>
+            <option>Toys</option>
+            <option>Mobile App</option>
+            <option>Restaurant</option>
+            <option>Technology</option>
+            <option>Education</option>
+            <option>E-commerce</option>
+            <option>Jewelry</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.password.$invalid && (rc.personalInfoForm.password.$dirty || rc.personalInfoForm.$submitted)}">
+          <label for="registerPassword">Password</label>
+          <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Password" ng-model="rc.personalInfo.password" required>
+          <span class="help-block error-block basic-block">Required</span>
+        </div>
+        <div class="form-group"  ng-class="{'has-error': !rc.arePersonalInfoPasswordsEqual() && (rc.personalInfoForm.confirmPassword.$dirty || rc.personalInfoForm.$submitted)}">
+          <label for="registerConfirmPassword">Confirm Password</label>
+          <input type="password" class="form-control" id="registerConfirmPassword" name="confirmPassword" placeholder="Confirm Password" ng-model="rc.personalInfo.confirmPassword" required>
+          <span class="help-block error-block basic-block">Passwords should match</span>
+        </div>
+      </div>
+
+    <button type="submit" class="btn btn-danger">Submit</button>
+  </div>
+</form>

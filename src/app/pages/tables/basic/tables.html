@@ -1,0 +1,72 @@
+<div class="widgets">
+
+  <div class="row">
+    <div ba-panel ba-panel-title="Enter Customer name">
+    <form ng-submit="addCustomer()" name="tc.addCustForm" novalidate>
+          <div class="form-group has-feedback"
+               ng-class="{'has-error': tc.addCustForm.custname.$invalid && (tc.addCustForm.custname.$dirty || tc.addCustForm.$submitted)}">
+            <!--<label for="addCompany">Company name</label>-->
+            <input type="text" class="form-control" id="addCompany" name="addCompany" placeholder="Company Name" ng-model="tc.addCust.custname" required>
+            <span class="help-block error-block basic-block">Required</span>
+          </div>
+      <button type="submit" class="btn btn-danger">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div ba-panel ba-panel-title="Enter New Industry">
+      <form ng-submit="addIndustry()" name="tc.addIndustryForm" novalidate>
+        <div class="form-group has-feedback"
+             ng-class="{'has-error': tc.addIndustryForm.custname.$invalid && (tc.addIndustryForm.custname.$dirty || tc.addIndustryForm.$submitted)}">
+          <!--<label for="addCompany">Company name</label>-->
+          <input type="text" class="form-control" id="addIndustry" name="addIndustry" placeholder="Industry Name" ng-model="tc.addIndustry.indyname" required>
+          <span class="help-block error-block basic-block">Required</span>
+        </div>
+        <button type="submit" class="btn btn-danger">Submit</button>
+      </form>
+    </div>
+  </div>
+  <!--<div class="row">-->
+    <!--<div class="col-lg-6 col-md-12">-->
+      <!--<div ba-panel ba-panel-title="Hover Rows" ba-panel-class="with-scroll table-panel">-->
+        <!--<div include-with-scope="app/pages/tables/widgets/hoverRows.html"></div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-lg-6 col-md-12">-->
+    <!--<div ba-panel ba-panel-title="Contextual Table" ba-panel-class="with-scroll table-panel">-->
+    <!--<div include-with-scope="app/pages/tables/widgets/contextualTable.html"></div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="row">
+    <!--<div class="col-lg-6 col-md-12">-->
+      <!--<div ba-panel ba-panel-title="Condensed Table" ba-panel-class="with-scroll table-panel">-->
+        <!--<div include-with-scope="app/pages/tables/widgets/condensedTable.html"></div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-lg-6 col-md-12">-->
+
+      <div ba-panel ba-panel-title="Customers" ba-panel-class="with-scroll table-panel">
+
+        <div include-with-scope="app/pages/tables/widgets/stripedRows.html"></div>
+      <!--</div>-->
+    </div>
+  </div>
+  <div class="row">
+
+  <!--<div class="col-lg-6 col-md-12">-->
+  <div ba-panel ba-panel-title="Customer Specs" ba-panel-class="with-scroll table-panel">
+    <div include-with-scope="app/pages/tables/widgets/borderedTable.html"></div>
+  </div>
+  <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="col-lg-6 col-md-12">-->
+    <!--Responsive Table-->
+      <!--<div ba-panel ba-panel-title="Customer Detail" ba-panel-class="with-scroll table-panel">-->
+        <!--<div include-with-scope="app/pages/tables/widgets/responsiveTable.html"></div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+
+</div>

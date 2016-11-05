@@ -1,0 +1,29 @@
+<div class="horizontal-scroll">
+  <table class="table table-bordered">
+    <thead>
+    <tr ng-repeat="item in customerDetailTableData">
+      <!--<th class="browser-icons"></th>-->
+      <th><strong>{{item.name}}</strong></th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in customerDetailTableData">
+      <!--<td><img ng-src="{{::( item.image | appImage )}}" width="20" height="20"></td>-->
+      <!--<td ng-class="nowrap">{{item.browser}}</td>-->
+      <td>Industry</td>
+      <td>{{item.industry}}</td>
+    </tr>
+    <tr ng-repeat="item in customerDetailTableData">
+      <td>Keyterms</td>
+      <td>{{item.keyterms}}</td>
+    </tr>
+    <tr ng-repeat="item in customerDetailTableData">
+      <td>File Upload</td>
+      <td><input type="file" id="file" file-model="myFile"/>
+        <button class="btn btn-primary btn-sm" ng-click="uploadFile()">Upload File</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
