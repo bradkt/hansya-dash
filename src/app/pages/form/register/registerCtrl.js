@@ -8,32 +8,37 @@
         .controller('RegisterCtrl', RegisterCtrl);
 
     /** @ngInject */
-    function RegisterCtrl($scope) {
+    function RegisterCtrl($scope, UserApi) {
         var rc = this;
         rc.personalInfo = {};
 
         $scope.submit = function () {
-            console.log('hi from the registration form');
+            console.log('registration form');
 
             var data = $scope.rc.personalInfo;
-            console.log(data);
+            var reg = {
+                username: data.username,
+                email: data.email,
+                password: data.password
+            };
 
-            // var customer = data.compayName.toString().trim().toLowerCase().replace(/\s+/, "");
-
-        firebase.auth().createUserWithEmailAndPassword(data.email, data.password).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-        });
-
-            setTimeout(this.redirect, 700)
+            UserApi.registerUser(reg).then(function (response) {
+                console.log(reg);
+                if (response.headers.status) {
+                    console.log(response);
+                    registerUser();
+                } else {
+                    rc.personalInfo.message.registrationIssue = "Issue during your registration";
+                    console.log(rc.personalInfo.message.registrationIssue);
+                    console.log(response);
+                }
+            });
         };
 
-
-        function redirect() {
-         window.location.href = '/form/login';
+        function registerUser(){
+            rc.personalInfo.message.userRegistered = "You have successfully registered";
+            console.log(rc.personalInfo.message.userRegistered);
+            $location.url('form/login');
         }
 
         rc.arePersonalInfoPasswordsEqual = function () {

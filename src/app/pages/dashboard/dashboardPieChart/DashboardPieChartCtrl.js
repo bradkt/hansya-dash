@@ -23,6 +23,7 @@
     $scope.pieChartsFBdata = [];
 
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
+
     var charts = [{
       color: pieColor,
       description: 'Tweets Sent',

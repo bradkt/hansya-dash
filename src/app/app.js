@@ -15,11 +15,3 @@ angular.module('BlurAdmin', [
   'BlurAdmin.theme',
   'BlurAdmin.pages'
 ]);
-
-var config = firebase.initializeApp({
-  apiKey: "AIzaSyC2MJdJ7HvYTIYgHYFkQyhhbfZAzEv5mw0",
-  authDomain: "hansya-one.firebaseapp.com",
-  databaseURL: "https://hansya-one.firebaseio.com",
-  storageBucket: "hansya-one.appspot.com",
-});
-

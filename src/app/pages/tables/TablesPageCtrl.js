@@ -74,7 +74,7 @@
       return firebase.database().ref().update(updates);
     };
 
-    $scope.addIndustry = function () {
+    $scope.addCampaign = function () {
       //update current number of customers in list--add one
 
       var industryname = $scope.tc.addIndustry.indyname.toString().trim().toLowerCase();

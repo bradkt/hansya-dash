@@ -1,4 +1,4 @@
-<form ng-submit="submit()"name="rc.personalInfoForm" novalidate>
+<form ng-submit="submit()" name="rc.personalInfoForm" novalidate>
   <div class="row">
 
       <div class="col-md-6">
@@ -11,11 +11,11 @@
         <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.email.$invalid && (rc.personalInfoForm.email.$dirty || rc.personalInfoForm.$submitted)}">
           <label for="registerEmail">Email address</label>
           <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Email" ng-model="rc.personalInfo.email" required>
-          <span class="help-block error-block basic-block">Proper email required</span>
+          <span class="help-block error-block basic-block">Proper Email required</span>
         </div>
         <div class="form-group">
           <label for="registerContactName">Contact Name</label>
-          <input type="text" class="form-control" id="registerContactName" name="contactName" placeholder="Contact Name" ng-model="rc.personalInfo.contactName">
+          <input type="text" class="form-control" id="registerContactName" name="contactName" placeholder="Contact Name" ng-model="rc.personalInfo.username" required>
           <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
         </div>
         <div class="form-group">
@@ -24,26 +24,71 @@
           <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
         </div>
       </div>
+    <div class="col-md-6">
+      <div class="form-group has-feedback"
+           ng-class="{'has-error': rc.personalInfoForm.productName.$invalid && (rc.personalInfoForm.productName.$dirty || rc.personalInfoForm.$submitted)}">
+        <label for="registerKeywords">Desired Audience</label>
+        <input type="text" class="form-control" id="registerAudience" name="audience" placeholder="Who is your target audience or demographic?" ng-model="rc.personalInfo.audience" required>
+        <span class="help-block error-block basic-block">Required</span>
+      </div>
+      <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.productId.$invalid && (rc.personalInfoForm.productId.$dirty || rc.personalInfoForm.$submitted)}">
+        <label for="registerLocation">Location Requirements</label>
+        <input type="text" class="form-control" id="registerLocation" name="location" placeholder="Does your Campaign require location restrictions?" ng-model="rc.personalInfo.location">
+        <span class="help-block error-block basic-block">Required</span>
+      </div>
+    </div>
 
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>How long ago is useful information</label>
+        <select class="form-control" title="timeframe" ng-model="rc.personalInfo.timeframe" selectpicker>
+          <option value=".25">One Week</option>
+          <option value=".5">Two Week</option>
+          <option value="1">One Month</option>
+          <option value="3">Three Months</option>
+          <option value="6">Six Months</option>
+          <option value="12">Twelve Months</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Purpose of Campaign</label>
+        <select class="form-control" title="intent" ng-model="rc.personalInfo.intent" selectpicker>
+          <!--<option selected>What is the purpose of the campaign?</option>-->
+          <option>Lead Generation</option>
+          <option>Drive Traffic</option>
+          <option>Online Promotion</option>
+          <option>Increase Followers</option>
+        </select>
+      </div>
+    </div>
       <div class="col-md-6">
         <div class="form-group has-feedback"
              ng-class="{'has-error': rc.personalInfoForm.productName.$invalid && (rc.personalInfoForm.productName.$dirty || rc.personalInfoForm.$submitted)}">
           <label for="registerKeywords">Competitive Keywords</label>
-          <input type="text" class="form-control" id="registerKeywords" name="productName" placeholder="Keywords" ng-model="rc.personalInfo.keywords" required>
-          <span class="help-block error-block basic-block">Required</span>
-        </div>
-        <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.productId.$invalid && (rc.personalInfoForm.productId.$dirty || rc.personalInfoForm.$submitted)}">
-          <label for="registerBizType">Business Type</label>
-          <input type="text" class="form-control" id="registerBizType" name="productId" placeholder="ex: service, non-profit, etc." ng-model="rc.personalInfo.businessType" required>
+          <input type="text" class="form-control" id="registerKeywords" name="industry" placeholder="List any keywords associated with your industry" ng-model="rc.personalInfo.keywords" required>
           <span class="help-block error-block basic-block">Required</span>
         </div>
       </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Type of Business</label>
+        <select class="form-control" title="businessType" ng-model="rc.personalInfo.businessType" selectpicker>
+          <option>For Profit</option>
+          <option>Non Profit</option>
+        </select>
+      </div>
+    </div>
+
 
       <div class="col-md-6">
         <div class="form-group">
           <label>Industry</label>
           <select class="form-control" title="Industry" ng-model="rc.personalInfo.industry" selectpicker>
-            <option selected>Medical</option>
+            <option>Medical</option>
             <option>Electronics</option>
             <option>Toys</option>
             <option>Mobile App</option>
@@ -51,7 +96,11 @@
             <option>Technology</option>
             <option>Education</option>
             <option>E-commerce</option>
-            <option>Jewelry</option>
+            <option>Insurance</option>
+            <option>Event Ticket Seller</option>
+            <option>Hotel</option>
+            <option>Education</option>
+            <option>Other</option>
           </select>
         </div>
       </div>

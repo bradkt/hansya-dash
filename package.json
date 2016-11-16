@@ -46,10 +46,6 @@
     "postinstall": "bower install"
   },
   "dependencies": {
-    "@google-cloud/bigquery": "^0.2.0",
-    "angularfire": "^2.0.2",
-    "firebase": "^3.3.0",
-    "gcloud": "^0.37.0",
     "requirejs": "^2.3.1"
   }
 }

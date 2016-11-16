@@ -19,22 +19,16 @@
         });
         // $scope.activeUid = $stateParams.uid;
 
-        $timeout(function () {
-            checkuid();
-        }, 3000);
+        // $timeout(function () {
+        //     checkuid();
+        // }, 1500);
 
         // console.log('this is the dashpagectrl and here is the uid');
-        function checkuid(){
-            if (!$stateParams.uid) {
-                console.log('no uid to retrieve dashboard returning to login');
-                window.location.href = '#/form/login';
-            }
-        }
-
-
-
-            // var activeUid = $stateParams.uid; //getting ui-route parameter
-            // console.log('hello from DashPageCntrl this is the uid param')
-            // console.log(activeUid);
+        // function checkuid(){
+        //     if (!$stateParams.uid) {
+        //         console.log('no uid to retrieve dashboard returning to login');
+        //         window.location.href = '#/form/login';
+        //     }
+        // }
     }
 })();

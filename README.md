@@ -1,14 +1,11 @@
-###Project updates
-gulp serve to run src locally
+start chromium browser and allow for cors
+    chromium-browser --disable-web-security --user-data-dir
 
-###Resourses
+### Demo
+**[Mint version demo](http://akveo.com/blur-admin-mint/)**             |  **[Blur version demo](http://akveo.com/blur-admin/)**
+:-------------------------:|:-------------------------:
+![Mint version demo](http://i.imgur.com/A3TMviJ.png)  |  ![Blur version demo](http://i.imgur.com/EAoiK2O.jpg)
 
-
-###SideNotes
-
-
-
-gulp serve to run 
 ## Angular 2 version
 Here you can find Angular2 based version: [ng2-admin](https://github.com/akveo/ng2-admin).
 
