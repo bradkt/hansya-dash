@@ -9,7 +9,7 @@
       .controller('BlurFeedCtrl', BlurFeedCtrl);
 
   /** @ngInject */
-  function BlurFeedCtrl($scope, $stateParams, $http) {
+  function BlurFeedCtrl($scope, $stateParams, $http, dashboardApi) {
 
     $http({
       url: '',
@@ -21,36 +21,34 @@
 
     var custName = $stateParams.uid; //getting ui-route parameter
 
-    $scope.FeedFBdata = [];
+    $scope.FeedData = [];
 
-    var FBDBRef = firebase.database().ref('data/' + custName + '/data');
-    FBDBRef.once('value', function (data) {
-      console.log("----traffic values------");
-      var fbdata = data.val();
-      for (var i = 0; i < fbdata.length; i++) {
+    var response = dashboardApi.getTempCampaign();
+    var messages = response.messages;
+
+      for (var message in messages) {
             var placeholder =
               {
                 type: '',
                 author: 'twitter',
-                surname: '',
+                surname: messages[message].screen_name,
                 header: 'Posted photo',
-                text: '',
+                text: messages[message].text,
                 preview: '',
                 link: 'https://dribbble.com/shots/2504810-Protein-Heroes',
-                time: '',
+                time: messages[message].datetime,
                 ago: '',
-                expanded: false,
+                location: messages[message].location,
+                expanded: false
               }
             ;
-            placeholder.text = fbdata[i].r_data;
-            placeholder.surname = fbdata[i].s_name;
-            placeholder.time = fbdata[i].dt;
-            $scope.FeedFBdata.push(placeholder);
+            //add message type to assign twitter logo rather that hard code
+            $scope.FeedData.push(placeholder);
         }
 
         $scope.expandMessage = function(message){
           message.expanded = !message.expanded;
         }
-    })
+
   }
 })();

@@ -24,7 +24,7 @@
             var uid = response.data.id;
             if (uid) {
                 console.log(response);
-                $location.url('form/register'); //needs to redirect to campaign or if user is able to pick
+                $location.url('dashboard/44114411'); //needs to redirect to campaign or if user is able to pick
                 // from more than one campaign directed to page where they can
             } else {
                 $scope.lc.personalInfo.errorMessage = "Your Email and Password do not match";

@@ -12,13 +12,22 @@
         var pc = this;
         pc.productInfo = {};
 
+        ProductApi.getProducts().then(function (response) {
+            if (response){
+                pc.productInfo = response.data;
+            } else {
+                console.log('no response from server');
+            }
+
+        });
+
+        $scope.addProduct = function (data) {
+            console.log(data);
+        };
+
         $scope.submit = function () {
-            console.log('hi from the product form');
-            ProductApi.getProducts().then(function (response) {
-                console.log(response);
-            });
-            // var data = $scope.pc.productInfo;
-            // console.log(data);
+            console.log('product form submit func fired');
+
 
         }
     }

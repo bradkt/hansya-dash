@@ -14,13 +14,14 @@
     </div>
   </div>
 
+
   <div class="row">
-    <div ba-panel ba-panel-title="Enter New Industry">
+    <div ba-panel ba-panel-title="Enter New Campaign">
       <form ng-submit="addCampaign()" name="tc.campaignData" novalidate>
-        <div class="form-group "
+        <div class="form-group"
              ng-class="{'has-error': tc.addIndustryForm.custname.$invalid && (tc.addIndustryForm.custname.$dirty || tc.addIndustryForm.$submitted)}">
           <!--<label for="addCompany">Company name</label>-->
-          <input type="text" class="form-control" id="addIndustry" name="addIndustry" placeholder="Industry Name" ng-model="tc.addIndustry.indyname" required>
+          <input type="text" class="form-control" id="addCampaign" name="addCampaign" placeholder="Campaign Name" ng-model="tc.addCampaign.campaignName" required>
           <span class="help-block error-block basic-block">Required</span>
         </div>
         <button type="submit" class="btn btn-danger">Submit</button>

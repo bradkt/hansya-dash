@@ -16,7 +16,7 @@
         };
 
         function registerUser(data) {
-            return $http.post('http://localhost:1337/register', data).then(complete).catch(failed);
+            return $http.post('http://localhost:1337/user', data).then(complete).catch(failed);
         }
 
         function postUserLogin(data) {

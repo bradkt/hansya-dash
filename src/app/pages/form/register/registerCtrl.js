@@ -8,7 +8,7 @@
         .controller('RegisterCtrl', RegisterCtrl);
 
     /** @ngInject */
-    function RegisterCtrl($scope, UserApi) {
+    function RegisterCtrl($scope, UserApi, $location) {
         var rc = this;
         rc.personalInfo = {};
 
@@ -17,27 +17,26 @@
 
             var data = $scope.rc.personalInfo;
             var reg = {
-                username: data.username,
-                email: data.email,
-                password: data.password
+                "email": "brad@gmail.com",
+                "username": "brad",
+                "password": "password1234"
             };
 
             UserApi.registerUser(reg).then(function (response) {
-                console.log(reg);
-                if (response.headers.status) {
-                    console.log(response);
+                console.log(response);
+                if (response) {
                     registerUser();
                 } else {
-                    rc.personalInfo.message.registrationIssue = "Issue during your registration";
-                    console.log(rc.personalInfo.message.registrationIssue);
+                    // rc.personalInfo.message.registrationIssue = "Issue during your registration";
+                    console.log("Issue during your registration");
                     console.log(response);
                 }
             });
         };
 
         function registerUser(){
-            rc.personalInfo.message.userRegistered = "You have successfully registered";
-            console.log(rc.personalInfo.message.userRegistered);
+            // rc.personalInfo.message.userRegistered = "You have successfully registered";
+            console.log("You have successfully registered");
             $location.url('form/login');
         }
 

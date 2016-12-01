@@ -8,7 +8,7 @@
         .controller('DashPageCtrl', DashPageCtrl);
 
     /** @ngInject */
-    function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout) {
+    function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout, dashboardApi) {
         var dc = this;
         $http({
             url: '',
@@ -17,18 +17,16 @@
         }).then(function (response) {
             dc.dashboard = response.data;
         });
-        // $scope.activeUid = $stateParams.uid;
+        $scope.activeUid = $stateParams.uid;
 
-        // $timeout(function () {
-        //     checkuid();
-        // }, 1500);
+        var response = dashboardApi.getTempCampaign();
+        // console.log(response.metrics);
 
-        // console.log('this is the dashpagectrl and here is the uid');
-        // function checkuid(){
-        //     if (!$stateParams.uid) {
-        //         console.log('no uid to retrieve dashboard returning to login');
-        //         window.location.href = '#/form/login';
-        //     }
-        // }
+        $scope.metrics = response.metrics;
+        $scope.messages = response.messages;
+        $scope.conversations = response.conversations;
+        $scope.users = response.users;
+        $scope.meta_data = response.meta_data;
+        console.log($scope);
     }
 })();

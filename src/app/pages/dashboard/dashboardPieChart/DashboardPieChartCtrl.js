@@ -9,7 +9,7 @@
       .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http) {
+  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, dashboardApi) {
     $http({
       url: '',
       method: 'get',
@@ -18,9 +18,23 @@
       DashboardPieChartCtrl.dashboard = response.data;
     });
 
-    var activeCust = $stateParams.uid; //getting ui-route parameter
+    // var activeCust = $stateParams.uid; //getting ui-route parameter
+    console.log('activeUid from DashboardPieChartCtrl');
+    // console.log($scope.activeUid);
 
-    $scope.pieChartsFBdata = [];
+    $scope.pieChartsData = [];
+    // var response = dashboardApi.getTempCampaign();
+
+    var data = $scope.metrics;
+
+    var total = 0;
+    for(var i = 0; i < data.length; i++) {
+      var temp = data[i].engagement_rate;
+      var total = total + temp;
+    }
+
+    var avg_eng_rate = (total / data.length).toFixed(2);
+    console.log(avg_eng_rate);
 
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
 
@@ -42,21 +56,20 @@
     }, {
       color: pieColor,
       description: 'Success Rate',
-      stats: '',
+      stats: avg_eng_rate,
       icon: 'refresh',
     }
     ];
-    var FBDBRef = firebase.database().ref('dashboard/' + activeCust);
-    FBDBRef.on('value', function (data) {
-      var fbdata = data.val();
-      charts[0].stats = fbdata.tweets;
-      charts[1].stats = fbdata.interactions;
-      charts[2].stats = fbdata.actions;
-      charts[3].stats = fbdata.success + '%';
+
+    // var response = dashboardApi.getTempCampaign();
+      charts[0].stats = 7555;
+      charts[1].stats = 8444;
+      charts[2].stats = 4233;
+      charts[3].stats = 32 + '%';
       for(var i = 0; i < charts.length; i++) {
-        $scope.pieChartsFBdata.push(charts[i]);
+        $scope.pieChartsData.push(charts[i]);
       }
-    });
+
 
 
     function getRandomArbitrary(min, max) {

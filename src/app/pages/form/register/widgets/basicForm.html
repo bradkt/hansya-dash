@@ -24,54 +24,6 @@
           <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
         </div>
       </div>
-    <div class="col-md-6">
-      <div class="form-group has-feedback"
-           ng-class="{'has-error': rc.personalInfoForm.productName.$invalid && (rc.personalInfoForm.productName.$dirty || rc.personalInfoForm.$submitted)}">
-        <label for="registerKeywords">Desired Audience</label>
-        <input type="text" class="form-control" id="registerAudience" name="audience" placeholder="Who is your target audience or demographic?" ng-model="rc.personalInfo.audience" required>
-        <span class="help-block error-block basic-block">Required</span>
-      </div>
-      <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.productId.$invalid && (rc.personalInfoForm.productId.$dirty || rc.personalInfoForm.$submitted)}">
-        <label for="registerLocation">Location Requirements</label>
-        <input type="text" class="form-control" id="registerLocation" name="location" placeholder="Does your Campaign require location restrictions?" ng-model="rc.personalInfo.location">
-        <span class="help-block error-block basic-block">Required</span>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>How long ago is useful information</label>
-        <select class="form-control" title="timeframe" ng-model="rc.personalInfo.timeframe" selectpicker>
-          <option value=".25">One Week</option>
-          <option value=".5">Two Week</option>
-          <option value="1">One Month</option>
-          <option value="3">Three Months</option>
-          <option value="6">Six Months</option>
-          <option value="12">Twelve Months</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <label>Purpose of Campaign</label>
-        <select class="form-control" title="intent" ng-model="rc.personalInfo.intent" selectpicker>
-          <!--<option selected>What is the purpose of the campaign?</option>-->
-          <option>Lead Generation</option>
-          <option>Drive Traffic</option>
-          <option>Online Promotion</option>
-          <option>Increase Followers</option>
-        </select>
-      </div>
-    </div>
-      <div class="col-md-6">
-        <div class="form-group has-feedback"
-             ng-class="{'has-error': rc.personalInfoForm.productName.$invalid && (rc.personalInfoForm.productName.$dirty || rc.personalInfoForm.$submitted)}">
-          <label for="registerKeywords">Competitive Keywords</label>
-          <input type="text" class="form-control" id="registerKeywords" name="industry" placeholder="List any keywords associated with your industry" ng-model="rc.personalInfo.keywords" required>
-          <span class="help-block error-block basic-block">Required</span>
-        </div>
-      </div>
 
     <div class="col-md-6">
       <div class="form-group">
@@ -88,6 +40,7 @@
         <div class="form-group">
           <label>Industry</label>
           <select class="form-control" title="Industry" ng-model="rc.personalInfo.industry" selectpicker>
+            <option>Marketing</option>
             <option>Medical</option>
             <option>Electronics</option>
             <option>Toys</option>

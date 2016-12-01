@@ -1,5 +1,67 @@
-<form ng-submit="submit()" name="rc.personalInfoForm" novalidate>
+<div class="row">
+<button class="btn product" ng-click="addProduct(product.name)" ng-repeat="product in pc.productInfo">{{product.name}} Package<br>
+  ${{product.price}}<br>
+  {{product.datapoints}} Data Points<br>
+  {{product.description}}</button>
+</div>
+
+<form ng-submit="submit()" name="pc.campaignInfoForm" novalidate>
+
+  <div class="col-md-6">
+    <div class="form-group has-feedback"
+         ng-class="{'has-error': pc.campaignInfoForm.audience.$invalid && (pc.campaignInfoForm.audience.$dirty || pc.campaignInfoForm.$submitted)}">
+      <label for="campaignAudience">Desired Audience</label>
+      <input type="text" class="form-control" id="campaignAudience" name="audience" placeholder="The target audience or demographic for this campaign?" ng-model="pc.campaignInfo.audience" required>
+      <span class="help-block error-block basic-block">Required</span>
+    </div>
+    <div class="form-group" ng-class="{'has-error': pc.campaignInfoForm.location.$invalid && (pc.campaignInfoForm.productId.$dirty || pc.campaignInfoForm.$submitted)}">
+      <label for="campaignLocation">Location Requirements</label>
+      <input type="text" class="form-control" id="campaignLocation" name="location" placeholder="Does your Campaign limited to a specific location?" ng-model="pc.campaignInfo.location">
+      <span class="help-block error-block basic-block">Required</span>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>How far back is useful information</label>
+      <select class="form-control" title="timeframe" ng-model="pc.campaignInfo.timeframe" selectpicker>
+        <option value=".25">One Week</option>
+        <option value=".5">Two Week</option>
+        <option value="1">One Month</option>
+        <option value="3">Three Months</option>
+        <option value="6">Six Months</option>
+        <option value="12">Twelve Months</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Purpose of Campaign</label>
+      <select class="form-control" title="intent" ng-model="pc.campaignInfo.intent" selectpicker>
+        <!--<option selected>What is the purpose of the campaign?</option>-->
+        <option>Lead Generation</option>
+        <option>Drive Traffic</option>
+        <option>Online Promotion</option>
+        <option>Increase Followers</option>
+        <option>Customer Satisfaction Feedback</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group has-feedback"
+         ng-class="{'has-error': pc.campaignInfoForm.productName.$invalid && (pc.campaignInfoForm.productName.$dirty || pc.campaignInfoForm.$submitted)}">
+      <label for="campaignKeywords">Competitive Keywords</label>
+      <input type="text" class="form-control" id="campaignKeywords" name="keywords" placeholder="Keywords associated with your Campaign" ng-model="pc.campaignInfo.keywords" required>
+      <span class="help-block error-block basic-block">Required</span>
+    </div>
+  </div>
+
   <div class="row">
+
   <button type="submit" class="btn btn-success">Purchase</button>
   </div>
 </form>
+
+

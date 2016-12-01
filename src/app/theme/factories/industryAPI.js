@@ -15,8 +15,8 @@
             createIndustry: createIndustry
         };
 
-        function getIndustries(data) {
-            return $http.get('http://localhost:1337/industry', data).then(complete).catch(failed);
+        function getIndustries() {
+            return $http.get('http://localhost:1337/industry').then(complete).catch(failed);
         }
 
         function createIndustry(data) {

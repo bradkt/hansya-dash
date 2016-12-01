@@ -9,7 +9,7 @@
       .controller('TrafficChartCtrl', TrafficChartCtrl);
 
   /** @ngInject */
-  function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http) {
+  function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http, dashboardApi) {
 
     $http({
       url: '',
@@ -19,47 +19,53 @@
       TrafficChartCtrl.dashboard = response.data;
     });
 
-    var custUid = $stateParams.uid; //getting ui-route parameter
+    var campaign_id = $stateParams.uid; //getting ui-route parameter
+    // console.log(campaign_id);
 
-    $scope.trafficChartsFBdata = [];
+    $scope.trafficChartsData = [];
 
     $scope.transparent = baConfig.theme.blur;
     var dashboardColors = baConfig.colors.dashboard;
 
-    var FBDBRef = firebase.database().ref('dashboard/' + custUid + '/channels');
-    FBDBRef.once('value', function (data) {
-    var fbdata = data.val();
+    var data = $scope.metrics;
+    for(var i = 0; i < data.length; i++) {
+      var temp = data[i].engagement_rate;
+      var total = total + temp;
+    }
+
+    // console.log(response);
+
     $scope.doughnutData = [
       {
-        value: fbdata.twitter,
+        value: '444',
         color: dashboardColors.white,
         highlight: colorHelper.shade(dashboardColors.white, 15),
         label: 'Twitter',
         percentage: 87,
         order: 1,
       }, {
-        value: fbdata.facebook,
+        value: '555',
         color: dashboardColors.blueStone,
         highlight: colorHelper.shade(dashboardColors.blueStone, 15),
         label: 'FaceBook',
         percentage: 22,
         order: 4,
       }, {
-        value: fbdata.instagram,
+        value: '6666',
         color: dashboardColors.surfieGreen,
         highlight: colorHelper.shade(dashboardColors.surfieGreen, 15),
         label: 'Instagram',
         percentage: 70,
         order: 3,
       }, {
-        value: fbdata.youtube,
+        value: '1001',
         color: dashboardColors.silverTree,
         highlight: colorHelper.shade(dashboardColors.silverTree, 15),
         label: 'YouTube',
         percentage: 38,
         order: 2,
       }, {
-        value: fbdata.other,
+        value: '4545',
         color: dashboardColors.gossip,
         highlight: colorHelper.shade(dashboardColors.gossip, 15),
         label: 'Other',
@@ -68,7 +74,7 @@
       },
     ];
       initChart()
-    });
+
 
     function initChart() {
       var ctx = document.getElementById('chart-area').getContext('2d');
