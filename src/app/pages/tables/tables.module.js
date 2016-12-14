@@ -25,7 +25,7 @@
         }).state('tables.basic', {
           url: '/admin',
           templateUrl: 'app/pages/tables/basic/tables.html',
-          title: 'Admin Tables',
+          title: 'Admin',
           sidebarMeta: {
             order: 0,
           },

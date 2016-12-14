@@ -1,39 +1,33 @@
 <div class="widgets">
 
   <div class="row">
-    <div ba-panel ba-panel-title="Enter Customer name">
-    <form ng-submit="addCustomer()" name="tc.addCustForm" novalidate>
-          <div class="form-group has-feedback"
-               ng-class="{'has-error': tc.addCustForm.custname.$invalid && (tc.addCustForm.custname.$dirty || tc.addCustForm.$submitted)}">
-            <!--<label for="addCompany">Company name</label>-->
-            <input type="text" class="form-control" id="addCompany" name="addCompany" placeholder="Company Name" ng-model="tc.addCust.custname" required>
-            <span class="help-block error-block basic-block">Required</span>
+  <div ba-panel ba-panel-title="Add Campaign" ba-panel-class="with-scroll table-panel">
+  <div include-with-scope="app/pages/tables/widgets/addCampaignTable.html"></div>
+  </div>
+
+
+  <div class="row">
+    <div ba-panel ba-panel-title="Create Industry">
+        <div class="col-md-6">
+
+          <div class="form-group  has-feedback">
+            <label>Create Industry</label>
+            <input type="text" class="form-control" id="industryName" name="adminAddIndustry" placeholder="Industry Name" ng-model="tc.adminCreateIndustry.name">
           </div>
-      <button type="submit" class="btn btn-danger">Submit</button>
-      </form>
+          <div>
+            <button class="btn btn-danger" ng-click="postIndustry()">Create</button>
+          </div>
+        </div>
     </div>
   </div>
 
 
   <div class="row">
-    <div ba-panel ba-panel-title="Enter New Campaign">
-      <form ng-submit="addCampaign()" name="tc.campaignData" novalidate>
-        <div class="form-group"
-             ng-class="{'has-error': tc.addIndustryForm.custname.$invalid && (tc.addIndustryForm.custname.$dirty || tc.addIndustryForm.$submitted)}">
-          <!--<label for="addCompany">Company name</label>-->
-          <input type="text" class="form-control" id="addCampaign" name="addCampaign" placeholder="Campaign Name" ng-model="tc.addCampaign.campaignName" required>
-          <span class="help-block error-block basic-block">Required</span>
-        </div>
-        <button type="submit" class="btn btn-danger">Submit</button>
-      </form>
+    <div ba-panel ba-panel-title="Products" ba-panel-class="with-scroll table-panel">
+      <div include-with-scope="app/pages/tables/widgets/product.html"></div>
     </div>
   </div>
-  <!--<div class="row">-->
-    <!--<div class="col-lg-6 col-md-12">-->
-      <!--<div ba-panel ba-panel-title="Hover Rows" ba-panel-class="with-scroll table-panel">-->
-        <!--<div include-with-scope="app/pages/tables/widgets/hoverRows.html"></div>-->
-      <!--</div>-->
-    <!--</div>-->
+
     <!--<div class="col-lg-6 col-md-12">-->
     <!--<div ba-panel ba-panel-title="Contextual Table" ba-panel-class="with-scroll table-panel">-->
     <!--<div include-with-scope="app/pages/tables/widgets/contextualTable.html"></div>-->
@@ -47,27 +41,27 @@
     <!--</div>-->
     <!--<div class="col-lg-6 col-md-12">-->
 
-      <div ba-panel ba-panel-title="Customers" ba-panel-class="with-scroll table-panel">
+      <div ba-panel ba-panel-title="Clients" ba-panel-class="with-scroll table-panel">
 
         <div include-with-scope="app/pages/tables/widgets/stripedRows.html"></div>
       <!--</div>-->
     </div>
   </div>
+
+  <div class="row">
+    <div ba-panel ba-panel-title="Campaigns" ba-panel-class="with-scroll table-panel">
+      <div include-with-scope="app/pages/tables/widgets/campaignTable.html"></div>
+    </div>
+  </div>
+
+
   <div class="row">
 
-  <!--<div class="col-lg-6 col-md-12">-->
-  <div ba-panel ba-panel-title="Customer Specs" ba-panel-class="with-scroll table-panel">
-    <div include-with-scope="app/pages/tables/widgets/borderedTable.html"></div>
-  </div>
+
+  <!--<div ba-panel ba-panel-title="Customer Specs" ba-panel-class="with-scroll table-panel">-->
+    <!--<div include-with-scope="app/pages/tables/widgets/borderedTable.html"></div>-->
   <!--</div>-->
 
-    <!--</div>-->
-    <!--<div class="col-lg-6 col-md-12">-->
-    <!--Responsive Table-->
-      <!--<div ba-panel ba-panel-title="Customer Detail" ba-panel-class="with-scroll table-panel">-->
-        <!--<div include-with-scope="app/pages/tables/widgets/responsiveTable.html"></div>-->
-      <!--</div>-->
-    <!--</div>-->
   </div>
 
 </div>

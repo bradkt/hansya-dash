@@ -9,7 +9,7 @@
       .controller('DashboardCalendarCtrl', DashboardCalendarCtrl);
 
   /** @ngInject */
-  function DashboardCalendarCtrl(baConfig, $stateParams, $http) {
+  function DashboardCalendarCtrl(baConfig, $stateParams, $http, CampaignApi) {
     $http({
       url: '',
       method: 'get',
@@ -30,7 +30,7 @@
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      defaultDate: '2016-10-01',
+      defaultDate: '2016-12-01',
       selectable: true,
       selectHelper: true,
       select: function (start, end) {
@@ -48,7 +48,7 @@
           $element.fullCalendar('renderEvent', eventData, true); // stick? = true
         }
         $element.fullCalendar('unselect');
-        getFBData(title, start);
+        downloadFile(title, start);
       },
       editable: true,
       eventLimit: true, // allow "more" link when too many events
@@ -77,26 +77,22 @@
       ]
     });
 
-    function getFBData (title, date) {
-      var FBDBRef = firebase.database().ref('data/' + custUid + '/data');
-      FBDBRef.once('value', function (data) {
-        downloadFile (title, date, data.val());
-      });
-    }
 
-    function downloadFile (title, date, FBdata) {
+    function downloadFile (title, date) {
+      var response = CampaignApi.getTempCampaign().messages;
       var data = "";
       var dataToDL = [];
       var dateToday = new Date().toDateString();
       var dateSelected = date.format();
-
-      for (var i = 0; i < FBdata.length; i++) {
-        var dateToMatch = FBdata[i].dt.slice(0,10);
+      // console.log(response);
+      for (var i = 0; i < response.length; i++) {
+        var dateToMatch = response[i].datetime.slice(0,10);
+        console.log(dateToMatch);
         if (dateSelected > dateToday) {
           //todo:create alert that lets user know date of campaign(pick date while data collection took place)
           alert('Please Select date previous to today');
           if (dateSelected.toString() == dateToMatch.toString()) {
-            dataToDL.push(FBdata[i]);
+            dataToDL.push(response[i]);
             console.log('this is the download array');
             console.log(dataToDL);
           } else {

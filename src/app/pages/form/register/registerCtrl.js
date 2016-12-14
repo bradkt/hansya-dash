@@ -15,14 +15,14 @@
         $scope.submit = function () {
             console.log('registration form');
 
-            var data = $scope.rc.personalInfo;
-            var reg = {
-                "email": "brad@gmail.com",
-                "username": "brad",
-                "password": "password1234"
-            };
-
-            UserApi.registerUser(reg).then(function (response) {
+            var data = rc.personalInfo;
+            // var reg = {
+            //     "email": "brad@gmail.com",
+            //     "username": "brad",
+            //     "password": "password1234"
+            // };
+            console.log(data);
+            UserApi.registerUser(data).then(function (response) {
                 console.log(response);
                 if (response) {
                     registerUser();

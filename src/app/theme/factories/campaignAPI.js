@@ -6,24 +6,30 @@
     'use strict';
 
     angular.module('BlurAdmin.theme')
-        .factory('dashboardApi', dashboardApi);
+        .factory('CampaignApi', CampaignApi);
 
     /** @ngInject */
-    function dashboardApi($http) {
+    function CampaignApi($http) {
 
         return {
+            getCampaigns: getCampaigns,
             getCampaign: getCampaign,
-            getData: getData,
+            postCampaign: postCampaign,
             getTempCampaign: getTempCampaign
         };
 
-        function getCampaign(data) {
-            return $http.get('http://localhost:1337/workOrderData', data)
+        function getCampaigns() {
+            return $http.get('http://localhost:1337/campaign/')
                 .then(complete).catch(failed);
         }
 
-        function getData(data) {
-            return $http.post('http://localhost:8888/api/todo/', data)
+        function getCampaign(data, id) {
+            return $http.get('http://localhost:1337/campaign/' + id, data)
+                .then(complete).catch(failed);
+        }
+
+        function postCampaign(data) {
+            return $http.post('http://localhost:1337/campaign', data)
                 .then(complete).catch(failed);
         }
 

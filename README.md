@@ -1,5 +1,12 @@
 start chromium browser and allow for cors
     chromium-browser --disable-web-security --user-data-dir
+    
+##useful commands
+* gulp serve (run dev site)
+
+* on consumer-api
+turn off redis connnection
+config/env/dev.js
 
 ### Demo
 **[Mint version demo](http://akveo.com/blur-admin-mint/)**             |  **[Blur version demo](http://akveo.com/blur-admin/)**

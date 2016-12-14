@@ -8,28 +8,43 @@
         .controller('LayoutsCtrl', LayoutsCtrl);
 
     /** @ngInject */
-    function LayoutsCtrl($scope, $location, UserApi) {
+    function LayoutsCtrl($scope, $location, $log , UserApi, CampaignApi) {
         var lc = this;
         lc.personalInfo = {};
         $scope.submit = function () {
             //this model is holding email as identifier
-            var data = $scope.lc.personalInfo;
+            var data = lc.personalInfo;
+            console.log(data);
             UserApi.postUserLogin(data).then(function (response) {
-                userGranted(response);
+                if (response) {
+                    userGranted(response);
+                } else {
+                lc.personalInfo.errorMessage = "Your Email and Password do not match";
+                console.log($scope.lc.personalInfo.errorMessage);
+            }
+
             });
         };
 
+        // once logged in need to send user to their dashboard or if admin (no dashboard) to admin panel
+        // is their a way to identify different roles from request
+        // role = "1c03f0fb-4b9a-4905-82e3-71d198d1f303"
         function userGranted(response) {
-            console.log('----------------------------');
-            var uid = response.data.id;
-            if (uid) {
-                console.log(response);
-                $location.url('dashboard/44114411'); //needs to redirect to campaign or if user is able to pick
-                // from more than one campaign directed to page where they can
-            } else {
-                $scope.lc.personalInfo.errorMessage = "Your Email and Password do not match";
-                console.log($scope.lc.personalInfo.errorMessage);
-            }
+
+            CampaignApi.getCampaigns().then(function (response) {
+                if (!response) {
+                    $log.info('there was an error getting your campaigns');
+                // } else if (response == [] && admin) {
+                //     $location.url('table/admin');
+                } else if (response == []) {
+                    console.log('there are no campaigns associated with this accont would you like to create a compaign?')
+                } else {
+                    console.log('get campaigns call');
+                    console.log(response);
+                    console.log('end get campaign call');
+                    $location.url('dashboard/44114411'); //direct to most recent campaign ('dashboard/' + response[0])
+                }
+            });
         }
     }
 })();

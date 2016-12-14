@@ -9,7 +9,7 @@
       .controller('TrafficChartCtrl', TrafficChartCtrl);
 
   /** @ngInject */
-  function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http, dashboardApi) {
+  function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http, CampaignApi) {
 
     $http({
       url: '',
@@ -27,50 +27,50 @@
     $scope.transparent = baConfig.theme.blur;
     var dashboardColors = baConfig.colors.dashboard;
 
-    var data = $scope.metrics;
-    for(var i = 0; i < data.length; i++) {
-      var temp = data[i].engagement_rate;
-      var total = total + temp;
-    }
+    // var data = $scope.metrics;
+    // for(var i = 0; i < data.length; i++) {
+    //   var temp = data[i].engagement_rate;
+    //   var total = total + temp;
+    // }
 
     // console.log(response);
 
     $scope.doughnutData = [
       {
-        value: '444',
+        value: '1800',
         color: dashboardColors.white,
         highlight: colorHelper.shade(dashboardColors.white, 15),
-        label: 'Twitter',
-        percentage: 87,
-        order: 1,
+        label: 'Atlanta, GA',
+        percentage: ((1800 / 10000) * 100).toFixed(2),
+        order: 1
       }, {
-        value: '555',
+        value: '900',
         color: dashboardColors.blueStone,
         highlight: colorHelper.shade(dashboardColors.blueStone, 15),
-        label: 'FaceBook',
-        percentage: 22,
-        order: 4,
+        label: 'Columbus, OH',
+        percentage: ((900 / 10000) * 100).toFixed(2),
+        order: 4
       }, {
-        value: '6666',
+        value: '1700',
         color: dashboardColors.surfieGreen,
         highlight: colorHelper.shade(dashboardColors.surfieGreen, 15),
-        label: 'Instagram',
-        percentage: 70,
-        order: 3,
+        label: 'Instagram, CA',
+        percentage: ((1700 / 10000) * 100).toFixed(2),
+        order: 3
       }, {
-        value: '1001',
+        value: '3500',
         color: dashboardColors.silverTree,
         highlight: colorHelper.shade(dashboardColors.silverTree, 15),
-        label: 'YouTube',
-        percentage: 38,
-        order: 2,
+        label: 'Austin, TX',
+        percentage: ((3500 / 10000) * 100).toFixed(2),
+        order: 2
       }, {
-        value: '4545',
+        value: '2500',
         color: dashboardColors.gossip,
         highlight: colorHelper.shade(dashboardColors.gossip, 15),
         label: 'Other',
-        percentage: 17,
-        order: 0,
+        percentage: ((2500 / 10000) * 100).toFixed(2),
+        order: 0
       },
     ];
       initChart()

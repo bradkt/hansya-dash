@@ -12,14 +12,14 @@
 
         return {
             getIndustries: getIndustries,
-            createIndustry: createIndustry
+            postIndustry: postIndustry
         };
 
         function getIndustries() {
             return $http.get('http://localhost:1337/industry').then(complete).catch(failed);
         }
 
-        function createIndustry(data) {
+        function postIndustry(data) {
             return $http.post('http://localhost:1337/industry', data).then(complete).catch(failed);
         }
 

@@ -8,18 +8,18 @@
         .controller('DashPageCtrl', DashPageCtrl);
 
     /** @ngInject */
-    function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout, dashboardApi) {
+    function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout, CampaignApi) {
         var dc = this;
-        $http({
-            url: '',
-            method: 'get',
-            params: {uid: $stateParams.uid},
-        }).then(function (response) {
-            dc.dashboard = response.data;
-        });
-        $scope.activeUid = $stateParams.uid;
+        // $http({
+        //     url: '',
+        //     method: 'get',
+        //     params: {uid: $stateParams.uid},
+        // }).then(function (response) {
+        //     dc.dashboard = response.data;
+        // });
+        // $scope.activeUid = $stateParams.uid;
 
-        var response = dashboardApi.getTempCampaign();
+        var response = CampaignApi.getTempCampaign();
         // console.log(response.metrics);
 
         $scope.metrics = response.metrics;
@@ -27,6 +27,6 @@
         $scope.conversations = response.conversations;
         $scope.users = response.users;
         $scope.meta_data = response.meta_data;
-        console.log($scope);
+
     }
 })();

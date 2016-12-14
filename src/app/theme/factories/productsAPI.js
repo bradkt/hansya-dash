@@ -12,14 +12,14 @@
 
         return {
             getProducts: getProducts,
-            createProduct: createProduct
+            postProduct: postProduct
         };
 
         function getProducts() {
             return $http.get('http://localhost:1337/product').then(complete).catch(failed);
         }
 
-        function createProduct(data) {
+        function postProduct(data) {
             return $http.post('http://localhost:1337/product', data).then(complete).catch(failed);
         }
 

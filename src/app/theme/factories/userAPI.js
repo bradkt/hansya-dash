@@ -23,6 +23,10 @@
             return $http.post('http://localhost:1337/auth/local/', data).then(complete).catch(failed);
         }
 
+        function getUsers() {
+            return $http.get('http://localhost:1337/users').then(complete).catch(failed);
+        }
+
         function complete(response) {
             return response;
         }

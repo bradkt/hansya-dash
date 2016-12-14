@@ -9,21 +9,21 @@
       .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, dashboardApi) {
-    $http({
-      url: '',
-      method: 'get',
-      params: {uid: $stateParams.uid},
-    }).then(function (response) {
-      DashboardPieChartCtrl.dashboard = response.data;
-    });
+  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi) {
+    // $http({
+    //   url: '',
+    //   method: 'get',
+    //   params: {uid: $stateParams.uid},
+    // }).then(function (response) {
+    //   DashboardPieChartCtrl.dashboard = response.data;
+    // });
 
     // var activeCust = $stateParams.uid; //getting ui-route parameter
-    console.log('activeUid from DashboardPieChartCtrl');
+    // console.log('activeUid from DashboardPieChartCtrl');
     // console.log($scope.activeUid);
 
     $scope.pieChartsData = [];
-    // var response = dashboardApi.getTempCampaign();
+    // var response = CampaignApi.getTempCampaign();
 
     var data = $scope.metrics;
 
@@ -38,43 +38,42 @@
 
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
 
-    var charts = [{
+    var goals = {
+      // CampaignApi.getcampaignGoalsHere
+    };
+
+    $scope.pieChartsData = [{
       color: pieColor,
-      description: 'Tweets Sent',
-      stats: '',
+      description: 'Interactions',
+      stats: 21450,
       icon: 'person',
+      percent: ((21450 / 10000) * 100).toFixed(0) + '%'
     }, {
       color: pieColor,
-      description: 'Impressions',
-      stats: '$ ' + '',
-      icon: 'money',
-    }, {
-      color: pieColor,
-      description: 'User Action',
-      stats: '',
+      description: 'Average Sentiment',
+      stats: 29 + '%',
       icon: 'face',
+      percent: 31
     }, {
       color: pieColor,
-      description: 'Success Rate',
-      stats: avg_eng_rate,
-      icon: 'refresh',
+      description: 'Keyword: Pie',
+      stats: 3215,
+      icon: '',
+      // icon: 'refresh',
+      percent: 21
+    }, {
+      color: pieColor,
+      description: 'Engagement Rate',
+      stats: 33 + '%',
+      icon: 'money',
+      percent: 33
     }
     ];
 
-    // var response = dashboardApi.getTempCampaign();
-      charts[0].stats = 7555;
-      charts[1].stats = 8444;
-      charts[2].stats = 4233;
-      charts[3].stats = 32 + '%';
-      for(var i = 0; i < charts.length; i++) {
-        $scope.pieChartsData.push(charts[i]);
-      }
 
-
-
-    function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    }
+    // function getRandomArbitrary(min, max) {
+    //   return Math.random() * (max - min) + min;
+    // }
 
     function loadPieCharts() {
       $('.chart').each(function () {
@@ -99,15 +98,15 @@
         });
       }
 
-      function updatePieCharts() {
-        $('.pie-charts .chart').each(function(index, chart) {
-          $(chart).data('easyPieChart').update(getRandomArbitrary(55, 90));
-        });
-      }
+      // function updatePieCharts() {
+      //   $('.pie-charts .chart').each(function(index, chart) {
+      //     $(chart).data('easyPieChart').update(getRandomArbitrary(55, 90));
+      //   });
+      // }
 
       $timeout(function () {
         loadPieCharts();
-        updatePieCharts();
+        // updatePieCharts();
       }, 5500);
       }
 })();

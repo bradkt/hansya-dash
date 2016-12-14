@@ -9,61 +9,85 @@
       .controller('TablesPageCtrl', TablesPageCtrl);
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes) {
+  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi) {
     var tc = this;
 
-    $scope.addCust = {};
-
-
-    $scope.addCustomer = function () {
-      // var customer = $scope.tc.addCust.custname.toString().trim().toLowerCase();
-
-      var customerData = {
-
-      };
-
-      var dashData = {
-
-      };
-
-      var serviceData = {
-        service: "Free Trial",
-      };
-
-      var sampleData = {
-        data: "sampledata"
-      };
-
-      var Data = {
-        data: "not uploaded"
-      };
-    };
-
-    //todo: need to add a way to assign to specific company
-    $scope.addCampaign = function () {
-      //update current number of customers in list--add one
-
-      var CampaigName = tc.Campaign.campaignName.toString().trim().toLowerCase();
-
-      var industry = {
-        name: industryname
-      };
-
-    };
-
-
-    $scope.smartTablePageSize = 10;
-
-    $scope.customerListTableData = [];
-
-    $scope.customerDetailTableData = [];
-
+    // scope data
+    tc.adminAddCampaign = {};
+    tc.campaignListTableData = {};
+    tc.productListTableData = {};
+    tc.productInfo = {};
     $scope.currentCustomer = [];
+    // $scope.smartTablePageSize = 10;
+    // $scope.customerListTableData = [];
+    // $scope.customerDetailTableData = [];
 
-    $scope.viewCustDetails = function () {
+    getCampaigns();
+    getProducts();
 
+    $scope.createCampaign = function () {
+
+      // tc.adminAddCampaign = tc.adminAddCampaign.campaignName.trim().toLowerCase();
+      // console.log(tc.adminAddCampaign);
+
+      var data = {
+            keywords: tc.adminAddCampaign.keywords,
+            product: tc.adminAddCampaign.product.name,
+            paid: true,
+            paymentID: '45454545',
+            visibility: 'user'
+      };
+
+      console.log(tc.adminAddCampaign);
+      console.log(tc.adminAddCampaign.product.name);
+
+      CampaignApi.postCampaign(data).then(function (response) {
+        console.log(response);
+      });
 
     };
+
+    $scope.postIndustry = function() {
+
+      tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
+      console.log(tc.adminCreateIndustry);
+
+      IndustryApi.postIndustry('brad').then(function (response) {
+
+        console.log(response);
+      });
+
+    };
+
+
+    function getCampaigns () {
+      CampaignApi.getCampaigns().then(function (response) {
+        console.log('get caampaigns');
+        console.log(response);
+        console.log('end get campaigns');
+      });
+    }
+
+    function getProducts () {
+      ProductApi.getProducts().then(function (response) {
+        tc.productListTableData = response.data;
+        console.log(tc.productListTableData);
+      });
+    }
+
+    // name: 'large',
+    // datapoints: parseInt('10000'),
+    // description: '10000 Datapoints WOW!',
+    // price: parseInt('17999')
+
+    $scope.postProduct = function(data) {
+      data = tc.productInfo;
+
+      console.log(data);
+      ProductApi.postProduct(data).then(function (response) {
+        console.log(response);
+      });
+    }
 
     $scope.uploadFile = function() {
       var currentCustomer = $scope.currentCustomer;
