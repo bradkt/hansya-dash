@@ -53,7 +53,7 @@
       tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
       console.log(tc.adminCreateIndustry);
 
-      IndustryApi.postIndustry({"name":"power"}).then(function (response) {
+      IndustryApi.postIndustry({"name":tc.adminCreateIndustry.name}).then(function (response) {
 
         console.log(response);
       });

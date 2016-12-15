@@ -12,7 +12,8 @@
 
         return {
             registerUser: registerUser,
-            postUserLogin: postUserLogin
+            postUserLogin: postUserLogin,
+            getCurrentUser: getCurrentUser
         };
 
         function registerUser(data) {
@@ -23,8 +24,8 @@
             return $http.post('http://localhost:1337/auth/local/', data).then(complete).catch(failed);
         }
 
-        function getUsers() {
-            return $http.get('http://localhost:1337/users').then(complete).catch(failed);
+        function getCurrentUser() {
+            return $http.get('http://localhost:1337/user').then(complete).catch(failed);
         }
 
         function complete(response) {

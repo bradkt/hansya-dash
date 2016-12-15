@@ -31,18 +31,15 @@
 
         $scope.submit = function () {
             console.log(pc.campaignInfo);
+            console.log(pc.campaignInfo.id);
 
             var data = {
-
-                // id: 1000,
-                // requestedDate: new Date(),
-                "keywords": ['Merge Industry and', 'Whatever', 'Else', 'Is', 'Added'],
-                // user: 'ca2addbe-4aec-4679-96cd-c526aeea30ee',
-                "product": pc.campaignInfo.id,
+                "keywords": ["Merge Industry and", "Whatever", "Else", "Is", "Added"],
+                "product": pc.campaignInfo.id, //ex:338
                 "paid": false,
-                "visibility": 'company'
-
+                "visibility": "user"
             };
+
             console.log(data);
             CampaignApi.postCampaign(data).then(function (response) {
                 console.log(response);
