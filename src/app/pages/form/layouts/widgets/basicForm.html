@@ -1,26 +1,29 @@
-
-  <form ng-submit="submit()"name="lc.personalInfoForm" novalidate>
-    <div class="row">
-      <div class="col-md-6">
-        <!--<div class="form-group has-feedback"-->
-             <!--ng-class="{'has-error': lc.personalInfoForm.custname.$invalid && (lc.personalInfoForm.custname.$dirty || lc.personalInfoForm.$submitted)}">-->
-          <!--<label for="loginCompanyName">Company name</label>-->
-          <!--<input type="text" class="form-control" id="loginCompanyName" name="companyName" placeholder="Company Name" ng-model="lc.personalInfo.companyName" required>-->
-          <!--<span class="help-block error-block basic-block">Required</span>-->
-        <!--</div>-->
-        <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.email.$invalid && (lc.personalInfoForm.email.$dirty || lc.personalInfoForm.$submitted)}">
-          <label for="loginEmail1">Email address</label>
-          <input type="email" class="form-control" id="loginEmail1" name="email" placeholder="Email" ng-model="lc.personalInfo.identifier" required>
-          <span class="help-block error-block basic-block">Proper email required</span>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.password.$invalid && (lc.personalInfoForm.password.$dirty || lc.personalInfoForm.$submitted)}">
-          <label for="loginPassword">Password</label>
-          <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" ng-model="lc.personalInfo.password" required>
-          <span class="help-block error-block basic-block">Required</span>
-        </div>
+<form ng-submit="submit()"name="lc.personalInfoForm" novalidate>
+  <div class="row">
+    <div class="col-md-6">
+      <!--<div class="form-group has-feedback"-->
+           <!--ng-class="{'has-error': lc.personalInfoForm.custname.$invalid && (lc.personalInfoForm.custname.$dirty || lc.personalInfoForm.$submitted)}">-->
+        <!--<label for="loginCompanyName">Company name</label>-->
+        <!--<input type="text" class="form-control" id="loginCompanyName" name="companyName" placeholder="Company Name" ng-model="lc.personalInfo.companyName" required>-->
+        <!--<span class="help-block error-block basic-block">Required</span>-->
+      <!--</div>-->
+      <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.email.$invalid && (lc.personalInfoForm.email.$dirty || lc.personalInfoForm.$submitted)}">
+        <label for="loginEmail1">Email address</label>
+        <input type="email" class="form-control" id="loginEmail1" name="email" placeholder="Email" ng-model="lc.personalInfo.identifier" required>
+        <span class="help-block error-block basic-block">Proper email required</span>
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.password.$invalid && (lc.personalInfoForm.password.$dirty || lc.personalInfoForm.$submitted)}">
+        <label for="loginPassword">Password</label>
+        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" ng-model="lc.personalInfo.password" required>
+        <span class="help-block error-block basic-block">Required</span>
+      </div>
+    </div>
+  </div>
   <button type="submit" class="btn btn-danger">Submit</button>
 </form>
+<hr>
+<div class="row right">
+  <h4 ng-click="recoverPassword()">Forget Password?</h4>
+</div>

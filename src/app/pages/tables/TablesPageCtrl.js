@@ -31,15 +31,16 @@
       // console.log(tc.adminAddCampaign);
 
       var data = {
-            keywords: tc.adminAddCampaign.keywords,
-            product: tc.adminAddCampaign.product.name,
-            paid: true,
-            paymentID: '45454545',
-            visibility: 'user'
+            "keywords": tc.adminAddCampaign.keywords,
+            "product": tc.adminAddCampaign.product.id,
+            "paid": true,
+            "paymentID": '45454545',
+            "visibility": 'user'
       };
 
       console.log(tc.adminAddCampaign);
-      console.log(tc.adminAddCampaign.product.name);
+      console.log(tc.adminAddCampaign.product.id);
+      console.log(data);
 
       CampaignApi.postCampaign(data).then(function (response) {
         console.log(response);
@@ -52,7 +53,7 @@
       tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
       console.log(tc.adminCreateIndustry);
 
-      IndustryApi.postIndustry('brad').then(function (response) {
+      IndustryApi.postIndustry({"name":"power"}).then(function (response) {
 
         console.log(response);
       });
@@ -88,6 +89,13 @@
         console.log(response);
       });
     }
+
+    $scope.deleteProduct = function(id) {
+      console.log(id);
+      ProductApi.deleteProduct(id).then(function (response) {
+        console.log(response);
+      });
+    };
 
     $scope.uploadFile = function() {
       var currentCustomer = $scope.currentCustomer;

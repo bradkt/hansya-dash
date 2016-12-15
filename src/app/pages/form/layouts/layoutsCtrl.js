@@ -8,7 +8,7 @@
         .controller('LayoutsCtrl', LayoutsCtrl);
 
     /** @ngInject */
-    function LayoutsCtrl($scope, $location, $log , UserApi, CampaignApi) {
+    function LayoutsCtrl($scope, $location, $log , UserApi, CampaignApi, LocalStorage) {
         var lc = this;
         lc.personalInfo = {};
         $scope.submit = function () {
@@ -17,6 +17,7 @@
             console.log(data);
             UserApi.postUserLogin(data).then(function (response) {
                 if (response) {
+                    console.log(response);
                     userGranted(response);
                 } else {
                 lc.personalInfo.errorMessage = "Your Email and Password do not match";
@@ -42,9 +43,16 @@
                     console.log('get campaigns call');
                     console.log(response);
                     console.log('end get campaign call');
-                    $location.url('dashboard/44114411'); //direct to most recent campaign ('dashboard/' + response[0])
+                    LocalStorage.setCurrentCampaign(44114411); //response[0]
+                    $location.url('dashboard/' + 44114411); //direct to most recent campaign ('dashboard/' + response[0])
                 }
             });
         }
+
+
+        $scope.recoverPassword = function() {
+            $log.info('recover the freakin password');
+        }
+
     }
 })();

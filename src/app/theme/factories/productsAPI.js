@@ -12,7 +12,8 @@
 
         return {
             getProducts: getProducts,
-            postProduct: postProduct
+            postProduct: postProduct,
+            deleteProduct: deleteProduct
         };
 
         function getProducts() {
@@ -21,6 +22,10 @@
 
         function postProduct(data) {
             return $http.post('http://localhost:1337/product', data).then(complete).catch(failed);
+        }
+
+        function deleteProduct(id) {
+            return $http.delete('http://localhost:1337/product/' + id).then(complete).catch(failed);
         }
 
         function complete(response) {

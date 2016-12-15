@@ -1,3 +1,6 @@
+.right {
+  float: right; }
+
 @font-face {
   font-family: 'socicon';
   src: url("../assets/fonts/socicon.eot");
