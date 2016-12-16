@@ -34,8 +34,8 @@
             console.log(pc.campaignInfo.id);
 
             var data = {
-                "keywords": ["Merge Industry and", "Whatever", "Else", "Is", "Added"],
-                "product": pc.campaignInfo.id, //ex:338
+                "keywords": [pc.campaignInfo.keywords],
+                "product": pc.campaignInfo.id,
                 "paid": false,
                 "visibility": "user"
             };

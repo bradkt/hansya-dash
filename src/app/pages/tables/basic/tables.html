@@ -21,6 +21,21 @@
     </div>
   </div>
 
+    <div class="row">
+      <div ba-panel ba-panel-title="Create Company">
+        <div class="col-md-6">
+
+          <div class="form-group  has-feedback">
+            <label>Create Company</label>
+            <input type="text" class="form-control" id="CompanyName" name="adminAddCompany" placeholder="Company Name" ng-model="tc.adminCreateCompany.id">
+          </div>
+          <div>
+            <button class="btn btn-danger" ng-click="postCompany()">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   <div class="row">
     <div ba-panel ba-panel-title="Products" ba-panel-class="with-scroll table-panel">

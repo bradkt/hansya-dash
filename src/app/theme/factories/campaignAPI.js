@@ -15,11 +15,17 @@
             getCampaigns: getCampaigns,
             getCampaign: getCampaign,
             postCampaign: postCampaign,
-            getTempCampaign: getTempCampaign
+            getTempCampaign: getTempCampaign,
+            postDataUpload: postDataUpload
         };
 
         function getCampaigns() {
             return $http.get('http://localhost:1337/campaign/')
+                .then(complete).catch(failed);
+        }
+
+        function postDataUpload () {
+            return $http.post('http://localhost:1337/campaignData/upload', data)
                 .then(complete).catch(failed);
         }
 

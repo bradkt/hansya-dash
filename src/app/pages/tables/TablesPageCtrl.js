@@ -9,7 +9,7 @@
       .controller('TablesPageCtrl', TablesPageCtrl);
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi) {
+  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi) {
     var tc = this;
 
     // scope data
@@ -60,11 +60,44 @@
 
     };
 
+    $scope.postCompany = function () {
+      var id = tc.adminCreateCompany.id.trim().toLowerCase();
+      console.log(id);
+
+      UserApi.postCompany(id).then(function (response) {
+
+        if (response) {
+          console.log("Company Created ");
+          console.log(response);
+        } else {
+          console.log("Issue creating this company");
+          console.log(response);
+        }
+
+      });
+    };
+
+    // $scope.getCompany = function () {
+
+      UserApi.getCompany().then(function (response) {
+
+        if (response) {
+          console.log("getting companies");
+          console.log(response);
+        } else {
+          console.log("Issue getting companies");
+          console.log(response);
+        }
+
+      });
+    // };
 
     function getCampaigns () {
       CampaignApi.getCampaigns().then(function (response) {
         console.log('get caampaigns');
-        console.log(response);
+
+        tc.campaignListTableData = response;
+        console.log(tc.campaignListTableData);
         console.log('end get campaigns');
       });
     }
@@ -110,7 +143,6 @@
           var jsondata = {
             data: JSON.parse(filedata)
           };
-          // firebase.database().ref('data/' + currentCustomer + '/').push(jsondata);
         };
         fr.readAsText(file);
       } else {

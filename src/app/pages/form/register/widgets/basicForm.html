@@ -5,7 +5,7 @@
         <div class="form-group has-feedback"
              ng-class="{'has-error': rc.personalInfoForm.custname.$invalid && (rc.personalInfoForm.custname.$dirty || rc.personalInfoForm.$submitted)}">
           <label for="registerCompanyName">Company name</label>
-          <input type="text" class="form-control" id="registerCompanyName" name="compayName" placeholder="Company Name" ng-model="rc.personalInfo.companyName" required>
+          <input type="text" class="form-control" id="registerCompanyName" name="compayName" placeholder="Company Name" ng-model="rc.personalInfo.name" required>
           <span class="help-block error-block basic-block">Required</span>
         </div>
         <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.email.$invalid && (rc.personalInfoForm.email.$dirty || rc.personalInfoForm.$submitted)}">

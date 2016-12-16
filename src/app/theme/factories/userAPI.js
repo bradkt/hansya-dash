@@ -13,8 +13,18 @@
         return {
             registerUser: registerUser,
             postUserLogin: postUserLogin,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+            postCompany: postCompany,
+            getCompany: getCompany
         };
+
+        function postCompany (data) {
+            return $http.post('http://localhost:1337/company', data).then(complete).catch(failed);
+        }
+
+        function getCompany () {
+            return $http.get('http://localhost:1337/company').then(complete).catch(failed);
+        }
 
         function registerUser(data) {
             return $http.post('http://localhost:1337/user', data).then(complete).catch(failed);
