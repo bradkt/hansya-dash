@@ -4,20 +4,23 @@
     <tr>
       <!--<th class="table-id">#</th>-->
       <th>Name</th>
-      <!--<th>Select to upload</th>-->
+      <th>Company</th>
+      <th>Role</th>
       <th>Industry</th>
       <th>Email</th>
-      <th>Dashboard</th>
+      <th>Phone</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="item in customerListTableData">
+    <tr ng-repeat="item in tc.clientListTableData">
       <!--<td class="table-id">{{item.key}}</td>-->
-      <td><a ng-click="viewCustDetails(item.key)">{{item.name}}</a></td>
-      <!--<td>{{item.lastName}}</td>-->
-      <td>{{item.name}}</td>
+      <td>{{item.username}}</td>
+      <td ng-if="item.company">{{item.company}}</td>
+      <td ng-if="!item.company" ng-click="makeCompanySelection(item)"><a>Assign</a></td>
+      <td ng-click="makeRoleSelection(item)"><a>{{item.role.name}}</a></td>
+      <td>{{item.industry}}</td>
       <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-      <td><a ui-sref="dashboard({ uid:item.key })">{{item.name}}</a></td>
+      <td>{{item.phone}}</td>
     </tr>
     </tbody>
   </table>

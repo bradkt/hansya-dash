@@ -14,9 +14,15 @@
             registerUser: registerUser,
             postUserLogin: postUserLogin,
             getCurrentUser: getCurrentUser,
+            getUsers: getUsers,
             postCompany: postCompany,
-            getCompany: getCompany
+            getCompany: getCompany,
+            putUserRole: putUserRole
         };
+
+        function putUserRole (data) {
+            return $http.put('http://localhost:1337/user/changeRole', data).then(complete).catch(failed);
+        }
 
         function postCompany (data) {
             return $http.post('http://localhost:1337/company', data).then(complete).catch(failed);
@@ -24,6 +30,10 @@
 
         function getCompany () {
             return $http.get('http://localhost:1337/company').then(complete).catch(failed);
+        }
+
+        function getUsers () {
+            return $http.get('http://localhost:1337/user/all').then(complete).catch(failed);
         }
 
         function registerUser(data) {

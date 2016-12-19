@@ -9,7 +9,7 @@
       .controller('TablesPageCtrl', TablesPageCtrl);
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi) {
+  function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage) {
     var tc = this;
 
     // scope data
@@ -17,13 +17,22 @@
     tc.campaignListTableData = {};
     tc.productListTableData = {};
     tc.productInfo = {};
+    tc.clientListTableData = {};
+    tc.changeUserRole = {};
+    tc.assignUserToCompany= {};
     $scope.currentCustomer = [];
     // $scope.smartTablePageSize = 10;
     // $scope.customerListTableData = [];
     // $scope.customerDetailTableData = [];
 
-    getCampaigns();
-    getProducts();
+    // var role = LocalStorage.getUserRole();
+    // if (role == undefined  || role.role == "registered") {
+    //   $location.url('form/login')
+    // } else {
+      getCampaigns();
+      getProducts();
+      getAllUsers();
+    // }
 
     $scope.createCampaign = function () {
 
@@ -53,18 +62,26 @@
       tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
       console.log(tc.adminCreateIndustry);
 
-      IndustryApi.postIndustry({"name":tc.adminCreateIndustry.name}).then(function (response) {
+      var data = {
+        name: tc.adminCreateIndustry.name,
+        keywords: ["default", "keywords", "go here"]
+      };
 
-        console.log(response);
+      IndustryApi.postIndustry(data).then(function (response) {
+        if (response) {
+          console.log(response);
+        } else {
+          console.log('error posting the industry');
+        }
       });
 
     };
 
     $scope.postCompany = function () {
-      var id = tc.adminCreateCompany.id.trim().toLowerCase();
-      console.log(id);
+      tc.adminCreateCompany.name = tc.adminCreateCompany.name.trim().toLowerCase();
+      console.log(tc.adminCreateCompany);
 
-      UserApi.postCompany(id).then(function (response) {
+      UserApi.postCompany(tc.adminCreateCompany).then(function (response) {
 
         if (response) {
           console.log("Company Created ");
@@ -77,7 +94,7 @@
       });
     };
 
-    // $scope.getCompany = function () {
+    function getCompanys () {
 
       UserApi.getCompany().then(function (response) {
 
@@ -90,7 +107,67 @@
         }
 
       });
-    // };
+    };
+
+    function getAllUsers () {
+
+      UserApi.getUsers().then(function (response) {
+
+        if (response) {
+          console.log("getting users");
+          console.log(response);
+          tc.clientListTableData = response.data;
+        } else {
+          console.log("Issue getting users");
+          console.log(response);
+        }
+
+      });
+    }
+
+    $scope.assignCompany = function () {
+      $log.info(tc.assignUserToCompany.name);
+    };
+
+    $scope.makeCompanySelection = function (user) {
+       tc.assignUserToCompany = user;
+       $log.info(user.name);
+    };
+
+    $scope.makeRoleSelection = function (user) {
+       tc.changeUserRole = user;
+       $log.info(user.name);
+    };
+
+    tc.roleOptions = {
+      registered: "registered",
+      associate: "associate",
+      admin: "admin"
+    };
+
+    $scope.changeRole = function (role) {
+      $log.info(role);
+
+      var data = {
+          userID: tc.changeUserRole.id,
+          role: role
+      };
+
+      $log.info(data);
+      UserApi.putUserRole(data).then(function (response) {
+
+        if (response) {
+          console.log("User Role Changed");
+          console.log(response);
+        } else {
+          console.log("Issue changing User Role");
+          console.log(response);
+        }
+
+      });
+
+    };
+
 
     function getCampaigns () {
       CampaignApi.getCampaigns().then(function (response) {

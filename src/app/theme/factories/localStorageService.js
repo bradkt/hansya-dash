@@ -12,20 +12,30 @@
 
         return {
             setCurrentCampaign: setCurrentCampaign,
-            getCurrentCampaign: getCurrentCampaign
+            getCurrentCampaign: getCurrentCampaign,
+            getUserRole: getUserRole,
+            setUserRole: setUserRole
         };
 
         var currentCampaign;
+        var userRole; // = "registered"?
+
+        //need to check the var and if undefined (as in page refreshed) make a call to api and re-store the data
 
         function getCurrentCampaign () {
-            //You could also return specific attribute of the form data instead
-            //of the entire data
             return currentCampaign;
         }
 
         function setCurrentCampaign (data) {
-            //You could also set specific attribute of the form data instead
             currentCampaign = {id: data};
+        }
+
+        function getUserRole () {
+            return userRole;
+        }
+
+        function setUserRole (data) {
+            userRole = {role: data};
         }
     }
 

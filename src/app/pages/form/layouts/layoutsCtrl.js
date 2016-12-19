@@ -33,8 +33,10 @@
         function userGranted() {
 
             UserApi.getCurrentUser().then(function (response) {
+                $log.info(response);
                 if (response) {
-                    trafficDirector(response.data.role.id);
+                    LocalStorage.setUserRole(response.data.role.name)
+                    trafficDirector(response.data.role.name);
                 } else {
                     $log.info('Trouble getting your user info')
                 }
@@ -49,8 +51,7 @@
         }
 
         function trafficDirector(role) {
-            console.log('polo');
-            if (role == "94716dba-3a03-4678-b4b7-089ac5f0e543") {
+            if (role == "admin") {
                 $location.url('tables/admin');
             } else {
                 CampaignApi.getCampaigns().then(function (response) {

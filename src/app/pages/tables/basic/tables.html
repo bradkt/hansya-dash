@@ -8,7 +8,7 @@
 
   <div class="row">
     <div ba-panel ba-panel-title="Create Industry">
-        <div class="col-md-6">
+      <div class="col-lg-6 col-md-12">
 
           <div class="form-group  has-feedback">
             <label>Create Industry</label>
@@ -23,11 +23,11 @@
 
     <div class="row">
       <div ba-panel ba-panel-title="Create Company">
-        <div class="col-md-6">
+        <div class="col-lg-6 col-md-12">
 
           <div class="form-group  has-feedback">
             <label>Create Company</label>
-            <input type="text" class="form-control" id="CompanyName" name="adminAddCompany" placeholder="Company Name" ng-model="tc.adminCreateCompany.id">
+            <input type="text" class="form-control" id="CompanyName" name="adminAddCompany" placeholder="Company Name" ng-model="tc.adminCreateCompany.name">
           </div>
           <div>
             <button class="btn btn-danger" ng-click="postCompany()">Create</button>
@@ -54,12 +54,30 @@
         <!--<div include-with-scope="app/pages/tables/widgets/condensedTable.html"></div>-->
       <!--</div>-->
     <!--</div>-->
-    <!--<div class="col-lg-6 col-md-12">-->
 
-      <div ba-panel ba-panel-title="Clients" ba-panel-class="with-scroll table-panel">
+    <!--This is the Users table-->
+    <div class="col-lg-6 col-md-12">
 
+      <div ba-panel ba-panel-title="Users" ba-panel-class="with-scroll table-panel">
+        <div ng-if="tc.assignUserToCompany.name">
+          <span>Data Here: </span><span ng-model="tc.assignUserToCompany">
+          Approve {{tc.assignUserToCompany.username}} for
+          <a ng-click="assignCompany()">{{tc.assignUserToCompany.name}}</a>
+        </span><button ng-click="tc.assignUserToCompany = {}">Close</button>
+          <hr>
+        </div>
+
+        <div ng-if="tc.changeUserRole.id">
+          <span>Data Here: </span><span ng-model="changeUserRole">
+          Approve {{tc.changeUserRole.username}} as </span>
+          <span ng-repeat="role in tc.roleOptions" class="role"> |
+            <a ng-click="changeRole(role)">{{role}}</a>
+          </span><button ng-click="tc.changeUserRole = {}">Close</button>
+          <hr>
+        </div>
         <div include-with-scope="app/pages/tables/widgets/stripedRows.html"></div>
-      <!--</div>-->
+
+      </div>
     </div>
   </div>
 
