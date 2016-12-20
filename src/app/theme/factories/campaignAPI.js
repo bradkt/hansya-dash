@@ -24,7 +24,7 @@
                 .then(complete).catch(failed);
         }
 
-        function postDataUpload () {
+        function postDataUpload (data) {
             return $http.post('http://localhost:1337/campaignData/upload', data)
                 .then(complete).catch(failed);
         }

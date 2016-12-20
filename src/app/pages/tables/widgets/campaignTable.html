@@ -1,22 +1,35 @@
 <div class="vertical-scroll">
     <table class="table table-striped">
         <thead>
-        <tr>
-            <th>Client</th>
-            <th>Campaign ID</th>
-            <th>Payment Status</th>
-            <th>Payment Date</th>
-            <th>Upload</th>
-        </tr>
+            <tr>
+                <th>Client</th>
+                <th>Campaign ID</th>
+                <th>Payment Status</th>
+                <th>Payment Date</th>
+                <th>Upload</th>
+            </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in tc.campaignListTableData">
-            <td class="table-id">{{item.company}}</td>
-            <td>{{item.id}}</td>
-            <td>{{item.paid}}</td>
-            <td>{{item.requestedDate}}</td>
-            <td><a id="file" type="file" ng-click="uploadFile(item.id)">Upload</a></td>
-        </tr>
+            <tr ng-repeat="item in tc.campaignListTableData">
+                <td class="table-id">{{item.company}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.paid}}</td>
+                <td>{{item.requestedDate}}</td>
+                <td>
+                    <button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                            accept="file_extension/.json" ngf-max-size="1MB">
+                        Select File
+                    </button>
+                </td>
+            </tr>
         </tbody>
+            File:
+            <span style="">
+                {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                <span class="progress" ng-show="f.progress >= 0"> |
+                    <span style="width:{{f.progress}}%" ng-bind="f.progress + '%'"> | </span>
+                </span>
+            </span>
+            {{errorMsg}}
     </table>
 </div>

@@ -4,6 +4,7 @@
   <div ba-panel ba-panel-title="Add Campaign" ba-panel-class="with-scroll table-panel">
   <div include-with-scope="app/pages/tables/widgets/addCampaignTable.html"></div>
   </div>
+  </div>
 
 
   <div class="row">
@@ -59,10 +60,10 @@
     <div class="col-lg-6 col-md-12">
 
       <div ba-panel ba-panel-title="Users" ba-panel-class="with-scroll table-panel">
-        <div ng-if="tc.assignUserToCompany.name">
+        <div ng-if="tc.assignUserToCompany.registerCompany">
           <span>Data Here: </span><span ng-model="tc.assignUserToCompany">
           Approve {{tc.assignUserToCompany.username}} for
-          <a ng-click="assignCompany()">{{tc.assignUserToCompany.name}}</a>
+          <a ng-click="assignCompany()">{{tc.assignUserToCompany.registerCompany}}</a>
         </span><button ng-click="tc.assignUserToCompany = {}">Close</button>
           <hr>
         </div>

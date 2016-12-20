@@ -9,7 +9,7 @@
       .controller('TablesPageCtrl', TablesPageCtrl);
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage) {
+  function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage, Upload) {
     var tc = this;
 
     // scope data
@@ -126,7 +126,7 @@
     }
 
     $scope.assignCompany = function () {
-      $log.info(tc.assignUserToCompany.name);
+      $log.info(tc.assignUserToCompany.registerCompany);
     };
 
     $scope.makeCompanySelection = function (user) {
@@ -207,25 +207,84 @@
       });
     };
 
-    $scope.uploadFile = function() {
-      var currentCustomer = $scope.currentCustomer;
+    $scope.uploadFile = function($files) {
+      Upload.upload({
+        url: 'http://localhost:1337/campaignData/upload',
+        data: { "data": $files },
+      }).progress(function(e) {
+      }).then(function(data, status, headers, config) {
+        // file is uploaded successfully
+      });
 
-      var file = document.getElementById('file').files[0];
 
-      if (window.File && window.FileReader && window.FileList && window.Blob) {
 
-        var fr = new FileReader();
-        fr.onloadend = function(e){
-          var filedata = e.target.result;
-          var jsondata = {
-            data: JSON.parse(filedata)
-          };
-        };
-        fr.readAsText(file);
-      } else {
-        alert('The File APIs are not fully supported in this browser.');
-      }
+      // var currentCustomer = $scope.currentCustomer;
+      // console.log(id);
+      // var file = document.getElementById('file').files[0];
+      //
+      // if (window.File && window.FileReader && window.FileList && window.Blob) {
+      //
+      //   var fr = new FileReader();
+      //   fr.onloadend = function(e){
+      //     var filedata = e.target.result;
+      //     var data = JSON.parse(filedata)
+      //
+      //   };
+      //
+      //   fr.readAsText(file);
+      //
+      // } else {
+      //   alert('The File APIs are not fully supported in this browser.');
+      // }
     };
+
+    $scope.uploadFiles = function(file, errFiles) {
+      $scope.f = file;
+      $scope.errFile = errFiles && errFiles[0];
+      if (file) {
+        file.upload = Upload.upload({
+          url: 'http://localhost:1337/campaignData/upload',
+          data: {"data": file}
+        });
+
+        file.upload.then(function (response) {
+          $timeout(function () {
+            file.result = response.data;
+          });
+        }, function (response) {
+          if (response.status > 0)
+            $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+          file.progress = Math.min(100, parseInt(100.0 *
+              evt.loaded / evt.total));
+        });
+      }
+      console.log(file);
+    };
+
+
+      // $scope.uploadFiles = function(file, errFiles) {
+    //   $scope.f = file;
+    //   $scope.errFile = errFiles && errFiles[0];
+    //   if (file) {
+    //     file.upload = Upload.upload({
+    //       url: 'http://localhost:1337/campaignData/upload',
+    //       data: file
+    //     });
+    //
+    //     file.upload.then(function (response) {
+    //       $timeout(function () {
+    //         file.result = response.data;
+    //       });
+    //     }, function (response) {
+    //       if (response.status > 0)
+    //         $scope.errorMsg = response.status + ': ' + response.data;
+    //     }, function (evt) {
+    //       file.progress = Math.min(100, parseInt(100.0 *
+    //           evt.loaded / evt.total));
+    //     });
+    //   }
+    // };
 
     $scope.statuses = [
       {value: 1, text: 'Good'},

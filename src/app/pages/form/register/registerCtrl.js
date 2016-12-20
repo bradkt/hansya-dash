@@ -13,27 +13,29 @@
         rc.personalInfo = {};
 
         $scope.submit = function () {
-            // var name = rc.personalInfo.name;
-            // UserApi.getCompany().then(function (response) {
-            //     console.log(response);
-            //     if (response) {
-            //         console.log("getting companies");
-            //         for (var i = 0; i <= response.data.length; i++) {
-            //             if (name == response.data[i].name) {
-            //                 console.log("match found");
-            //                 var id = response.data[i].id;
-                            registerUser();
-                //             break;
-                //         } else {
-                //             console.log("no company match")
-                //         }
-                //     }
-                // } else {
-                //     console.log("Issue getting companies");
-                //     console.log(response);
-                // }
+            var company = rc.personalInfo.registerCompany;
+            UserApi.getCompany().then(function (response) {
+                console.log(response);
+                if (response) {
+                    console.log("getting companies");
+                    for (var i = 0; i <= response.data.length; i++) {
+                        if (company == response.data[i].name) {
+                            console.log("match found");
+                            var id = response.data[i].id;
+                            registerUser(id);
+                            break;
+                        } else {
+                            console.log("no company match");
+                            registerUser(null);
+                        }
+                    }
+                } else {
+                    console.log("Issue getting companies");
+                    console.log(response);
+                    registerUser(null);
+                }
 
-            // });
+            });
 
             // UserApi.postCompany(companyName).then(function (response) {
             //     console.log(response);
@@ -48,8 +50,8 @@
         };
 
 
-        function registerUser(){
-            // rc.personalInfo.company = id;
+        function registerUser(id){
+            rc.personalInfo.company = id;
             var data = rc.personalInfo;
 
             UserApi.registerUser(data).then(function (response) {
