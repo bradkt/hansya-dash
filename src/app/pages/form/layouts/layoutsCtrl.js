@@ -60,11 +60,15 @@
                     } else if (response == []) {
                         console.log('there are no campaigns associated with this accont would you like to create a compaign?')
                     } else {
-                        console.log('get campaigns call');
-                        console.log(response);
-                        console.log('end get campaign call');
-                        LocalStorage.setCurrentCampaign(44114411); //response[0]
-                        $location.url('dashboard/' + 44114411); //direct to most recent campaign ('dashboard/' + response[0])
+                        if (response == []) {
+                            console.log('there are no campaigns associated with this accont would you like to create a compaign?')
+                        } else {
+                            console.log('get campaigns call');
+                            console.log(response);
+                            console.log('end get campaign call');
+                            LocalStorage.setCurrentCampaign(response[0].id); //response[0]
+                            $location.url('dashboard/' + response[0].id); //direct to most recent campaign ('dashboard/' + response[0])
+                        }
 
                     }
                 });

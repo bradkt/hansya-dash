@@ -17,8 +17,13 @@
             getUsers: getUsers,
             postCompany: postCompany,
             getCompany: getCompany,
-            putUserRole: putUserRole
+            putUserRole: putUserRole,
+            postUserID: postUserID
         };
+
+        function postUserID (id) {
+            return $http.put('http://localhost:1337/user', + id).then(complete).catch(failed);
+        }
 
         function putUserRole (data) {
             return $http.put('http://localhost:1337/user/changeRole', data).then(complete).catch(failed);

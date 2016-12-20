@@ -12,7 +12,7 @@
         <tbody>
             <tr ng-repeat="item in tc.campaignListTableData">
                 <td class="table-id">{{item.company}}</td>
-                <td>{{item.id}}</td>
+                <td><a ng-href="http://localhost:3000/#/dashboard/{{item.id}}">{{item.id}}</a></td>
                 <td>{{item.paid}}</td>
                 <td>{{item.requestedDate}}</td>
                 <td>

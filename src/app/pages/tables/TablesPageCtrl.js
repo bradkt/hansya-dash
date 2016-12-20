@@ -163,9 +163,7 @@
           console.log("Issue changing User Role");
           console.log(response);
         }
-
       });
-
     };
 
 
@@ -186,11 +184,6 @@
       });
     }
 
-    // name: 'large',
-    // datapoints: parseInt('10000'),
-    // description: '10000 Datapoints WOW!',
-    // price: parseInt('17999')
-
     $scope.postProduct = function(data) {
       data = tc.productInfo;
 
@@ -205,37 +198,6 @@
       ProductApi.deleteProduct(id).then(function (response) {
         console.log(response);
       });
-    };
-
-    $scope.uploadFile = function($files) {
-      Upload.upload({
-        url: 'http://localhost:1337/campaignData/upload',
-        data: { "data": $files },
-      }).progress(function(e) {
-      }).then(function(data, status, headers, config) {
-        // file is uploaded successfully
-      });
-
-
-
-      // var currentCustomer = $scope.currentCustomer;
-      // console.log(id);
-      // var file = document.getElementById('file').files[0];
-      //
-      // if (window.File && window.FileReader && window.FileList && window.Blob) {
-      //
-      //   var fr = new FileReader();
-      //   fr.onloadend = function(e){
-      //     var filedata = e.target.result;
-      //     var data = JSON.parse(filedata)
-      //
-      //   };
-      //
-      //   fr.readAsText(file);
-      //
-      // } else {
-      //   alert('The File APIs are not fully supported in this browser.');
-      // }
     };
 
     $scope.uploadFiles = function(file, errFiles) {
@@ -262,29 +224,6 @@
       console.log(file);
     };
 
-
-      // $scope.uploadFiles = function(file, errFiles) {
-    //   $scope.f = file;
-    //   $scope.errFile = errFiles && errFiles[0];
-    //   if (file) {
-    //     file.upload = Upload.upload({
-    //       url: 'http://localhost:1337/campaignData/upload',
-    //       data: file
-    //     });
-    //
-    //     file.upload.then(function (response) {
-    //       $timeout(function () {
-    //         file.result = response.data;
-    //       });
-    //     }, function (response) {
-    //       if (response.status > 0)
-    //         $scope.errorMsg = response.status + ': ' + response.data;
-    //     }, function (evt) {
-    //       file.progress = Math.min(100, parseInt(100.0 *
-    //           evt.loaded / evt.total));
-    //     });
-    //   }
-    // };
 
     $scope.statuses = [
       {value: 1, text: 'Good'},

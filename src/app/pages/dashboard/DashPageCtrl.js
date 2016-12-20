@@ -8,7 +8,7 @@
         .controller('DashPageCtrl', DashPageCtrl);
 
     /** @ngInject */
-    function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout, CampaignApi) {
+    function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout, CampaignApi, LocalStorage) {
         var dc = this;
         // $http({
         //     url: '',
@@ -18,6 +18,8 @@
         //     dc.dashboard = response.data;
         // });
         // $scope.activeUid = $stateParams.uid;
+
+        dc.userRole = LocalStorage.getUserRole();
 
         var response = CampaignApi.getTempCampaign();
         // console.log(response.metrics);

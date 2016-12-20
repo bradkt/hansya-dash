@@ -10,17 +10,38 @@
 
   /** @ngInject */
   function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi) {
-    // $http({
-    //   url: '',
-    //   method: 'get',
-    //   params: {uid: $stateParams.uid},
-    // }).then(function (response) {
-    //   DashboardPieChartCtrl.dashboard = response.data;
+    $http({
+      url: '',
+      method: 'get',
+      params: {uid: $stateParams.uid},
+    }).then(function (response) {
+      DashboardPieChartCtrl.dashboard = response.data;
+    });
+
+    var id = $stateParams.uid; //getting ui-route parameter
+
+
+    // var id = "def9ef5e-99d9-4490-be2a-373e451cd306";
+
+    CampaignApi.getCampaignData(id).then(function (response) {
+      console.log(response);
+    });
+
+    CampaignApi.getTotalLikes(id).then(function (response) {
+      console.log(response);
+    });
+
+    // CampaignApi.getEngagementData(id).then(function (response) {
+    //   console.log(response);
     // });
 
-    // var activeCust = $stateParams.uid; //getting ui-route parameter
-    // console.log('activeUid from DashboardPieChartCtrl');
-    // console.log($scope.activeUid);
+    // CampaignApi.getLocaionSummery(id).then(function (response) {
+    //   console.log(response);
+    // });
+
+    // getTotalLikes
+    // getEngagementData
+    // getLocaionSummery
 
     $scope.pieChartsData = [];
     // var response = CampaignApi.getTempCampaign();

@@ -16,8 +16,33 @@
             getCampaign: getCampaign,
             postCampaign: postCampaign,
             getTempCampaign: getTempCampaign,
-            postDataUpload: postDataUpload
+            postDataUpload: postDataUpload,
+            getCampaignData: getCampaignData,
+            getTotalLikes: getTotalLikes,
+            getEngagementData: getEngagementData,
+            getLocaionSummery: getLocaionSummery
         };
+
+
+        function getLocaionSummery(id) {
+            return $http.get('http://localhost:1337/campaignData/locationSummary/' + id)
+                .then(complete).catch(failed);
+        }
+
+        function getEngagementData(id) {
+            return $http.get('http://localhost:1337/campaignData/engagement/' + id)
+                .then(complete).catch(failed);
+        }
+
+        function getTotalLikes(id) {
+            return $http.get('http://localhost:1337/campaignData/totalLikes/' + id)
+                .then(complete).catch(failed);
+        }
+
+        function getCampaignData (id) {
+            return $http.get('http://localhost:1337/campaignData/all/' + id)
+                .then(complete).catch(failed);
+        }
 
         function getCampaigns() {
             return $http.get('http://localhost:1337/campaign/')
