@@ -19,8 +19,8 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',                 // router
       'bower_components/angular-mocks/angular-mocks.js',              // loads our modules for tests
       './services/users/users.js',                                 // our Users factory
-      './app/app.js',
-      'spec/*.js',
+      'src/app/app.js',
+      'test/*.js',
 
       // '**/*.js',
       // '**/!(jquery).js',
@@ -100,8 +100,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
+    browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

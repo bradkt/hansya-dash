@@ -1,14 +1,17 @@
-<div class="row pie-charts">
-  <div class="pie-chart-item-container" ng-repeat="campaign in campaignData">
-    <div ba-panel>
-      <div class="pie-chart-item">
-        <div class="description">
-          <div><p>{{ ::campaign.description }}</p></div>
-          <div><p>{{ ::campaign.keywords }}</p></div>
-          <!--<div class="description-stats">{{ ::campaign.stats }}</div>-->
-
-        </div>
-      </div>
+<form ng-submit="submit()" novalidate>
+  <div class="form-group">
+    <label>Select Campaign to View</label>
+    <select class="form-control" title="timeframe" ng-model="selectedCampaignsData">
+      <option ng-repeat="item in campaignsData" value="{{item}}">{{item.createdAt}}</option>
+    </select>
+    <div class="row">
+      <button type="submit" class="btn btn-space right">View Campaign</button>
     </div>
   </div>
+</form>
+
+<div class="row">
+  <span class="bold lineSpace">Data Points: <span class="">{{datapoints}}</span> | </span>
+  <span class="bold lineSpace">Other Data: <span class="">this too</span></span>
+  <p class="bold">Keywords: <span>{{keywords}}</span></p>
 </div>

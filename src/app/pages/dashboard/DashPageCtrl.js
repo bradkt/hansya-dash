@@ -17,18 +17,20 @@
         // }).then(function (response) {
         //     dc.dashboard = response.data;
         // });
-        // $scope.activeUid = $stateParams.uid;
 
-        dc.userRole = LocalStorage.getUserRole();
 
-        var response = CampaignApi.getTempCampaign();
+
+
+        // dc.userRole = LocalStorage.getUserRole();
+
+        // var response = CampaignApi.getTempCampaign();
         // console.log(response.metrics);
 
-        $scope.metrics = response.metrics;
-        $scope.messages = response.messages;
-        $scope.conversations = response.conversations;
-        $scope.users = response.users;
-        $scope.meta_data = response.meta_data;
+        // $scope.metrics = response.metrics;
+        // $scope.messages = response.messages;
+        // $scope.conversations = response.conversations;
+        // $scope.users = response.users;
+        // $scope.meta_data = response.meta_data;
 
     }
 })();

@@ -23,12 +23,16 @@
         });
 
         $scope.addProduct = function (data) {
-            console.log(data);
-            pc.campaignInfo.id = data;
-            //product will need to display that it has been selected
+            $scope.priceToSubmit = "";
+            console.log('selected product id');
+            console.log(data.id);
+            pc.campaignInfo.id = data.id;
+            $scope.priceToSubmit = data.price * 100;
+            //product will need to display more obviously that it has been selected
 
         };
 
+        // returns a 400 if user has not been assigned to company
         $scope.submit = function () {
             console.log(pc.campaignInfo);
             console.log(pc.campaignInfo.id);
@@ -44,7 +48,7 @@
             CampaignApi.postCampaign(data).then(function (response) {
                 console.log(response);
             });
-
+            $scope.submitted = true;
         }
     }
 

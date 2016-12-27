@@ -1,6 +1,23 @@
 .right {
   float: right; }
 
+.btn-space {
+  margin: 15px; }
+
+.bold {
+  font-weight: bold; }
+
+span .lineSpace {
+  display: inline-block;
+  margin: 8px 20px;
+  text-align: center; }
+
+.even-row {
+  background: lightgrey; }
+
+.odd-row {
+  text-align: right; }
+
 html {
   position: relative;
   min-width: 320px; }

@@ -8,7 +8,7 @@
         .factory('LocalStorage', LocalStorage);
 
     /** @ngInject */
-    function LocalStorage() {
+    function LocalStorage(CampaignApi) {
 
         return {
             setCurrentCampaign: setCurrentCampaign,
@@ -17,7 +17,7 @@
             setUserRole: setUserRole
         };
 
-        var currentCampaign;
+        var currentCampaign = null;
         var userRole; // = "registered"?
 
         //need to check the var and if undefined (as in page refreshed) make a call to api and re-store the data
@@ -37,6 +37,8 @@
         function setUserRole (data) {
             userRole = {role: data};
         }
+
+
     }
 
 })();

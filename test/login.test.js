@@ -1,19 +1,17 @@
-/**
- * Created by brad on 12/6/16.
- */
-describe('Users factory', function() {
-    var Users;
+describe('LayoutsCtrl', function() {
+    var scope, createController;
 
-    // Before each test load our api.users module
-    beforeEach(angular.mock.module('api.users'));
+    beforeEach(inject(function ($rootScope, $controller) {
+        scope = $rootScope.$new();
 
-    // Before each test set our injected Users factory (_Users_) to our local Users variable
-    beforeEach(inject(function(_Users_) {
-        Users = _Users_;
+        createController = function() {
+            return $controller('LayoutsCtrl', {
+                '$scope': scope
+            });
+        };
     }));
 
-    // A simple test to verify the Users factory exists
-    it('should exist', function() {
-        expect(Users).toBeDefined();
+    it('should have a method to check if the path is active', function() {
+
     });
 });

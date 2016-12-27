@@ -9,7 +9,7 @@
       .controller('BlurFeedCtrl', BlurFeedCtrl);
 
   /** @ngInject */
-  function BlurFeedCtrl($scope, $stateParams, $http, CampaignApi) {
+  function BlurFeedCtrl($scope, $stateParams, $http, CampaignApi, $timeout) {
     //
     // $http({
     //   url: '',
@@ -21,17 +21,50 @@
     //
     // var custName = $stateParams.uid; //getting ui-route parameter
 
-    $scope.FeedData = [];
+    $scope.messageFeedData = [];
+    // $scope.conversationFeedData = [];
 
-    //create message feed
-    var m_response = CampaignApi.getTempCampaign();
-    var messages = m_response.messages;
-    var messageData = createFeedArray(messages);
-    $scope.FeedData = messageData;
+    $timeout(setData, 1500);
 
-    //create conversation feed
-    var c_response = CampaignApi.getTempCampaign();
-    var conversation = c_response.conversation;
+    function setData() {
+      var conversations = $scope.conversations;
+      console.log('conversations from blur feed');
+      // console.log(conversations);
+      // var messageData = createFeedArray(conversations);
+      // $scope.FeedData = messageData;
+      temp(conversations);
+    }
+
+    function temp(conversations) {
+
+      conversations.forEach( function (messages)
+      {
+        // console.log('new messages');
+        // console.log(messages);
+        messages.messages.forEach( function (obj) {
+          var placeholder =
+          {
+            type: '',
+            author: 'twitter',
+            surname: obj.message.screen_name,
+            header: 'Posted photo',
+            text: obj.message.text,
+            preview: '',
+            link: '',
+            time: obj.message.datetime,
+            ago: '',
+            location: obj.message.location,
+            expanded: false
+          };
+          // console.log('new message');
+          // console.log(obj);
+          $scope.messageFeedData.push(placeholder);
+
+        });
+        console.log($scope.FeedData);
+      });
+
+    }
 
 
     $scope.expandMessage = function(message){

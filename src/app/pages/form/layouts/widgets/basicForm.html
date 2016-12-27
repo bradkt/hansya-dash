@@ -21,8 +21,16 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-danger">Submit</button>
+  <button type="submit" class="btn btn-danger" ng-disabled="lc.personalInfoForm.$invalid">Login</button>
+
 </form>
+
+<div ng-if="lc.message">
+<hr>
+<span class="help-block basic-block">There are no campaigns associated with this account would you like to create a campaign?</span>
+  <p>If you have not recieved your on-boarding email you will not be able to create a campaign.</p>
+  <a href="#/form/products">Create Campaign</a>  |  <a href="#">Contact Us</a>
+</div>
 <hr>
 <div class="row right">
   <h4 ng-click="recoverPassword()">Forget Password?</h4>

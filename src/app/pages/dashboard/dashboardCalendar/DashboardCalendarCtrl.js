@@ -9,7 +9,7 @@
       .controller('DashboardCalendarCtrl', DashboardCalendarCtrl);
 
   /** @ngInject */
-  function DashboardCalendarCtrl(baConfig, $stateParams, $http, CampaignApi) {
+  function DashboardCalendarCtrl(baConfig, $stateParams, $http, CampaignApi, $scope) {
     $http({
       url: '',
       method: 'get',
@@ -79,6 +79,7 @@
 
 
     function downloadFile (title, date) {
+      var bigData = $scope.bigData
       var response = CampaignApi.getTempCampaign().messages;
       var data = "";
       var dataToDL = [];
@@ -100,7 +101,7 @@
           }
         }
       }
-      var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dataToDL));
+      var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(bigData));
       $('<a href="data:' + data + '" download="'+ title +'.json">download Data</a>').appendTo('#downloadData');
     }
 

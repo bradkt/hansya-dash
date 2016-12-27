@@ -1,8 +1,10 @@
 <div class="row">
-<button class="btn product" ng-click="addProduct(product.id)" ng-repeat="product in pc.productInfo">{{product.name}} Package<br>
-  ${{product.price}}<br>
-  {{product.datapoints}} Data Points<br>
-  {{product.description}}</button>
+  <button class="btn product" ng-click="addProduct(product)" ng-repeat="product in pc.productInfo">
+    {{product.name}} Package<br>
+    ${{product.price}}<br>
+    {{product.datapoints}} Data Points<br>
+    {{product.description}}
+  </button>
 </div>
 
 <form ng-submit="submit()" name="pc.campaignInfoForm" novalidate>
@@ -58,9 +60,27 @@
     </div>
   </div>
 
-  <div class="row">
 
-  <button type="submit" class="btn btn-success">Purchase</button>
+  <div class="col-md-6 half-wide">
+
+      <button type="submit" class="btn btn-success" ng-disabled="pc.campaignInfoForm.$invalid">Purchase</button>
+
+
+    <div ng-if="submitted" class="right">
+      <form action="/your-server-side-code" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+                data-amount={{priceToSubmit}}
+                data-name="Stripe.com"
+                data-description="Widget"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto"
+                data-zip-code="true">
+        </script>
+      </form>
+    </div>
+
   </div>
 </form>
 

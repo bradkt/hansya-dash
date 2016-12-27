@@ -54,8 +54,13 @@
                 .then(complete).catch(failed);
         }
 
-        function getCampaign(data, id) {
-            return $http.get('http://localhost:1337/campaign/' + id, data)
+        // function getCampaign(data, id) {
+        //     return $http.get('http://localhost:1337/campaign/' + id, data)
+        //         .then(complete).catch(failed);
+        // }
+
+        function getCampaign(id) {
+            return $http.get('http://localhost:1337/campaign/' + id)
                 .then(complete).catch(failed);
         }
 

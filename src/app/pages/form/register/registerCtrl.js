@@ -15,7 +15,6 @@
         $scope.submit = function () {
             var company = rc.personalInfo.registerCompany;
             UserApi.getCompany().then(function (response) {
-                console.log(response);
                 if (response) {
                     console.log("getting companies");
                     for (var i = 0; i <= response.data.length; i++) {
@@ -34,19 +33,7 @@
                     console.log(response);
                     registerUser(null);
                 }
-
             });
-
-            // UserApi.postCompany(companyName).then(function (response) {
-            //     console.log(response);
-            //     if (response) {
-            //         registerUser();
-            //     } else {
-            //         // rc.personalInfo.message.registrationIssue = "Issue during your registration";
-            //         console.log("Issue during your registration");
-            //         console.log(response);
-            //     }
-            // });
         };
 
 
@@ -56,7 +43,6 @@
 
             UserApi.registerUser(data).then(function (response) {
                 if (response) {
-
                     console.log("You have successfully registered");
                     $location.url('form/login');
                 } else {

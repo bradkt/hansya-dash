@@ -11,6 +11,7 @@
     function LayoutsCtrl($scope, $location, $log , UserApi, CampaignApi, LocalStorage) {
         var lc = this;
         lc.personalInfo = {};
+
         $scope.submit = function () {
             //this model is holding email as identifier
             var data = lc.personalInfo;
@@ -27,9 +28,6 @@
             });
         };
 
-        // once logged in need to send user to their dashboard or if admin (no dashboard) to admin panel
-        // is their a way to identify different roles from request
-        // role = "1c03f0fb-4b9a-4905-82e3-71d198d1f303"
         function userGranted() {
 
             UserApi.getCurrentUser().then(function (response) {
@@ -45,32 +43,32 @@
 
         }
 
-
         $scope.recoverPassword = function() {
             $log.info('recover the freakin password');
-        }
+        };
 
         function trafficDirector(role) {
             if (role == "admin") {
                 $location.url('tables/admin');
             } else {
+                // var callID = LocalStorage.routeToRecentDashboard();
+                // $log.info(callID);
+                // if(!callID) {
+                //     console.log('please create a campaign to see your dashboard');
+                //     lc.message = true;
+                // } else {
+                //     $location.url('dashboard/' + callID);
+                // }
                 CampaignApi.getCampaigns().then(function (response) {
                     if (!response) {
                         $log.info('there was an error getting your campaigns');
-                    } else if (response == []) {
-                        console.log('there are no campaigns associated with this accont would you like to create a compaign?')
+                    } else if (jQuery.type(response) == "array" && response.length == 0) {
+                        lc.message = true;
+                        console.log('there are no campaigns associated with this account would you like to create a compaign?')
                     } else {
-                        if (response == []) {
-                            console.log('there are no campaigns associated with this accont would you like to create a compaign?')
-                        } else {
-                            console.log('get campaigns call');
-                            console.log(response);
-                            console.log('end get campaign call');
-                            LocalStorage.setCurrentCampaign(response[0].id); //response[0]
-                            $location.url('dashboard/' + response[0].id); //direct to most recent campaign ('dashboard/' + response[0])
+                        LocalStorage.setCurrentCampaign(response[0].id);
+                        $location.url('dashboard/' + response[0].id); //direct to most recent campaign
                         }
-
-                    }
                 });
             }
         }

@@ -10,52 +10,17 @@
 
   /** @ngInject */
   function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi) {
-    $http({
-      url: '',
-      method: 'get',
-      params: {uid: $stateParams.uid},
-    }).then(function (response) {
-      DashboardPieChartCtrl.dashboard = response.data;
-    });
-
-    var id = $stateParams.uid; //getting ui-route parameter
-
-
-    // var id = "def9ef5e-99d9-4490-be2a-373e451cd306";
-
-    CampaignApi.getCampaignData(id).then(function (response) {
-      console.log(response);
-    });
-
-    CampaignApi.getTotalLikes(id).then(function (response) {
-      console.log(response);
-    });
-
-    // CampaignApi.getEngagementData(id).then(function (response) {
-    //   console.log(response);
+    // $http({
+    //   url: '',
+    //   method: 'get',
+    //   params: {uid: $stateParams.uid},
+    // }).then(function (response) {
+    //   DashboardPieChartCtrl.dashboard = response.data;
     // });
 
-    // CampaignApi.getLocaionSummery(id).then(function (response) {
-    //   console.log(response);
-    // });
-
-    // getTotalLikes
-    // getEngagementData
-    // getLocaionSummery
+    // var id = $stateParams.uid; //getting ui-route parameter
 
     $scope.pieChartsData = [];
-    // var response = CampaignApi.getTempCampaign();
-
-    var data = $scope.metrics;
-
-    var total = 0;
-    for(var i = 0; i < data.length; i++) {
-      var temp = data[i].engagement_rate;
-      var total = total + temp;
-    }
-
-    var avg_eng_rate = (total / data.length).toFixed(2);
-    console.log(avg_eng_rate);
 
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
 

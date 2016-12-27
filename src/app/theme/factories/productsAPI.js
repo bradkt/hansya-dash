@@ -13,8 +13,13 @@
         return {
             getProducts: getProducts,
             postProduct: postProduct,
-            deleteProduct: deleteProduct
+            deleteProduct: deleteProduct,
+            getProduct: getProduct
         };
+
+        function getProduct(id) {
+            return $http.get('http://localhost:1337/product/' + id ).then(complete).catch(failed);
+        }
 
         function getProducts() {
             return $http.get('http://localhost:1337/product').then(complete).catch(failed);

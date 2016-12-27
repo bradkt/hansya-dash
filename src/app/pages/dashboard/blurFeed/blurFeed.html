@@ -1,32 +1,50 @@
-
 <div class="feed-messages-container" track-width="smallContainerWidth" min-width="360">
-  <div class="feed-message" ng-repeat="message in FeedData" ng-click="expandMessage(message)">
-    <div class="message-icon" ng-if="message.type == 'text-message'">
-      <img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}">
-    </div>
-    <div class="message-icon" ng-if="message.type != 'text-message'">
-      <img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}">
-      <span class="sub-photo-icon" ng-class="::message.type"></span>
-    </div>
-    <div class="text-block text-message">
-      <div class="message-header">
-        <span class="author">{{ ::message.author }} | {{ ::message.surname}} | {{::message.location}} | {{::message.time}}</span>
-      </div>
-      <div class="message-content line-clamp" ng-class="{'line-clamp-2' : !message.expanded}">
-        <span ng-if="message.preview">{{message.header}} </span>{{::message.text}}
-      </div>
-      <div class="preview" ng-show="message.expanded" ng-if="message.preview">
-        <a href="{{::message.link}}" target="_blank">
-          <img ng-src="{{ ::( message.preview | appImage )}}">
-        </a>
-      </div>
-      <div ng-show="message.expanded" class="message-time">
-        <!--<div class="ago-time">{{::message.ago}}</div>-->
+  <div class="feed-message" ng-repeat="messages in conversations">
+    <div ng-repeat="message in messages.messages">
 
+      <div class="" ng-if="message.type == 'text-message'"></div>
 
-
+      <div class="text-block text-message" ng-class="$even ? 'even-row' : 'odd-row'">
+        <div class="message-header">
+          <span class="author">{{ ::message.message.screen_name }} | {{ ::message.message.device}} | {{::message.message.location}} | {{::message.message.datetime}}</span>
+        </div>
+        <div class="message-content line-clamp" ng-class="{'line-clamp-2' : !message.expanded}">
+          <span ng-if="message.preview">{{message.header}} </span>{{::message.message.text}}
+        </div>
+        <p>{{message.message_content.is_ad_link}}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+
+<!--<div class="feed-messages-container" track-width="smallContainerWidth" min-width="360">-->
+  <!--<div class="feed-message" ng-repeat="message in conversations" ng-click="expandMessage(message)">-->
+    <!--<div class="message-icon" ng-if="message.type == 'text-message'">-->
+      <!--<img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}">-->
+    <!--</div>-->
+    <!--<div class="message-icon" ng-if="message.type != 'text-message'">-->
+      <!--<img class="photo-icon" ng-src="{{::( message.author | profilePicture )}}">-->
+      <!--<span class="sub-photo-icon" ng-class="::message.type"></span>-->
+    <!--</div>-->
+    <!--<div class="text-block text-message">-->
+      <!--<div class="message-header">-->
+        <!--<span class="author">{{ ::message.author }} | {{ ::message.surname}} | {{::message.location}} | {{::message.time}}</span>-->
+      <!--</div>-->
+      <!--<div class="message-content line-clamp" ng-class="{'line-clamp-2' : !message.expanded}">-->
+        <!--<span ng-if="message.preview">{{message.header}} </span>{{::message.text}}-->
+      <!--</div>-->
+      <!--<div class="preview" ng-show="message.expanded" ng-if="message.preview">-->
+        <!--<a href="{{::message.link}}" target="_blank">-->
+          <!--<img ng-src="{{ ::( message.preview | appImage )}}">-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<div ng-show="message.expanded" class="message-time">-->
+        <!--&lt;!&ndash;<div class="ago-time">{{::message.ago}}</div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<!--</div>-->
