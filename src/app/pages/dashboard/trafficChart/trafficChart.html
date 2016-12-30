@@ -13,7 +13,7 @@
 
   <div class="channels-info">
     <div>
-      <div class="channels-info-item" ng-repeat="item in doughnutData | orderBy:'total'">
+      <div class="channels-info-item" ng-repeat="item in doughnutData | orderBy:'value'">
         <div class="legend-color" style="background-color: {{::item.color}}"></div>
         <p>{{::item.label}}<span class="channel-number">+{{item.percentage}}%</span></p>
         <div class="progress progress-sm channel-progress">

@@ -9,32 +9,87 @@
       .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi) {
-    // $http({
-    //   url: '',
-    //   method: 'get',
-    //   params: {uid: $stateParams.uid},
-    // }).then(function (response) {
-    //   DashboardPieChartCtrl.dashboard = response.data;
-    // });
+  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi, LocalStorage) {
+    $http({
+      url: '',
+      method: 'get',
+      params: {uid: $stateParams.uid},
+    }).then(function (response) {
+      DashboardPieChartCtrl.dashboard = response.data;
+    });
 
-    // var id = $stateParams.uid; //getting ui-route parameter
-
+    var id = $stateParams.uid; //getting ui-route parameter
+    var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
     $scope.pieChartsData = [];
 
-    var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
+    totalLikes();
+    engagements();
 
-    var goals = {
-      // CampaignApi.getcampaignGoalsHere
-    };
+    $timeout(function () {
+      loadPieCharts();
+      // updatePieCharts();
+    }, 5500);
+
+    function totalLikes() {
+      CampaignApi.getTotalLikes(id).then(function (response) {
+        if (response){
+          var element = {
+              color: pieColor,
+              description: 'Total Likes',
+              stats: response.likes,
+              icon: 'person',
+              percent: ((response.likes / 5000) * 100).toFixed(0) + '%' //as a percent of total way that people engaged with messaging
+          }
+          $scope.pieChartsData.push(element);
+        } else {
+          console.log('no response from server');
+        }
+      });
+    }
+
+    // function averageSentiment() {
+    //   CampaignApi.getTotalLikes(id).then(function (response) {
+    //     if (response){
+    //       var element = {
+    //         color: pieColor,
+    //         description: 'Sentiment Scores',
+    //         stats: '2222',
+    //         icon: 'person',
+    //         percent: ((2222 / 5000) * 100).toFixed(0) + '%' //as a percent of total way that people engaged with messaging
+    //       };
+    //       $scope.pieChartsData.push(element);
+    //     } else {
+    //       console.log('no response from server');
+    //     }
+    //   });
+    // }
+
+    // averageEngagementRate:30.192307692307693
+    // averageEngagements:386.9230769230769
+    // maximumEngagementRate:52
+    // maximumEngagements:3219
+    // minimumEngagementRate:18
+    // minimumEngagements:39
+    // totalEngagements:10060
+
+    function engagements() {
+      CampaignApi.getEngagementData(id).then(function (response) {
+        if (response){
+          var element = {
+            color: pieColor,
+            description: 'Engagements',
+            stats: (response.averageEngagementRate).toFixed(1),
+            icon: 'face',
+            percent: (response.averageEngagementRate).toFixed(0) + '%' //as a percent of total way that people engaged with messaging
+          }
+          $scope.pieChartsData.push(element);
+        } else {
+          console.log('no response from server');
+        }
+      });
+    }
 
     $scope.pieChartsData = [{
-      color: pieColor,
-      description: 'Interactions',
-      stats: 21450,
-      icon: 'person',
-      percent: ((21450 / 10000) * 100).toFixed(0) + '%'
-    }, {
       color: pieColor,
       description: 'Average Sentiment',
       stats: 29 + '%',
@@ -47,12 +102,6 @@
       icon: '',
       // icon: 'refresh',
       percent: 21
-    }, {
-      color: pieColor,
-      description: 'Engagement Rate',
-      stats: 33 + '%',
-      icon: 'money',
-      percent: 33
     }
     ];
 
@@ -90,9 +139,6 @@
       //   });
       // }
 
-      $timeout(function () {
-        loadPieCharts();
-        // updatePieCharts();
-      }, 5500);
+
       }
 })();

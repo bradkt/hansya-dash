@@ -8,8 +8,8 @@
   $image-message-color: $success;
   $geo-message-color: $primary;
   padding: 10px 0 ;
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid rgba(0,0,0,0.30);
+  box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.30);
   &:first-child {
     padding-top: 0;
   }
@@ -80,7 +80,7 @@
     border-radius: 5px;
     //margin: 0 0 0 80px;
     margin: 0 auto;
-    padding: 5px 20px;
+    padding: 15px 20px 5px 20px;
     color: $default-text;
     width: 280px;
     height: 70px;
@@ -95,9 +95,10 @@
         display: block;
       }
       .message-content {
-        font-size: 12px;
+        font-size: 16px;
         line-height: 15px;
         font-weight: $font-light;
+        margin: 0 15px;
       }
     }
     &.small-message {

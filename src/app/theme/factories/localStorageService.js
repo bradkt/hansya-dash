@@ -17,7 +17,7 @@
             setUserRole: setUserRole
         };
 
-        var currentCampaign = null;
+        var currentCampaign;
         var userRole; // = "registered"?
 
         //need to check the var and if undefined (as in page refreshed) make a call to api and re-store the data

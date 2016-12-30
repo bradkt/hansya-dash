@@ -10,6 +10,7 @@
     /** @ngInject */
     function DashPageCtrl($scope, $filter, editableOptions, editableThemes, $stateParams, $http, $timeout, CampaignApi, LocalStorage) {
         var dc = this;
+        //replace the http to get id with $location
         // $http({
         //     url: '',
         //     method: 'get',
@@ -19,18 +20,6 @@
         // });
 
 
-
-
-        // dc.userRole = LocalStorage.getUserRole();
-
-        // var response = CampaignApi.getTempCampaign();
-        // console.log(response.metrics);
-
-        // $scope.metrics = response.metrics;
-        // $scope.messages = response.messages;
-        // $scope.conversations = response.conversations;
-        // $scope.users = response.users;
-        // $scope.meta_data = response.meta_data;
 
     }
 })();

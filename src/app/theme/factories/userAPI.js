@@ -21,8 +21,8 @@
             postUserID: postUserID
         };
 
-        function postUserID (id) {
-            return $http.put('http://localhost:1337/user', + id).then(complete).catch(failed);
+        function postUserID (id, data) {
+            return $http.put('http://localhost:1337/user', + id + '/', data).then(complete).catch(failed);
         }
 
         function putUserRole (data) {

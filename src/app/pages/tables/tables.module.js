@@ -12,6 +12,18 @@
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('tables', {
+          resolve: {
+              authorized : function (LocalStorage) {
+                  var role = LocalStorage.getUserRole();
+                  if (role == undefined  || role.role == "registered") {
+                      console.log('tables module route not resolved');
+                      $location.url('form/login')
+                  } else {
+                      console.log('tables module route has been resolved');
+                      return true;
+                  }
+              }
+          },
           url: '/tables',
           template : '<ui-view></ui-view>',
           abstract: true,

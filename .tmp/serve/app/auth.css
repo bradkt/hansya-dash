@@ -7,16 +7,28 @@
 .bold {
   font-weight: bold; }
 
-span .lineSpace {
+.lineSpace {
   display: inline-block;
   margin: 8px 20px;
   text-align: center; }
 
 .even-row {
-  background: lightgrey; }
+  background: rgba(0, 0, 0, 0.09); }
 
 .odd-row {
   text-align: right; }
+
+.half-wide {
+  width: 50%; }
+
+.align-right-margin {
+  padding: 0 15px; }
+
+.dark-bg {
+  background: rgba(0, 0, 0, 0.09);
+  display: inline-block;
+  margin: 0 5px 20px 5px;
+  padding-right: 10px; }
 
 @font-face {
   font-family: 'socicon';

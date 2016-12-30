@@ -51,13 +51,22 @@
     </div>
   </div>
 
-  <div class="col-md-6">
-    <div class="form-group has-feedback"
-         ng-class="{'has-error': pc.campaignInfoForm.productName.$invalid && (pc.campaignInfoForm.productName.$dirty || pc.campaignInfoForm.$submitted)}">
-      <label for="campaignKeywords">Competitive Keywords</label>
-      <input type="text" class="form-control" id="campaignKeywords" name="keywords" placeholder="Keywords associated with your Campaign" ng-model="pc.campaignInfo.keywords" required>
-      <span class="help-block error-block basic-block">Required</span>
-    </div>
+  <!--<div class="col-md-6">-->
+    <!--<div class="form-group has-feedback"-->
+         <!--ng-class="{'has-error': pc.campaignInfoForm.productName.$invalid && (pc.campaignInfoForm.productName.$dirty || pc.campaignInfoForm.$submitted)}">-->
+      <!--<label for="campaignKeywords">Competitive Keywords</label>-->
+      <!--<input type="text" class="form-control" id="campaignKeywords" name="keywords" placeholder="Keywords associated with your Campaign" ng-model="pc.campaignInfo.keywords" required>-->
+      <!--<span class="help-block error-block basic-block">Required</span>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div class="col-md-6" ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">
+    <label>Competitive Keywords (At least one required)</label>
+    <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[0]" required/>
+    <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[1]"/>
+    <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[2]"/>
+    <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[3]"/>
+    <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[4]"/>
   </div>
 
 
@@ -67,7 +76,7 @@
 
 
     <div ng-if="submitted" class="right">
-      <form action="/your-server-side-code" method="POST">
+      <form>
         <script
                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"

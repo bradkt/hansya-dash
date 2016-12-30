@@ -57,16 +57,17 @@
     <!--</div>-->
 
     <!--This is the Users table-->
-    <div class="col-lg-6 col-md-12">
+    <div class="row">
 
       <div ba-panel ba-panel-title="Users" ba-panel-class="with-scroll table-panel">
-        <div ng-if="tc.assignUserToCompany.registerCompany">
-          <span>Data Here: </span><span ng-model="tc.assignUserToCompany">
-          Approve {{tc.assignUserToCompany.username}} for
-          <a ng-click="assignCompany()">{{tc.assignUserToCompany.registerCompany}}</a>
-        </span><button ng-click="tc.assignUserToCompany = {}">Close</button>
-          <hr>
-        </div>
+
+        <!--<div ng-if="tc.assignUserToCompany.registerCompany">-->
+          <!--<span>Data Here: </span><span ng-model="tc.assignUserToCompany">-->
+          <!--Approve {{tc.assignUserToCompany.username}} for-->
+          <!--<a ng-click="assignCompany()">{{tc.assignUserToCompany.registerCompany}}</a>-->
+        <!--</span><button ng-click="tc.assignUserToCompany = {}">Close</button>-->
+          <!--<hr>-->
+        <!--</div>-->
 
         <div ng-if="tc.changeUserRole.id">
           <span>Data Here: </span><span ng-model="changeUserRole">

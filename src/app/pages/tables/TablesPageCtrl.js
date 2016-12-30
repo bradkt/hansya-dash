@@ -9,7 +9,7 @@
       .controller('TablesPageCtrl', TablesPageCtrl);
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage, Upload) {
+  function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage, Upload, toastr) {
     var tc = this;
 
     // scope data
@@ -25,14 +25,10 @@
     // $scope.customerListTableData = [];
     // $scope.customerDetailTableData = [];
 
-    // var role = LocalStorage.getUserRole();
-    // if (role == undefined  || role.role == "registered") {
-    //   $location.url('form/login')
-    // } else {
-      getCampaigns();
-      getProducts();
-      getAllUsers();
-    // }
+
+    getCampaigns();
+    getProducts();
+    getAllUsers();
 
     $scope.createCampaign = function () {
 
@@ -42,9 +38,10 @@
       var data = {
             "keywords": tc.adminAddCampaign.keywords,
             "product": tc.adminAddCampaign.product.id,
-            "paid": true,
-            "paymentID": '45454545',
+            "paid": false,
+            // "paymentID": '45454545',
             "visibility": 'user'
+            // "user": tc.adminAddCampaign.userID
       };
 
       console.log(tc.adminAddCampaign);
@@ -59,7 +56,7 @@
 
     $scope.postIndustry = function() {
 
-      tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
+      // tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
       console.log(tc.adminCreateIndustry);
 
       var data = {
@@ -125,14 +122,28 @@
       });
     }
 
-    $scope.assignCompany = function () {
-      $log.info(tc.assignUserToCompany.registerCompany);
-    };
+    // $scope.assignCompany = function () {
+    //   $log.info(tc.assignUserToCompany.registerCompany);
+    //
+    //   var data = {company: tc.assignUserToCompany.registerCompany}
+    //
+    //   UserApi.postUserID(user, data).then(function (response) {
+    //
+    //     if (response) {
+    //
+    //       console.log(response);
+    //     } else {
+    //       console.log("Issue assigning user to comapany");
+    //       console.log(response);
+    //     }
+    //
+    //   });
+    // };
 
-    $scope.makeCompanySelection = function (user) {
-       tc.assignUserToCompany = user;
-       $log.info(user.name);
-    };
+    // $scope.makeCompanySelection = function (user) {
+    //    tc.assignUserToCompany = user;
+    //    $log.info(user.name);
+    // };
 
     $scope.makeRoleSelection = function (user) {
        tc.changeUserRole = user;
@@ -159,6 +170,24 @@
         if (response) {
           console.log("User Role Changed");
           console.log(response);
+
+          toastr.success('User Role Successfully changed', 'Success', {
+            "autoDismiss": false,
+            "positionClass": "toast-top-center",
+            "type": "success",
+            "timeOut": "5000",
+            "extendedTimeOut": "2000",
+            "allowHtml": false,
+            "closeButton": false,
+            "tapToDismiss": true,
+            "progressBar": false,
+            "newestOnTop": true,
+            "maxOpened": 0,
+            "preventDuplicates": false,
+            "preventOpenDuplicates": false
+          })
+
+
         } else {
           console.log("Issue changing User Role");
           console.log(response);

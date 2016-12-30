@@ -2,7 +2,7 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <!--<th class="table-id">#</th>-->
+      <th class="table-id">ID</th>
       <th>Name</th>
       <th>Company</th>
       <th>Role</th>
@@ -13,7 +13,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in tc.clientListTableData">
-      <!--<td class="table-id">{{item.key}}</td>-->
+      <td class="table-id">{{item.id}}</td>
       <td>{{item.username}}</td>
       <td ng-if="item.company">{{item.company}}</td>
       <td ng-if="!item.company" ng-click="makeCompanySelection(item)"><a>Assign</a></td>

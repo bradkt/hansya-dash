@@ -1,17 +1,24 @@
-<form ng-submit="submit()" novalidate>
-  <div class="form-group">
-    <label>Select Campaign to View</label>
-    <select class="form-control" title="timeframe" ng-model="selectedCampaignsData">
-      <option ng-repeat="item in campaignsData" value="{{item}}">{{item.createdAt}}</option>
-    </select>
-    <div class="row">
-      <button type="submit" class="btn btn-space right">View Campaign</button>
-    </div>
-  </div>
-</form>
-
 <div class="row">
-  <span class="bold lineSpace">Data Points: <span class="">{{datapoints}}</span> | </span>
-  <span class="bold lineSpace">Other Data: <span class="">this too</span></span>
-  <p class="bold">Keywords: <span>{{keywords}}</span></p>
+  <form ng-submit="submit()" novalidate>
+    <div class="form-group">
+      <label>Select Campaign to View</label>
+      <select class="form-control" title="timeframe" ng-model="selectedCampaignsData">
+        <option ng-repeat="item in campaignsData" value="{{item}}">{{item.createdAt}}</option>
+      </select>
+      <div class="row">
+        <button type="submit" class="btn btn-space right">View Campaign</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="dark-bg">
+    <span class="bold lineSpace">Data Points:</span><span class="">{{datapoints}}</span>
+  </div>
+  <div class="dark-bg">
+    <span class="bold lineSpace">Other Data:</span><span class="">you want to know this too</span>
+  </div>
+  <div class="dark-bg">
+    <p class="bold lineSpace">Keywords:</p><span ng-repeat="keyword in keywords">{{keyword}} | </span>
+  </div>
 </div>

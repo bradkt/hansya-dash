@@ -3,14 +3,10 @@
 
     <div class="col-md-6">
 
-        <!--<div class="form-group">-->
-            <!--<label>Select Company</label>-->
-            <!--<select class="form-control" title="Company" ng-model="tc.adminAddCampaign.companyName" selectpicker>-->
-                <!--<option>Customer 1</option>-->
-                <!--<option>Customer 2</option>-->
-                <!--<option>Customer 3</option>-->
-            <!--</select>-->
-        <!--</div>-->
+        <div class="form-group">
+            <label>Enter User ID that owns this Campaign</label>
+            <input class="form-control" placeholder="User Id" ng-model="tc.adminAddCampaign.userID">
+        </div>
 
         <div class="form-group">
             <label>Select Product</label>
@@ -60,13 +56,24 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group has-feedback"
-             ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">
-            <label for="campaignKeywords">Competitive Keywords</label>
-            <input type="text" class="form-control" id="campaignKeywords" name="keywords" placeholder="Keywords associated with your Campaign" ng-model="tc.adminAddCampaign.keywords" required>
-            <span class="help-block error-block basic-block">Required</span>
-        </div>
+    <!--<div class="col-md-6">-->
+        <!--<div class="form-group has-feedback"-->
+             <!--ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">-->
+            <!--<label for="campaignKeywords">Competitive Keywords</label>-->
+            <!--<input type="text" class="form-control" id="campaignKeywords" name="keywords" placeholder="Keywords associated with your Campaign" ng-model="tc.adminAddCampaign.keywords" required>-->
+            <!--<span class="help-block error-block basic-block">Required</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">
+        <label>Competitive Keywords (At least one required)</label>
+        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[0]" required/>
+        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[1]"/>
+        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[2]"/>
+        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[3]"/>
+        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[4]"/>
+        <span class="help-block error-block basic-block">Required</span>
     </div>
 
     <button type="submit" class="btn btn-danger">Submit</button>

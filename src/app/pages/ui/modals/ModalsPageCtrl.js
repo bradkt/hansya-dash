@@ -17,7 +17,7 @@
         size: size,
         resolve: {
           items: function () {
-            return $scope.items;
+            return $scope;
           }
         }
       });
