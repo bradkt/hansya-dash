@@ -19,10 +19,33 @@
             postDataUpload: postDataUpload,
             getCampaignData: getCampaignData,
             getTotalLikes: getTotalLikes,
+            getCampaignPosters: getCampaignPosters,
+            getCampaignConversations: getCampaignConversations,
+            getCampaignMessages: getCampaignMessages,
             getEngagementData: getEngagementData,
+            getSentiment: getSentiment,
             getLocaionSummery: getLocaionSummery
         };
 
+        function getCampaignPosters(id) {
+            return $http.get('http://localhost:1337/campaignData/poster/' + id)
+                .then(complete).catch(failed);
+        }
+
+        function getCampaignConversations(id) {
+            return $http.get('http://localhost:1337/campaignData/conversations/' + id)
+                .then(complete).catch(failed);
+        }
+
+        function getCampaignMessages(id) {
+            return $http.get('http://localhost:1337/campaignData/message/' + id)
+                .then(complete).catch(failed);
+        }
+
+        function getSentiment(id) {
+            return $http.get('http://localhost:1337/campaignData/sentiment/' + id)
+                .then(complete).catch(failed);
+        }
 
         function getLocaionSummery(id) {
             return $http.get('http://localhost:1337/campaignData/locationSummary/' + id)

@@ -1,18 +1,32 @@
 <div class="feed-messages-container" track-width="smallContainerWidth" min-width="360">
   <div class="feed-message" ng-repeat="messages in conversations">
-    <div ng-repeat="message in messages.messages">
+    <div ng-repeat="message in messages.messages" ng-click="expandMessage(message)" >
 
       <div class="" ng-if="message.type == 'text-message'"></div>
 
-      <div class="text-block text-message" ng-class="$even ? 'even-row' : 'odd-row'">
+      <div class="text-block text-message" ng-class="$even ? 'even-row' : 'odd-row'" >
         <div class="message-header">
-          <span class="author">{{ ::message.message.screen_name }} | {{ ::message.message.device}} | {{::message.message.location}} | {{::message.message.datetime}}</span>
+          <span class="author">{{ message.message.screen_name }}</span> | <span> {{ message.message.device }}</span> | <span>{{ message.message.location}}</span> | <span> {{ message.message.datetime }}</span>
         </div>
         <div class="message-content line-clamp" ng-class="{'line-clamp-2' : !message.expanded}">
           <span ng-if="message.preview">{{message.header}} </span>{{::message.message.text}}
         </div>
-        <p>{{message.message_content.is_ad_link}}</p>
+          <div ng-show="message.expanded" class="message-expand">
+            <div class="likes">
+              <span>Likes: {{ message.metrics.likes }}</span>
+            </div>
+            <div class="engagements">
+              <span>Engagements: {{ message.metrics.engagements }}</span>
+            </div>
+            <div class="sentiment">
+              <span ng-class="message.metrics.sentiment_score < .5 ? 'unHappy': 'happy'">Sentiment: {{ message.metrics.sentiment_score }}</span>
+            </div>
+          </div>
         </div>
+
+
+
+
       </div>
     </div>
   </div>

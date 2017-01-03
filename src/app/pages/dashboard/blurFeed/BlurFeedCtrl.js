@@ -9,64 +9,32 @@
       .controller('BlurFeedCtrl', BlurFeedCtrl);
 
   /** @ngInject */
-  function BlurFeedCtrl($scope, $stateParams, $http, CampaignApi, $timeout) {
-
-    $http({
-      url: '',
-      method: 'get',
-      params: {uid: $stateParams.uid},
-    }).then(function (response) {
-      BlurFeedCtrl.dashboard = response.data;
-    });
+  function BlurFeedCtrl($scope, $stateParams, $http, CampaignApi, $timeout, $filter, $log) {
 
     var campaignID = $stateParams.uid; //getting ui-route parameter
 
-    $scope.messageFeedData = [];
-    // $scope.conversationFeedData = [];
+    $scope.conversations = [];
+    getConverstaions();
 
-    $timeout(function () {
-      getConverstaions();
-    }, 1500);
 
     function getConverstaions() {
       CampaignApi.getCampaignData(campaignID).then(function (response) {
         if (response) {
-          $scope.conversations = response.conversations;
+          angular.forEach(response.conversations, function(conversation, key) {
+            loadConversations(conversation);
+          });
         } else {
-          console.log('unable getcampaignDATA from server');
+          $log.error('unable getcampaignDATA from server');
         }
       });
-      loadConversations();
     }
 
-    function loadConversations() {
-      $scope.conversations.forEach( function (messages)
-      {
-        // console.log('new messages');
-        // console.log(messages);
-        messages.messages.forEach( function (obj) {
-          var placeholder =
-          {
-            type: '',
-            author: 'twitter',
-            surname: obj.message.screen_name,
-            header: 'Posted photo',
-            text: obj.message.text,
-            preview: '',
-            link: '',
-            time: obj.message.datetime,
-            ago: '',
-            location: obj.message.location,
-            expanded: false
-          };
-          // console.log('new message');
-          // console.log(obj);
-          $scope.messageFeedData.push(placeholder);
+    function loadConversations(conversation) {
 
-        });
-        // console.log($scope.FeedData);
+      angular.forEach(conversation.messages, function(obj, key) {
+        obj.message.datetime = moment(obj.message.datetime).format('MMMM Do YYYY, h:mm:ss a');
       });
-
+      $scope.conversations.push(conversation);
     }
 
 

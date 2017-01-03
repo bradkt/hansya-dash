@@ -10,20 +10,17 @@
 
   /** @ngInject */
   function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi, LocalStorage) {
-    $http({
-      url: '',
-      method: 'get',
-      params: {uid: $stateParams.uid},
-    }).then(function (response) {
-      DashboardPieChartCtrl.dashboard = response.data;
-    });
+
 
     var id = $stateParams.uid; //getting ui-route parameter
+
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
     $scope.pieChartsData = [];
 
     totalLikes();
     engagements();
+    sentiment();
+    Keyword();
 
     $timeout(function () {
       loadPieCharts();
@@ -46,23 +43,6 @@
         }
       });
     }
-
-    // function averageSentiment() {
-    //   CampaignApi.getTotalLikes(id).then(function (response) {
-    //     if (response){
-    //       var element = {
-    //         color: pieColor,
-    //         description: 'Sentiment Scores',
-    //         stats: '2222',
-    //         icon: 'person',
-    //         percent: ((2222 / 5000) * 100).toFixed(0) + '%' //as a percent of total way that people engaged with messaging
-    //       };
-    //       $scope.pieChartsData.push(element);
-    //     } else {
-    //       console.log('no response from server');
-    //     }
-    //   });
-    // }
 
     // averageEngagementRate:30.192307692307693
     // averageEngagements:386.9230769230769
@@ -89,21 +69,43 @@
       });
     }
 
-    $scope.pieChartsData = [{
-      color: pieColor,
-      description: 'Average Sentiment',
-      stats: 29 + '%',
-      icon: 'face',
-      percent: 31
-    }, {
-      color: pieColor,
-      description: 'Keyword: Pie',
-      stats: 3215,
-      icon: '',
-      // icon: 'refresh',
-      percent: 21
+    function sentiment() {
+      CampaignApi.getSentiment(id).then(function (response) {
+        if (response){
+          var element = {
+            color: pieColor,
+            description: 'Average Sentiment',
+            stats: response.averageSentimentScore + '%',
+            icon: 'face',
+            percent: response.averageSentimentScore
+          }
+          $scope.pieChartsData.push(element);
+        } else {
+          console.log('no response from server');
+        }
+      });
     }
-    ];
+
+
+    function Keyword() {
+      CampaignApi.getCampaign(id).then(function (response) {
+        if (response){
+          var element = {
+            color: pieColor,
+            description: 'Keyword:' + response.keywords[0],
+            stats: 3215,
+            icon: '',
+            // icon: 'refresh',
+            percent: 21
+          }
+          $scope.pieChartsData.push(element);
+        } else {
+          console.log('unable get campaign from server');
+        }
+      });
+    }
+
+
 
 
     // function getRandomArbitrary(min, max) {

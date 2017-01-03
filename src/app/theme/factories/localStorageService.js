@@ -8,35 +8,58 @@
         .factory('LocalStorage', LocalStorage);
 
     /** @ngInject */
-    function LocalStorage(CampaignApi) {
+    function LocalStorage(CampaignApi, $window, $rootScope) {
+
+        angular.element($window).on('storage', function(event) {
+            if (event.key === 'hansya-storage') {
+                $rootScope.$apply();
+            }
+        });
 
         return {
             setCurrentCampaign: setCurrentCampaign,
             getCurrentCampaign: getCurrentCampaign,
             getUserRole: getUserRole,
-            setUserRole: setUserRole
+            setUserRole: setUserRole,
+            getTotalMessages: getTotalMessages,
+            setTotalMessages: setTotalMessages
         };
 
-        var currentCampaign;
-        var userRole; // = "registered"?
 
-        //need to check the var and if undefined (as in page refreshed) make a call to api and re-store the data
-
-        function getCurrentCampaign () {
-            return currentCampaign;
+        function getTotalMessages () {
+            return $window.localStorage && $window.localStorage.getItem('total-messages');
         }
 
-        function setCurrentCampaign (data) {
-            currentCampaign = {id: data};
+        function setTotalMessages (data) {
+            $window.localStorage && $window.localStorage.setItem('total-messages', data);
+            // console.log('local storage campaign id');
+            // console.log($window.localStorage);
+        }
+
+
+
+        function getCurrentCampaign () {
+            return $window.localStorage && $window.localStorage.getItem('hansya-storage-campaignid');
+        }
+
+        function setCurrentCampaign (campaignID) {
+            $window.localStorage && $window.localStorage.setItem('hansya-storage-campaignid', campaignID);
+            // console.log('local storage campaign id');
+            // console.log($window.localStorage);
         }
 
         function getUserRole () {
-            return userRole;
+            return $window.localStorage && $window.localStorage.getItem('hansya-storage-role');
+
         }
 
-        function setUserRole (data) {
-            userRole = {role: data};
+        function setUserRole (userRole) {
+            $window.localStorage && $window.localStorage.setItem('hansya-storage-role', userRole);
+            console.log('local storage user role');
+            console.log($window.localStorage);
         }
+
+
 
 
     }

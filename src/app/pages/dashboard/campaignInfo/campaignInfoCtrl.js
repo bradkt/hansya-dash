@@ -10,20 +10,13 @@
 
   /** @ngInject */
 
-  function campaignInfoCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, LocalStorage, CampaignApi, ProductApi) {
+  function campaignInfoCtrl($scope, $location, $timeout, baConfig, baUtil, $stateParams, $http, LocalStorage, CampaignApi, ProductApi) {
 
 
     // var cic = this;
     // // cic.selectedCampaignsData = '';
     //
-    //   $http({
-    //   url: '',
-    //   method: 'get',
-    //   params: {uid: $stateParams.uid},
-    // }).then(function (response) {
-    //   console.log($stateParams.uid);
-    // });
-
+    var id = $stateParams.uid; //getting ui-route parameter
 
     $scope.selectedCampaignsData = '';
 
@@ -32,8 +25,8 @@
 
 
     function displayAvailableCampaigns() {
-      var id  = LocalStorage.getCurrentCampaign();
-      if ( id == undefined) {
+      // var id  = LocalStorage.getCurrentCampaign();
+      // if ( id == undefined) {
         CampaignApi.getCampaigns().then(function (response) {
           if (response){
             $scope.campaignsData = response;
@@ -45,11 +38,11 @@
             console.log('no response from server');
           }
         });
-      }
+      // }
     }
 
     function campaignMetaData() {
-      var id = LocalStorage.getCurrentCampaign().id;
+      // var id = LocalStorage.getCurrentCampaign().id;
 
       CampaignApi.getCampaign(id).then(function (response) {
         if (response){

@@ -39,3 +39,22 @@
   padding-right: 10px;
   //border-radius: 10%;
 }
+
+.message-expand {
+  //font-size: 18px;
+  //clear: both;
+
+  margin: 15px;
+}
+
+.message-expand span {
+  display: inline-block;
+}
+
+.unHappy {
+  color: rgba(215, 60, 60, 0.9);
+}
+
+.happy {
+  color: rgba(127, 191, 63, 0.9);
+}

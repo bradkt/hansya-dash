@@ -22,21 +22,16 @@
         $scope.returnToDashboard = function() {
             //get current user and return to their log in page
             $log.info('back to the dashboard');
-            //todo: will need to handle if page was reloaded make call to api vs. localStore will return id undefined
+
             var id = LocalStorage.getCurrentCampaign();
+
             if (!id) {
-                // var callID = LocalStorage().???;
-                // $log.info(callID);
-                // if(!callID) {
                 console.log('please create a campaign to see your dashboard');
                 console.log('components/pageTopCtrl');
-                //     $location.url('form/login');
-                // } else {
-                //     $location.url('dashboard/' + callID);
-                // }
+                $location.url('form/login');
             } else {
                 $log.info(id);
-                $location.url('dashboard/' + id.id);
+                $location.url('dashboard/' + id);
             }
         };
     }

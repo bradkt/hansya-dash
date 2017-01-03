@@ -9,64 +9,75 @@
       .controller('TrafficChartCtrl', TrafficChartCtrl);
 
   /** @ngInject */
-  function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http, CampaignApi, LocalStorage, $timeout) {
-
-    $http({
-      url: '',
-      method: 'get',
-      params: {uid: $stateParams.uid},
-    }).then(function (response) {
-      TrafficChartCtrl.dashboard = response.data;
-    });
+  function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http, CampaignApi, LocalStorage, $timeout, $log) {
 
     var campaign_id = $stateParams.uid; //getting ui-route parameter
-    // console.log(campaign_id);
-    locationSummery();
+
+    getMessagesCount();
 
     $scope.doughnutData = [];
+
+    $timeout(function () {
+      locationSummery();
+        }, 1000);
+
+    $timeout(function () {
+      initChart();
+    }, 4000);
 
     $scope.transparent = baConfig.theme.blur;
     var dashboardColors = baConfig.colors.dashboard;
 
+    function getMessagesCount() {
+      CampaignApi.getCampaignMessages(campaign_id).then(function (response) {
+        if (response) {
+          LocalStorage.setTotalMessages(response.length);
+        } else {
+          $log.error('error getting messages');
+        }
+      });
+    }
+
     function locationSummery() {
+      var totalMessages = LocalStorage.getTotalMessages();
+
       CampaignApi.getLocaionSummery(campaign_id).then(function (response) {
         if (response){
-          // response.forEach(function (location) {
             $scope.doughnutData = [
               {
-                value: '' + (response[0].count * 1000),
+                value: '' + (response[0].count),
                 color: dashboardColors.white,
                 highlight: colorHelper.shade(dashboardColors.white, 15),
                 label: response[0]._id,
-                percentage: ((response[0].count / 26) * 100).toFixed(2),
+                percentage: ((response[0].count / totalMessages) * 100).toFixed(2),
                 order: 1
               }, {
-                value: '' + (response[1].count * 1000),
+                value: '' + (response[1].count),
                 color: dashboardColors.blueStone,
                 highlight: colorHelper.shade(dashboardColors.blueStone, 15),
                 label: response[1]._id,
-                percentage: ((response[1].count / 26) * 100).toFixed(2),
+                percentage: ((response[1].count / totalMessages) * 100).toFixed(2),
                 order: 4
               }, {
-                value: '' + (response[2].count * 1000),
+                value: '' + (response[2].count),
                 color: dashboardColors.surfieGreen,
                 highlight: colorHelper.shade(dashboardColors.surfieGreen, 15),
                 label: response[2]._id,
-                percentage: ((response[2].count / 26) * 100).toFixed(2),
+                percentage: ((response[2].count / totalMessages) * 100).toFixed(2),
                 order: 3
               }, {
-                value: '' + (response[3].count * 1000),
+                value: '' + (response[3].count),
                 color: dashboardColors.silverTree,
                 highlight: colorHelper.shade(dashboardColors.silverTree, 15),
                 label: response[3]._id,
-                percentage: ((response[3].count / 26) * 100).toFixed(2),
+                percentage: ((response[3].count / totalMessages) * 100).toFixed(2),
                 order: 2
               }, {
-                value: '' + (response[4].count * 1000),
+                value: '' + (response[4].count),
                 color: dashboardColors.gossip,
                 highlight: colorHelper.shade(dashboardColors.gossip, 15),
                 label: response[4]._id,
-                percentage: ((response[4].count / 26) * 100).toFixed(2),
+                percentage: ((response[4].count / totalMessages) * 100).toFixed(2),
                 order: 0
               },
             ];
@@ -84,15 +95,10 @@
             // )
           // });
         } else {
-          console.log('no response from server');
+          $log.error('no response from server');
         }
       });
     }
-
-    $timeout(function () {
-      initChart()
-    }, 3000);
-
 
     function initChart() {
       var ctx = document.getElementById('chart-area').getContext('2d');
