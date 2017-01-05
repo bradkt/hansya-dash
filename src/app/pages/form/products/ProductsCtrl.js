@@ -8,7 +8,7 @@
         .controller('ProductsCtrl', ProductsCtrl);
 
     /** @ngInject */
-    function ProductsCtrl($scope, baConfig, ProductApi, CampaignApi, $uibModal) {
+    function ProductsCtrl($scope, baConfig, ProductApi, CampaignApi, $uibModal, $location) {
         var pc = this;
         pc.productInfo = {};
         pc.campaignInfo = {};
@@ -31,6 +31,8 @@
         //         }
         //     });
         // }
+
+        console.log($location.path());
 
         ProductApi.getProducts().then(function (response) {
             if (response){

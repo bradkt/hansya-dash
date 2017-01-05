@@ -5,12 +5,12 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '.',
 
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'mocha', 'chai'],
 
 
     // list of files / patterns to load in the browser
@@ -18,51 +18,22 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',                             // angular
       'bower_components/angular-route/angular-route.js',                 // router
       'bower_components/angular-mocks/angular-mocks.js',              // loads our modules for tests
-      './services/users/users.js',                                 // our Users factory
+      'bower_components/jquery/dist/jquery.js',
+      'src/app/theme/*.module.js',
+      'src/app/theme/**/*.module.js',
+      'src/app/pages/**/*.module.js',
+      'src/app/pages/**/*.js',
+      'src/app/pages/*.js',
+      'src/app/theme/**/*.js',
+      'src/app/theme/*.js',
       'src/app/app.js',
       'test/*.js',
-
+      'src/app/app.js',
       // '**/*.js',
       // '**/!(jquery).js',
       // '**/!(gulpfile).js',
       // '**/!(karma.config).js',
-
-
-      // 'bower_components/jquery/dist/jquery.js',
-      // 'bower_components/angular-route/angular-route.js',
-      // 'bower_components/angular-mocks/angular-mocks.js',
-      // 'src/app/pages/components/mail/mail.module.js',
-      // 'src/app/pages/components/timeline/timeline.module.js',
-      // 'src/app/pages/components/tree/tree.module.js',
-      // 'src/app/pages/dashboard/dashboard.module.js',
-      // 'src/app/pages/form/form.module.js',
-      // 'src/app/pages/maps/maps.module.js',
-      // 'src/app/pages/profile/profile.module.js',
-      // 'src/app/pages/tables/tables.module.js',
-      //
-      // 'src/app/pages/ui/ui.module.js',
-      // 'src/app/pages/ui/alerts/alerts.module.js',
-      // 'src/app/pages/ui/buttons/buttons.module.js',
-      // 'src/app/pages/ui/grid/grid.module.js',
-      // 'src/app/pages/ui/icons/icons.module.js',
-      // 'src/app/pages/ui/modals/modals.module.js',
-      // 'src/app/pages/ui/notifications/notifications.module.js',
-      // 'src/app/pages/ui/panels/panels.module.js',
-      // 'src/app/pages/ui/progressBars/progressBars.module.js',
-      // 'src/app/pages/ui/slider/slider.module.js',
-      // 'src/app/pages/ui/tabs/tabs.module.js',
-      // 'src/app/pages/ui/typography/typography.module.js',
-      // 'src/app/theme/theme.module.js',
-      // 'src/app/theme/components/components.module.js',
-      'src/app/app.js',
-      // 'src/**/**/**/*.js',
-      // 'src/**/**/**/**/*.js',
-      // 'src/**/*.js',
-      // 'spec/*.js',
-      // 'bower_components/angular/angular.js',
-
     ],
-
 
     // list of files to exclude
     exclude: [

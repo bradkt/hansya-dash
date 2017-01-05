@@ -13,6 +13,7 @@
 
         $scope.logout = function() {
             $log.info('add function to log out');
+            $location.url('/form/login');
         };
 
         $scope.newCampaign = function() {

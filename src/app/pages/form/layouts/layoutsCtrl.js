@@ -15,10 +15,10 @@
         $scope.submit = function () {
             //this model is holding email as identifier
             var data = lc.personalInfo;
-            console.log(data);
+            // console.log(data);
             UserApi.postUserLogin(data).then(function (response) {
                 if (response) {
-                    console.log(response);
+                    // console.log(response);
                     userGranted();
                 } else {
                 lc.personalInfo.errorMessage = "Your Email and Password do not match";
@@ -29,9 +29,8 @@
         };
 
         function userGranted() {
-
             UserApi.getCurrentUser().then(function (response) {
-                $log.info(response);
+                // $log.info(response);
                 if (response) {
                     LocalStorage.setUserRole(response.data.role.name)
                     trafficDirector(response.data.role.name);
@@ -39,11 +38,10 @@
                     $log.info('Trouble getting your user info')
                 }
             });
-
-
         }
 
         $scope.recoverPassword = function() {
+            //put to /user.password
             $log.info('recover the freakin password');
         };
 
@@ -51,14 +49,6 @@
             if (role == "admin") {
                 $location.url('tables/admin');
             } else {
-                // var callID = LocalStorage.routeToRecentDashboard();
-                // $log.info(callID);
-                // if(!callID) {
-                //     console.log('please create a campaign to see your dashboard');
-                //     lc.message = true;
-                // } else {
-                //     $location.url('dashboard/' + callID);
-                // }
                 CampaignApi.getCampaigns().then(function (response) {
                     if (!response) {
                         $log.info('there was an error getting your campaigns');
@@ -68,7 +58,7 @@
                     } else {
                         LocalStorage.setCurrentCampaign(response[0].id);
                         $location.url('dashboard/' + response[0].id); //direct to most recent campaign
-                        }
+                    }
                 });
             }
         }

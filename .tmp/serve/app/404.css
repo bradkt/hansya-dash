@@ -30,6 +30,23 @@
   margin: 0 5px 20px 5px;
   padding-right: 10px; }
 
+.message-expand {
+  font-size: 16px;
+  margin: 15px;
+  padding-top: 15px;
+  text-align: center;
+  border-top: 1px solid darkgray; }
+
+.message-expand span {
+  display: inline-block;
+  margin: 0 10px; }
+
+.unHappy {
+  color: rgba(215, 60, 60, 0.9); }
+
+.happy {
+  color: rgba(127, 191, 63, 0.9); }
+
 html {
   position: relative;
   min-width: 320px; }

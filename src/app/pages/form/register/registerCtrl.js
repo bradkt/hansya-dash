@@ -14,6 +14,7 @@
 
         $scope.submit = function () {
             var company = rc.personalInfo.registerCompany;
+            console.log(rc.personalInfo);
             UserApi.getCompany().then(function (response) {
                 if (response) {
                     console.log("getting companies");
@@ -31,7 +32,7 @@
                 } else {
                     console.log("Issue getting companies");
                     console.log(response);
-                    registerUser(null);
+                    registerUser(1);
                 }
             });
         };
@@ -39,8 +40,9 @@
 
         function registerUser(id){
             rc.personalInfo.company = id;
-            var data = rc.personalInfo;
 
+            var data = rc.personalInfo;
+            console.log(data);
             UserApi.registerUser(data).then(function (response) {
                 if (response) {
                     console.log("You have successfully registered");

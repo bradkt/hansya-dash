@@ -21,6 +21,7 @@
     engagements();
     sentiment();
     Keyword();
+    getMessages();
 
     $timeout(function () {
       loadPieCharts();
@@ -86,6 +87,65 @@
       });
     }
 
+    var positiveMessages = 0;
+    var negativeMessages = 0;
+
+
+    function getMessages() {
+      CampaignApi.getCampaignMessages(id).then(function (response) {
+        if (response){
+          sentimentCount(response);
+        } else {
+          console.log('no response from server');
+        }
+      });
+    }
+
+    function sentimentCount(response) {
+      var totalMessages = response.length;
+      angular.forEach(response, function(obj, key) {
+        if (obj.metrics.sentiment_score > .5) {
+          positiveMessages = positiveMessages + 1;
+        } else {
+          negativeMessages = negativeMessages + 1;
+        }
+      });
+
+
+
+      var posMessPer = positiveMessages / totalMessages;
+      var negMessPer = negativeMessages / totalMessages;
+      // console.log('positiveMessages');
+      console.log(totalMessages);
+      // console.log('negativeMessages');
+      // console.log(negMessPer);
+
+      var element1 = {
+        color: pieColor,
+        description: 'Positive Messages',
+        stats: positiveMessages,
+        icon: 'face',
+        percent: parseInt(positiveMessages / totalMessages)
+      }
+
+
+      var element2 = {
+        color: pieColor,
+        description: 'Negative Messages',
+        stats: negativeMessages,
+        icon: 'face',
+        percent: 54.2536
+      }
+      $timeout(function () {
+        pushTodataArray(element1);
+        pushTodataArray(element2);
+      }, 1000);
+
+    }
+
+    function pushTodataArray (element){
+      $scope.pieChartsData.push(element);
+    }
 
     function Keyword() {
       CampaignApi.getCampaign(id).then(function (response) {

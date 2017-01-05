@@ -12,15 +12,15 @@
           <span ng-if="message.preview">{{message.header}} </span>{{::message.message.text}}
         </div>
           <div ng-show="message.expanded" class="message-expand">
-            <div class="likes">
-              <span>Likes: {{ message.metrics.likes }}</span>
-            </div>
-            <div class="engagements">
-              <span>Engagements: {{ message.metrics.engagements }}</span>
-            </div>
-            <div class="sentiment">
-              <span ng-class="message.metrics.sentiment_score < .5 ? 'unHappy': 'happy'">Sentiment: {{ message.metrics.sentiment_score }}</span>
-            </div>
+            <!--<div >-->
+              <span class="likes">Likes: {{ message.metrics.likes }}</span>
+            <!--</div>-->
+            <!--<div >-->
+              <span class="engagements">Engagements: {{ message.metrics.engagements }}</span>
+            <!--</div>-->
+            <!--<div class="sentiment">-->
+              <span class="sentiment" ng-class="message.metrics.sentiment_score < .5 ? 'unHappy': 'happy'">Sentiment: {{ message.metrics.sentiment_score }}</span>
+            <!--</div>-->
           </div>
         </div>
 
