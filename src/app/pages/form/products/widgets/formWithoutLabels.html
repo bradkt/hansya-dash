@@ -1,10 +1,19 @@
-<div class="row">
+<div class="row" ng-if="!pc.selectedProduct.name">
   <button class="btn product" ng-click="addProduct(product)" ng-repeat="product in pc.productInfo">
     {{product.name}} Package<br>
     ${{product.price}}<br>
     {{product.datapoints}} Data Points<br>
     {{product.description}}
   </button>
+</div>
+<div class="row" ng-if="pc.selectedProduct.name">
+  <button class="btn product">
+    {{pc.selectedProduct.name}} Package<br>
+    ${{pc.selectedProduct.price}}<br>
+    {{pc.selectedProduct.datapoints}} Data Points<br>
+    {{pc.selectedProduct.description}}
+  </button>
+  <button class="btn product" ng-click="editProductSelection()">Edit Product Selection</button>
 </div>
 
 <form ng-submit="submit()" name="pc.campaignInfoForm" novalidate>
@@ -60,7 +69,7 @@
     <!--</div>-->
   <!--</div>-->
 
-  <div class="col-md-6" ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">
+  <div class="col-md-6 campaignKeywords" ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">
     <label>Competitive Keywords (At least one required)</label>
     <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[0]" required/>
     <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="pc.campaignInfo.keywords[1]"/>
@@ -70,27 +79,42 @@
   </div>
 
 
-  <div class="col-md-6 half-wide">
+  <div class="col-md-6 row productSubmit">
 
       <button type="submit" class="btn btn-success" ng-disabled="pc.campaignInfoForm.$invalid">Purchase</button>
 
 
-    <div ng-if="submitted" class="right">
-      <form action="/your-server-side-code" method="POST">
-        <script
-                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="pk_test_XxAEu7EUD1EXhOa10G2FTj2v"
-                data-amount={{priceToSubmit}}
-                data-name="Stripe.com"
-                data-description="Widget"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                data-locale="auto"
-                data-zip-code="true">
-        </script>
-      </form>
-    </div>
+    <!--<div ng-if="submitted" class="right">-->
+      <!--<form action="/your-server-side-code" method="POST">-->
+        <!--<script-->
+                <!--src="https://checkout.stripe.com/checkout.js" class="stripe-button"-->
+                <!--data-key="pk_test_XxAEu7EUD1EXhOa10G2FTj2v"-->
+                <!--data-amount={{priceToSubmit}}-->
+                <!--data-name="Stripe.com"-->
+                <!--data-description="Widget"-->
+                <!--data-image="https://stripe.com/img/documentation/checkout/marketplace.png"-->
+                <!--data-locale="auto"-->
+                <!--data-zip-code="true">-->
+        <!--</script>-->
+      <!--</form>-->
+    <!--</div>-->
 
   </div>
 </form>
 
+<div ng-if="submitted" class="right">
+  <form stripe-form="stripeCallback" name="checkoutForm">
+    <input ng-model="number" placeholder="Card Number"
+           payments-format="card" payments-validate="card" name="card" />
+    <input ng-model="expiry" placeholder="Expiration"
+           payments-format="expiry" payments-validate="expiry"
+           name="expiry" />
+    <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
+    <button ng-click="stripeCallback">Purchase</button>
+  </form>
+</div>
+
+<div ng-if="checkoutForm.card.$invalid">
+  Error: invalid card number!
+</div>
 

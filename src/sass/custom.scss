@@ -24,20 +24,21 @@
   text-align: right;
 }
 
-.half-wide {
+.productSubmit {
   width: 50%;
+  margin: 20px 0 5px 0;
 }
 
 .align-right-margin {
   padding: 0 15px;
 }
 
-.dark-bg {
-  background: rgba(0,0,0,0.09);
+.campaignInfo {
+  //background: rgba(0,0,0,0.09);
   display: inline-block;
-  margin: 0 5px 20px 5px;
+  margin: 5px auto;
   padding-right: 10px;
-  //border-radius: 10%;
+  //border-right: 1px solid darkgray;
 }
 
 .message-expand {
@@ -59,4 +60,25 @@
 
 .happy {
   color: rgba(127, 191, 63, 0.9);
+}
+
+.campaigninfo {
+  text-align: center;
+  border: 1px solid darkgray;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.keywords {
+  border-right: 1px solid darkgray;
+  margin-right: 5px;
+  padding-right: 5px;
+}
+
+.lastRepeat {
+  border: none;
+}
+
+.campaignKeywords .form-control {
+  margin: 5px 0;
 }

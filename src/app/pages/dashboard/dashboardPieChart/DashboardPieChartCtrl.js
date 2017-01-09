@@ -9,7 +9,7 @@
       .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi, LocalStorage) {
+  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil, $stateParams, $http, CampaignApi, LocalStorage, $log) {
 
 
     var id = $stateParams.uid; //getting ui-route parameter
@@ -19,7 +19,7 @@
 
     totalLikes();
     engagements();
-    sentiment();
+    // sentiment();
     Keyword();
     getMessages();
 
@@ -40,7 +40,7 @@
           }
           $scope.pieChartsData.push(element);
         } else {
-          console.log('no response from server');
+          $log.info('no response from server');
         }
       });
     }
@@ -65,87 +65,89 @@
           }
           $scope.pieChartsData.push(element);
         } else {
-          console.log('no response from server');
+          $log.info('no response from server');
         }
       });
     }
 
-    function sentiment() {
-      CampaignApi.getSentiment(id).then(function (response) {
-        if (response){
-          var element = {
-            color: pieColor,
-            description: 'Average Sentiment',
-            stats: response.averageSentimentScore + '%',
-            icon: 'face',
-            percent: response.averageSentimentScore
-          }
-          $scope.pieChartsData.push(element);
-        } else {
-          console.log('no response from server');
-        }
-      });
-    }
+    // function sentiment() {
+    //   CampaignApi.getSentiment(id).then(function (response) {
+    //     if (response){
+    //       console.log(response);
+    //       var element = {
+    //         color: pieColor,
+    //         description: 'Average Sentiment',
+    //         stats: response.averageSentimentScore + '%',
+    //         icon: 'face',
+    //         percent: response.averageSentimentScore
+    //       }
+    //       $scope.pieChartsData.push(element);
+    //     } else {
+    //       console.log('no response from server');
+    //     }
+    //   });
+    // }
 
     var positiveMessages = 0;
     var negativeMessages = 0;
-
+    var averageSent = 0;
 
     function getMessages() {
       CampaignApi.getCampaignMessages(id).then(function (response) {
         if (response){
           sentimentCount(response);
         } else {
-          console.log('no response from server');
+          $log.info('no response from server');
         }
       });
     }
 
     function sentimentCount(response) {
+
       var totalMessages = response.length;
+
       angular.forEach(response, function(obj, key) {
+        averageSent = averageSent + parseFloat(obj.metrics.sentiment_score);
+
         if (obj.metrics.sentiment_score > .5) {
           positiveMessages = positiveMessages + 1;
         } else {
           negativeMessages = negativeMessages + 1;
         }
+
       });
 
+      var element = {
+        color: pieColor,
+        description: 'Average Sentiment',
+        stats: (averageSent / totalMessages * 100).toFixed(1) + '%',
+        icon: 'face',
+        percent: (averageSent / totalMessages * 100).toFixed(1)
+      }
 
-
-      var posMessPer = positiveMessages / totalMessages;
-      var negMessPer = negativeMessages / totalMessages;
-      // console.log('positiveMessages');
-      console.log(totalMessages);
-      // console.log('negativeMessages');
-      // console.log(negMessPer);
+      $scope.pieChartsData.push(element);
 
       var element1 = {
         color: pieColor,
         description: 'Positive Messages',
         stats: positiveMessages,
         icon: 'face',
-        percent: parseInt(positiveMessages / totalMessages)
+        percent: (positiveMessages / totalMessages * 100).toFixed(1)
       }
-
 
       var element2 = {
         color: pieColor,
         description: 'Negative Messages',
         stats: negativeMessages,
         icon: 'face',
-        percent: 54.2536
+        percent: (negativeMessages / totalMessages * 100).toFixed(1)
       }
-      $timeout(function () {
-        pushTodataArray(element1);
-        pushTodataArray(element2);
-      }, 1000);
 
+      $scope.pieChartsData.push(element1);
+      $scope.pieChartsData.push(element2);
     }
 
-    function pushTodataArray (element){
-      $scope.pieChartsData.push(element);
-    }
+
 
     function Keyword() {
       CampaignApi.getCampaign(id).then(function (response) {
@@ -160,13 +162,10 @@
           }
           $scope.pieChartsData.push(element);
         } else {
-          console.log('unable get campaign from server');
+          $log.info('unable get campaign from server');
         }
       });
     }
-
-
-
 
     // function getRandomArbitrary(min, max) {
     //   return Math.random() * (max - min) + min;
@@ -200,7 +199,6 @@
       //     $(chart).data('easyPieChart').update(getRandomArbitrary(55, 90));
       //   });
       // }
-
 
       }
 })();

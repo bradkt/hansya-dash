@@ -27,8 +27,8 @@
             var id = LocalStorage.getCurrentCampaign();
 
             if (!id) {
-                console.log('please create a campaign to see your dashboard');
-                console.log('components/pageTopCtrl');
+                // console.log('please create a campaign to see your dashboard');
+                // console.log('components/pageTopCtrl');
                 $location.url('form/login');
             } else {
                 $log.info(id);

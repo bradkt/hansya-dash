@@ -15,14 +15,12 @@
         $scope.submit = function () {
             //this model is holding email as identifier
             var data = lc.personalInfo;
-            // console.log(data);
             UserApi.postUserLogin(data).then(function (response) {
                 if (response) {
-                    // console.log(response);
                     userGranted();
                 } else {
                 lc.personalInfo.errorMessage = "Your Email and Password do not match";
-                console.log(lc.personalInfo.errorMessage);
+                $log.info(lc.personalInfo.errorMessage);
             }
 
             });
@@ -30,7 +28,6 @@
 
         function userGranted() {
             UserApi.getCurrentUser().then(function (response) {
-                // $log.info(response);
                 if (response) {
                     LocalStorage.setUserRole(response.data.role.name)
                     trafficDirector(response.data.role.name);
@@ -54,7 +51,6 @@
                         $log.info('there was an error getting your campaigns');
                     } else if (jQuery.type(response) == "array" && response.length == 0) {
                         lc.message = true;
-                        console.log('there are no campaigns associated with this account would you like to create a compaign?')
                     } else {
                         LocalStorage.setCurrentCampaign(response[0].id);
                         $location.url('dashboard/' + response[0].id); //direct to most recent campaign

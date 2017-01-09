@@ -11,14 +11,12 @@
     </div>
   </form>
 </div>
-<div class="row">
-  <div class="dark-bg">
+<label>Information about current campaign</label>
+<div class="row campaigninfo">
+  <div class="campaignInfo">
     <span class="bold lineSpace">Data Points:</span><span class="">{{datapoints}}</span>
   </div>
-  <div class="dark-bg">
-    <span class="bold lineSpace">Other Data:</span><span class="">you want to know this too</span>
-  </div>
-  <div class="dark-bg">
-    <p class="bold lineSpace">Keywords:</p><span ng-repeat="keyword in keywords">{{keyword}} | </span>
+  <div class="campaignInfo">
+    <span class="bold lineSpace">Keywords:</span><span class="keywords" ng-class="{'lastRepeat':$last}" ng-repeat="keyword in keywords">{{keyword}}</span>
   </div>
 </div>

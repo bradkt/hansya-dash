@@ -2,6 +2,7 @@
 
 angular.module('BlurAdmin', [
   'ngAnimate',
+  'angularPayments',
   'ui.bootstrap',
   'ui.sortable',
   'ui.router',

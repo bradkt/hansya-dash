@@ -20,7 +20,10 @@
       .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
+  function routeConfig($urlRouterProvider, baSidebarServiceProvider, $windowProvider) {
+    //todo: setting up stripe.js
+    var $window = $windowProvider.$get();
+    $window.Stripe.setPublishableKey('pk_test_XxAEu7EUD1EXhOa10G2FTj2v');
 
     $urlRouterProvider.otherwise('/form/login');
 

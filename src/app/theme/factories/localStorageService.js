@@ -55,8 +55,8 @@
 
         function setUserRole (userRole) {
             $window.localStorage && $window.localStorage.setItem('hansya-storage-role', userRole);
-            console.log('local storage user role');
-            console.log($window.localStorage);
+            // console.log('local storage user role');
+            // console.log($window.localStorage);
         }
 
 
