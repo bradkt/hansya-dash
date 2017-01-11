@@ -38,6 +38,7 @@
 
       CampaignApi.getCampaign(id).then(function (response) {
         if (response){
+
           displayProductInfo(response.product);
           $scope.keywords = response.keywords;
         } else {
@@ -49,6 +50,7 @@
     function displayProductInfo(productID) {
         ProductApi.getProduct(productID).then(function (response) {
           if (response){
+            console.log(response);
             $scope.datapoints = response.data.datapoints;
           } else {
             $log.info('no response from server');
@@ -62,6 +64,7 @@
         LocalStorage.setCurrentCampaign($scope.selectedCampaignsData.id);
         campaignMetaData();
         // loadCampaignData();
+        $location.url('dashboard/' + $scope.selectedCampaignsData.id);
       } else {
         $log.info('please select campaign');
       }

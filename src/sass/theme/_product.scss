@@ -1,5 +1,31 @@
 .product {
   margin: 10px 30px;
-  width: 90%;
+  width: 100%;
   border: 1px solid darkgray;
 }
+
+.centerBlock {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.stripe-form {
+
+}
+
+.stripe-form input {
+  width: 90%;
+  height: 30px;
+  margin: 10px 20px;
+  border-radius: 5px;
+}
+
+button .wrap {
+  //word-wrap:break-word;
+  white-space: normal;
+}
+
+//.wrap {
+//  word-wrap:break-word;
+//  white-space: nowrap;
+//}

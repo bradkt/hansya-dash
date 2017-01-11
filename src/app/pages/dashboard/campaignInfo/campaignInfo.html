@@ -14,9 +14,12 @@
 <label>Information about current campaign</label>
 <div class="row campaigninfo">
   <div class="campaignInfo">
-    <span class="bold lineSpace">Data Points:</span><span class="">{{datapoints}}</span>
+    <span class="bold lineSpace">Keywords: </span><span class="" ng-class="{'lastRepeat':$last}" ng-repeat="keyword in keywords">{{keyword}}</span>
   </div>
   <div class="campaignInfo">
-    <span class="bold lineSpace">Keywords:</span><span class="keywords" ng-class="{'lastRepeat':$last}" ng-repeat="keyword in keywords">{{keyword}}</span>
+    <span class="bold lineSpace">Data Points: </span><span class="">{{datapoints}}</span>
+  </div>
+  <div class="campaignInfo">
+    <span class="bold lineSpace">Keywords: </span><span class="keywords" ng-class="{'lastRepeat':$last}" ng-repeat="keyword in keywords">{{keyword}}</span>
   </div>
 </div>

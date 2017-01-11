@@ -64,6 +64,16 @@
 .campaignKeywords .form-control {
   margin: 5px 0; }
 
+.small {
+  font-size: 10px; }
+
+.loginLinks {
+  font-size: 18px;
+  text-align: center; }
+
+.loginLinks a {
+  margin: 0 15px; }
+
 @font-face {
   font-family: 'socicon';
   src: url("../assets/fonts/socicon.eot");

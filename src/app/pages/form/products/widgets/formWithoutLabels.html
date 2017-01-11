@@ -1,21 +1,22 @@
-<div class="row" ng-if="!pc.selectedProduct.name">
-  <button class="btn product" ng-click="addProduct(product)" ng-repeat="product in pc.productInfo">
-    {{product.name}} Package<br>
-    ${{product.price}}<br>
-    {{product.datapoints}} Data Points<br>
-    {{product.description}}
-  </button>
+<div class="row">
+  <div class="row centerBlock" ng-if="!pc.selectedProduct.name">
+    <button class="btn product" ng-click="addProduct(product)" ng-repeat="product in pc.productInfo">
+      <span>{{product.name}} Package</span><br>
+      <span>${{product.price}}</span><br>
+      <span>{{product.datapoints}} Data Points</span><br>
+      <span class="wrap">{{product.description}}</span>
+    </button>
+  </div>
+  <div class="row centerBlock" ng-if="pc.selectedProduct.name">
+    <button class="btn product">
+      <span>{{pc.selectedProduct.name}} Package</span><br>
+      <span>${{pc.selectedProduct.price}}</span><br>
+      <span>{{pc.selectedProduct.datapoints}} Data Points</span><br>
+      <span>{{pc.selectedProduct.description}}</span>
+    </button>
+    <button class="btn product" ng-click="editProductSelection()">Edit Product Selection</button>
+  </div>
 </div>
-<div class="row" ng-if="pc.selectedProduct.name">
-  <button class="btn product">
-    {{pc.selectedProduct.name}} Package<br>
-    ${{pc.selectedProduct.price}}<br>
-    {{pc.selectedProduct.datapoints}} Data Points<br>
-    {{pc.selectedProduct.description}}
-  </button>
-  <button class="btn product" ng-click="editProductSelection()">Edit Product Selection</button>
-</div>
-
 <form ng-submit="submit()" name="pc.campaignInfoForm" novalidate>
 
   <div class="col-md-6">
@@ -102,15 +103,14 @@
   </div>
 </form>
 
-<div ng-if="submitted" class="right">
+<div ng-if="submitted" class="row has-feedback stripe-form col-md-6">
   <form stripe-form="stripeCallback" name="checkoutForm">
-    <input ng-model="number" placeholder="Card Number"
-           payments-format="card" payments-validate="card" name="card" />
-    <input ng-model="expiry" placeholder="Expiration"
-           payments-format="expiry" payments-validate="expiry"
-           name="expiry" />
-    <input ng-model="cvc" placeholder="CVC" payments-format="cvc" payments-validate="cvc" name="cvc" />
-    <button ng-click="stripeCallback">Purchase</button>
+    <input ng-model="number" placeholder="Card Number" class="form-group"
+           payments-format="card" payments-validate="card"/>
+    <input ng-model="expiry" placeholder="Expiration" class="form-group"
+           payments-format="expiry" payments-validate="expiry"/>
+    <input ng-model="cvc" placeholder="CVC" payments-format="cvc" class="form-group" payments-validate="cvc"/>
+    <button class="btn" ng-click="stripeCallback">Make Payment</button>
   </form>
 </div>
 

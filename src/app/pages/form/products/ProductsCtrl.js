@@ -75,7 +75,7 @@
 
         // returns a 400 if user has not been assigned to company
         $scope.submit = function () {
-            if (confirm("Please Cancel to edit or click OK to purchase Campaign")) {
+        //     if (confirm("Please Cancel to edit or click OK to purchase Campaign")) {
                 // console.log(pc.campaignInfo);
                 // console.log(pc.campaignInfo.id);
                 // console.log('priceToSubmit');
@@ -94,9 +94,9 @@
                 });
                 $scope.submitted = true;
                 pc.campaignInfo.keywords = [];
-            } else {
-                $log.info('you cancelled this purchase');
-            }
+            // } else {
+            //     $log.info('you cancelled this purchase');
+            // }
 
         };
 
