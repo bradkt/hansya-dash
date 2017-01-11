@@ -50,7 +50,6 @@
     function displayProductInfo(productID) {
         ProductApi.getProduct(productID).then(function (response) {
           if (response){
-            console.log(response);
             $scope.datapoints = response.data.datapoints;
           } else {
             $log.info('no response from server');
