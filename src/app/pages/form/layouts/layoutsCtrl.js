@@ -39,7 +39,7 @@
 
         $scope.recoverPassword = function() {
             //put to /user.password
-            $log.info('recover the freakin password');
+            $log.info('recover the password');
         };
 
         function trafficDirector(role) {
