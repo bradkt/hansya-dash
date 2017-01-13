@@ -26,22 +26,30 @@
 // });
 
 describe('login controller', function() {
-    beforeEach(module('BlurAdmin.pages.form'));
+    beforeEach(module('BlurAdmin'));
+    beforeEach(module('BlurAdmin.pages'));
+    var loginCtrl, scope, userAPI, deffered, q, user, lc;
 
-    var $controller;
+    beforeEach(function () {
 
-    beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
+    });
+
+    beforeEach(inject(function($rootScope, $controller){
+        scope = $rootScope.$new();
+        loginCtrl = $controller('LayoutsCtrl', {
+            $scope: scope,
+            lc : {
+            personalInfo : {
+            name: 'brad',
+            userID: 34
+            }
+            }
+        });
     }));
 
-    describe('$scope.lc.personalInfo', function() {
-        it('should be emplty to start', function() {
-            var $scope = {};
-            var controller = $controller('LayoutsCtrl()', { $scope: $scope });
-            // $scope.password = 'longerthaneightchars';
-            // $scope.grade();
-            expect($scope.lc).toEqual('');
-        });
+
+
+    it('should define personalInfo', function (){
+        expect(submit).toBeDefined();
     });
 });
