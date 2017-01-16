@@ -3,7 +3,7 @@ node{
   checkout scm
   sh 'git checkout master'
   stage 'Install dependencies'
-  sh 'NPM_CONFIG_PRODUCTION=false && npm install'
+  sh 'export NPM_CONFIG_PRODUCTION=false && npm install'
   stage 'Deploy to dev heroku'
   sh 'heroku config:set NPM_CONFIG_PRODUCTION=false -a dev-hansya-dashboard'
   sh 'heroku config:set NODE_ENV=ci -a dev-hansya-dashboard'
