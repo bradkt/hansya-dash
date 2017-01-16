@@ -2,8 +2,8 @@ node{
   stage 'Checkout'
   checkout scm
   sh 'git checkout master'
-  stage 'Install dependency'
-  sh 'npm install gulp'
+  stage 'Install dependencies'
+  sh 'NPM_CONFIG_PRODUCTION=false && npm install'
   stage 'Deploy to dev heroku'
   sh 'heroku config:set NPM_CONFIG_PRODUCTION=false -a dev-hansya-dashboard'
   sh 'heroku config:set NODE_ENV=ci -a dev-hansya-dashboard'
