@@ -17,5 +17,5 @@ node{
   stage 'Build App'
   sh 'gulp serve:dist'
   stage 'Deploy to Test'
-  sh 'aws s3 cp dist/* s3://bucketeer-d89c87a6-7073-4603-bd65-7bdd75831a5b/public
+  sh 'aws s3 cp dist/* s3://bucketeer-d89c87a6-7073-4603-bd65-7bdd75831a5b/public'
 }
