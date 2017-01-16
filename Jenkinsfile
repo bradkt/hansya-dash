@@ -16,8 +16,6 @@ node{
   // BYPASS UNTIL WE CAN RUN TESTS
   ////////////////////////////////////////////////////////////////////////////////////
   //sh 'heroku run --exit-code "npm install && npm run test" -a dev-hansya-dashboard'
-  stage 'Build App'
-  sh 'gulp serve:dist'
-  stage 'Deploy to Test'
-  sh 'aws s3 cp dist/* s3://bucketeer-d89c87a6-7073-4603-bd65-7bdd75831a5b/public'
+  stage 'Build & Deploy to test'
+  sh 'heroku run --exit-code "npm install && aws configure <<!\nAKIAJD2JDOTOZWJHRGSQ\n4WKeCu8LW4o7EQI0ddPF07zYbtSK6DTHEU0wjt4y\nus-east-1\n\n! && gulp serve:dist && aws s3 cp dist/* s3://bucketeer-d89c87a6-7073-4603-bd65-7bdd75831a5b/public"'
 }
