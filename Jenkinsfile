@@ -9,8 +9,8 @@ node{
   sh 'heroku config:set NODE_ENV=ci -a dev-hansya-dashboard'
   sh 'heroku git:remote -a dev-hansya-dashboard'
   sh 'git push heroku master'
-  stage 'Turn off dyno instance'
-  sh 'heroku ps:scale web=0 -a dev-hansya-dashboard'
+//  stage 'Turn off dyno instance'
+//  sh 'heroku ps:scale web=0 -a dev-hansya-dashboard'
   stage 'Run CI tests on heroku'
   ////////////////////////////////////////////////////////////////////////////////////
   // BYPASS UNTIL WE CAN RUN TESTS
