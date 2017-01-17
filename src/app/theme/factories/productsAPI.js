@@ -10,6 +10,9 @@
     /** @ngInject */
     function ProductApi($http) {
 
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        // var URL = "http://localhost:1337";
+
         return {
             getProducts: getProducts,
             postProduct: postProduct,
@@ -18,19 +21,19 @@
         };
 
         function getProduct(id) {
-            return $http.get('http://localhost:1337/product/' + id ).then(complete).catch(failed);
+            return $http.get(URL + '/product/' + id ).then(complete).catch(failed);
         }
 
         function getProducts() {
-            return $http.get('http://localhost:1337/product').then(complete).catch(failed);
+            return $http.get(URL + '/product').then(complete).catch(failed);
         }
 
         function postProduct(data) {
-            return $http.post('http://localhost:1337/product', data).then(complete).catch(failed);
+            return $http.post(URL + '/product', data).then(complete).catch(failed);
         }
 
         function deleteProduct(id) {
-            return $http.delete('http://localhost:1337/product/' + id).then(complete).catch(failed);
+            return $http.delete(URL + '/product/' + id).then(complete).catch(failed);
         }
 
         function complete(response) {

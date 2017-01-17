@@ -10,17 +10,20 @@
     /** @ngInject */
     function IndustryApi($http) {
 
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        // var URL = "http://localhost:1337";
+
         return {
             getIndustries: getIndustries,
             postIndustry: postIndustry
         };
 
         function getIndustries() {
-            return $http.get('http://localhost:1337/industry').then(complete).catch(failed);
+            return $http.get(URL + '/industry').then(complete).catch(failed);
         }
 
         function postIndustry(data) {
-            return $http.post('http://localhost:1337/industry', data).then(complete).catch(failed);
+            return $http.post(URL + '/industry', data).then(complete).catch(failed);
         }
 
         function complete(response) {

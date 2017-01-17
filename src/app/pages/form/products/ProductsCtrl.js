@@ -76,20 +76,36 @@
         // returns a 400 if user has not been assigned to company
         $scope.submit = function () {
         //     if (confirm("Please Cancel to edit or click OK to purchase Campaign")) {
-                // console.log(pc.campaignInfo);
+                console.log('campaign info');
+                console.log(pc.campaignInfo);
                 // console.log(pc.campaignInfo.id);
                 // console.log('priceToSubmit');
                 // console.log($scope.priceToSubmit);
 
-                var data = {
+            // "keywords": ["Merge Industry and", "Whatever", "Else", "Is", "Added"],
+            // "product": <ProductID>
+            // "paid": <true|false>
+            // "paymentID": <optional>,
+            //  "visibility": <"company"|"user">
+
+                var data =
+                {
+                    // "user": "4aeae113-91d4-404d-b95f-4f85611454a6",
                     "keywords": pc.campaignInfo.keywords,
                     "product": pc.campaignInfo.id,
                     "paid": false,
-                    "visibility": "user"
+                    "visibility": "user",
+                    // "audience": pc.campaignInfo.audience,
+                    // "location": pc.campaignInfo.location,
+                    // "timeframe": pc.campaignInfo.timeframe,
+                    // "intent" : pc.campaignInfo.intent
                 };
+                console.log('data');
+                console.log(data);
 
 
                 CampaignApi.postCampaign(data).then(function (response) {
+                    console.log('response');
                     console.log(response);
                 });
                 $scope.submitted = true;

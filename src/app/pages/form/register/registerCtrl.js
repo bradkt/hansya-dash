@@ -13,34 +13,37 @@
         rc.personalInfo = {};
 
         $scope.submit = function () {
+            rc.personalInfo.email = rc.personalInfo.identifier;
             var company = rc.personalInfo.registerCompany;
             console.log(rc.personalInfo);
             UserApi.getCompany().then(function (response) {
                 if (response) {
                     console.log("getting companies");
-                    for (var i = 0; i <= response.data.length; i++) {
+                    console.log(response);
+
+                    for (var i = 0; i < response.data.length; i++) {
+
+
                         if (company == response.data[i].name) {
                             console.log("match found");
-                            var id = response.data[i].id;
-                            registerUser(id);
+                            rc.personalInfo.company = response.data[i].id;
+                            registerUser();
                             break;
                         } else {
                             console.log("no company match");
-                            registerUser(null);
                         }
                     }
+                    registerUser(company);
                 } else {
                     console.log("Issue getting companies");
                     console.log(response);
-                    registerUser(1);
+                    registerUser(company);
                 }
             });
         };
 
 
-        function registerUser(id){
-            rc.personalInfo.company = id;
-
+        function registerUser(){
             var data = rc.personalInfo;
             console.log(data);
             UserApi.registerUser(data).then(function (response) {

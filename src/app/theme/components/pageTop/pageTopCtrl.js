@@ -8,12 +8,19 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($scope, $log, $location, LocalStorage) {
+    function PageTopCtrl($scope, $log, $location, LocalStorage, UserApi) {
 
 
         $scope.logout = function() {
-            $log.info('add function to log out');
-            $location.url('/form/login');
+            UserApi.logout().then(function (response) {
+                if (response) {
+                    console.log(response);
+                    $location.url('/form/login');
+                } else {
+                    $log.info('trouble while logging out');
+                }
+            });
+
         };
 
         $scope.newCampaign = function() {

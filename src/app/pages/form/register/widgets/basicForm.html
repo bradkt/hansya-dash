@@ -10,12 +10,12 @@
         </div>
         <div class="form-group" ng-class="{'has-error': rc.personalInfoForm.email.$invalid && (rc.personalInfoForm.email.$dirty || rc.personalInfoForm.$submitted)}">
           <label for="registerEmail">Email address</label>
-          <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Email" ng-model="rc.personalInfo.email" required>
+          <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Email" ng-model="rc.personalInfo.identifier" required>
           <span class="help-block error-block basic-block">Proper Email required</span>
         </div>
         <div class="form-group">
           <label for="registerContactName">Contact Name</label>
-          <input type="text" class="form-control" id="registerContactName" name="contactName" placeholder="Contact Name" ng-model="rc.personalInfo.name" required>
+          <input type="text" class="form-control" id="registerContactName" name="contactName" placeholder="Contact Name" ng-model="rc.personalInfo.username" required>
           <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
         </div>
         <div class="form-group">
@@ -24,18 +24,18 @@
           <!--<span class="help-block error-block basic-block">Proper Phone Number required</span>-->
         </div>
         <div class="form-group">
-          <label for="registerContactState">State</label>
-          <input type="text" class="form-control" id="registerContactState" name="contactState" placeholder="State" ng-model="rc.personalInfo.contactState">
+          <label for="registerstate">State</label>
+          <input type="text" class="form-control" id="registerstate" name="contactState" placeholder="State" ng-model="rc.personalInfo.state">
           <!--<span class="help-block error-block basic-block">Proper State required</span>-->
         </div>
         <div class="form-group">
-          <label for="registerContactCity">City</label>
-          <input type="text" class="form-control" id="registerContactCity" name="contactCity" placeholder="City" ng-model="rc.personalInfo.contactCity">
+          <label for="registercity">City</label>
+          <input type="text" class="form-control" id="registercity" name="contactCity" placeholder="City" ng-model="rc.personalInfo.city">
           <!--<span class="help-block error-block basic-block">Proper City required</span>-->
         </div>
         <div class="form-group">
-          <label for="registerContactZip">Zip Code</label>
-          <input type="text" class="form-control" id="registerContactZip" name="contactZip" placeholder="Zip" ng-model="rc.personalInfo.contactZip">
+          <label for="registerzip">Zip Code</label>
+          <input type="text" class="form-control" id="registerzip" name="contactZip" placeholder="Zip" ng-model="rc.personalInfo.zip">
           <!--<span class="help-block error-block basic-block">Proper Zip Code required</span>-->
         </div>
       </div>

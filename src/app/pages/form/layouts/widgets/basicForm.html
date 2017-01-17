@@ -22,8 +22,8 @@
     </div>
   </div>
   <button type="submit" class="btn btn-danger" ng-disabled="lc.personalInfoForm.$invalid">Login</button>
-  <div ng-if="lc.personalInfo.errorMessage">
-    {{lc.personalInfo.errorMessage}}
+  <div ng-if="lc.errorMessage">
+    {{lc.errorMessage}}
   </div>
 </form>
 

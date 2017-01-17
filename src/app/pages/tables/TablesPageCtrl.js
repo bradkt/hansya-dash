@@ -11,6 +11,8 @@
   /** @ngInject */
   function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage, Upload, toastr) {
     var tc = this;
+    var URL = "https://test-hansya-consumer-api.herokuapp.com";
+    // var URL = "http://localhost:1337";
 
     // scope data
     tc.adminAddCampaign = {};
@@ -35,13 +37,26 @@
       // tc.adminAddCampaign = tc.adminAddCampaign.campaignName.trim().toLowerCase();
       // console.log(tc.adminAddCampaign);
 
+      //      "keywords": pc.campaignInfo.keywords,
+      //     "product": pc.campaignInfo.id,
+      //     "paid": false,
+      //     "visibility": "user",
+      //     "audience": pc.campaignInfo.audience,
+      //     "location": pc.campaignInfo.location,
+      //     "timeframe": pc.campaignInfo.timeframe,
+      //     "intent" : pc.campaignInfo.intent
+
       var data = {
             "keywords": tc.adminAddCampaign.keywords,
             "product": tc.adminAddCampaign.product.id,
             "paid": false,
             // "paymentID": '45454545',
-            "visibility": 'user'
-            // "user": tc.adminAddCampaign.userID
+            "visibility": 'user',
+            "user": tc.adminAddCampaign.userID,
+            "audience": tc.adminAddCampaign.audience,
+            "location": tc.adminAddCampaign.location,
+            "timeframe": tc.adminAddCampaign.timeframe,
+            "intent" : tc.adminAddCampaign.intent
       };
 
       console.log(tc.adminAddCampaign);
@@ -49,7 +64,11 @@
       console.log(data);
 
       CampaignApi.postCampaign(data).then(function (response) {
-        console.log(response);
+        if (response) {
+          console.log(response);
+        } else {
+          console.log('error creating this campaign');
+        }
       });
 
     };
@@ -147,7 +166,6 @@
 
     $scope.makeRoleSelection = function (user) {
        tc.changeUserRole = user;
-       $log.info(user.name);
     };
 
     tc.roleOptions = {
@@ -234,7 +252,7 @@
       $scope.errFile = errFiles && errFiles[0];
       if (file) {
         file.upload = Upload.upload({
-          url: 'http://localhost:1337/campaignData/upload',
+          url:  URL +'/campaignData/upload',
           data: {"data": file}
         });
 
