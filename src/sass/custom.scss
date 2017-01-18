@@ -73,6 +73,21 @@
   padding-right: 5px;
 }
 
+.keywords-input {
+  width: 80%;
+  display: inline-block;
+  margin: 0 0 12px 0;
+}
+
+.keyword-button {
+  margin: 0 5px;
+}
+
+.keyword-button:hover {
+  cursor: pointer;
+}
+
+
 .lastRepeat {
   border: none;
 }

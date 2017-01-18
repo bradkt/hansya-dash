@@ -11,8 +11,8 @@
   /** @ngInject */
   function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage, Upload, toastr) {
     var tc = this;
-    var URL = "https://test-hansya-consumer-api.herokuapp.com";
-    // var URL = "http://localhost:1337";
+    // var URL = "https://test-hansya-consumer-api.herokuapp.com";
+    var URL = "http://localhost:1337";
 
     // scope data
     tc.adminAddCampaign = {};
@@ -23,6 +23,7 @@
     tc.changeUserRole = {};
     tc.assignUserToCompany= {};
     $scope.currentCustomer = [];
+    tc.adminAddCampaign.keywordArray = [];
     // $scope.smartTablePageSize = 10;
     // $scope.customerListTableData = [];
     // $scope.customerDetailTableData = [];
@@ -32,42 +33,34 @@
     getProducts();
     getAllUsers();
 
+    // $scope.addKeyword = function (keyword) {
+    //   tc.adminAddCampaign.keywords.push(keyword);
+    // };
+
     $scope.createCampaign = function () {
 
       // tc.adminAddCampaign = tc.adminAddCampaign.campaignName.trim().toLowerCase();
       // console.log(tc.adminAddCampaign);
 
-      //      "keywords": pc.campaignInfo.keywords,
-      //     "product": pc.campaignInfo.id,
-      //     "paid": false,
-      //     "visibility": "user",
-      //     "audience": pc.campaignInfo.audience,
-      //     "location": pc.campaignInfo.location,
-      //     "timeframe": pc.campaignInfo.timeframe,
-      //     "intent" : pc.campaignInfo.intent
-
+      // var data = tc.adminAddCampaign;
       var data = {
-            "keywords": tc.adminAddCampaign.keywords,
+            "user": tc.adminAddCampaign.userID,
+            "keywords": tc.adminAddCampaign.keywordArray,
             "product": tc.adminAddCampaign.product.id,
             "paid": false,
-            // "paymentID": '45454545',
+            // // "paymentID": '45454545',
             "visibility": 'user',
-            "user": tc.adminAddCampaign.userID,
             "audience": tc.adminAddCampaign.audience,
             "location": tc.adminAddCampaign.location,
             "timeframe": tc.adminAddCampaign.timeframe,
             "intent" : tc.adminAddCampaign.intent
       };
 
-      console.log(tc.adminAddCampaign);
-      console.log(tc.adminAddCampaign.product.id);
-      console.log(data);
-
       CampaignApi.postCampaign(data).then(function (response) {
         if (response) {
-          console.log(response);
+          $log.info(response);
         } else {
-          console.log('error creating this campaign');
+          $log.info('error creating this campaign');
         }
       });
 
@@ -76,7 +69,6 @@
     $scope.postIndustry = function() {
 
       // tc.adminCreateIndustry.name = tc.adminCreateIndustry.name.trim().toLowerCase();
-      console.log(tc.adminCreateIndustry);
 
       var data = {
         name: tc.adminCreateIndustry.name,
@@ -95,16 +87,11 @@
 
     $scope.postCompany = function () {
       tc.adminCreateCompany.name = tc.adminCreateCompany.name.trim().toLowerCase();
-      console.log(tc.adminCreateCompany);
-
       UserApi.postCompany(tc.adminCreateCompany).then(function (response) {
-
         if (response) {
-          console.log("Company Created ");
-          console.log(response);
+          $log.info("Company Created ");
         } else {
-          console.log("Issue creating this company");
-          console.log(response);
+          $log.info("Issue creating this company");
         }
 
       });
@@ -115,11 +102,9 @@
       UserApi.getCompany().then(function (response) {
 
         if (response) {
-          console.log("getting companies");
-          console.log(response);
+          $log.info("getting companies");
         } else {
-          console.log("Issue getting companies");
-          console.log(response);
+          $log.info("Issue getting companies");
         }
 
       });
@@ -130,11 +115,11 @@
       UserApi.getUsers().then(function (response) {
 
         if (response) {
-          console.log("getting users");
+          $log.info("getting users");
           console.log(response);
           tc.clientListTableData = response.data;
         } else {
-          console.log("Issue getting users");
+          $log.info("Issue getting users");
           console.log(response);
         }
 
@@ -186,9 +171,6 @@
       UserApi.putUserRole(data).then(function (response) {
 
         if (response) {
-          console.log("User Role Changed");
-          console.log(response);
-
           toastr.success('User Role Successfully changed', 'Success', {
             "autoDismiss": false,
             "positionClass": "toast-top-center",
@@ -204,11 +186,8 @@
             "preventDuplicates": false,
             "preventOpenDuplicates": false
           })
-
-
         } else {
-          console.log("Issue changing User Role");
-          console.log(response);
+          $log.info("Issue changing User Role");
         }
       });
     };
@@ -216,34 +195,34 @@
 
     function getCampaigns () {
       CampaignApi.getCampaigns().then(function (response) {
-        console.log('get caampaigns');
-
         tc.campaignListTableData = response;
-        console.log(tc.campaignListTableData);
-        console.log('end get campaigns');
       });
     }
 
     function getProducts () {
       ProductApi.getProducts().then(function (response) {
         tc.productListTableData = response.data;
-        console.log(tc.productListTableData);
       });
     }
 
     $scope.postProduct = function(data) {
       data = tc.productInfo;
-
-      console.log(data);
       ProductApi.postProduct(data).then(function (response) {
-        console.log(response);
+        if (response) {
+          // $log.info("getting products");
+        } else {
+          $log.info("Issue getting products");
+        }
       });
     }
 
     $scope.deleteProduct = function(id) {
-      console.log(id);
       ProductApi.deleteProduct(id).then(function (response) {
-        console.log(response);
+        if (response) {
+          $log.info("product deleted");
+        } else {
+          $log.info("Issue deleting product");
+        }
       });
     };
 

@@ -7,12 +7,11 @@
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
-
     'BlurAdmin.pages.dashboard',
     // 'BlurAdmin.pages.ui',
     // 'BlurAdmin.pages.components',
     'BlurAdmin.pages.form',
-    'BlurAdmin.pages.tables',
+    'BlurAdmin.pages.tables'
     // 'BlurAdmin.pages.charts',
     // 'BlurAdmin.pages.maps',
     // 'BlurAdmin.pages.profile',
@@ -21,7 +20,7 @@
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider, $windowProvider) {
-    //todo: setting up stripe.js
+    // todo: setting up stripe.js
     var $window = $windowProvider.$get();
     $window.Stripe.setPublishableKey('pk_test_XxAEu7EUD1EXhOa10G2FTj2v');
 

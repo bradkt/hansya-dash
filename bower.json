@@ -20,6 +20,7 @@
     "amcharts": "~3.15.2",
     "amcharts-stock": "*",
     "ammap": "~3.14.5",
+    "angular-payments": "2472bc9befa25678",
     "angular": "~1.4.8",
     "angular-route": "~1.4.6",
     "angular-slimscroll": "~1.1.5",
@@ -55,9 +56,7 @@
     "ng-file-upload": "^12.2.13",
     "angular-xeditable": "~0.1.9",
     "ng-js-tree": "~0.0.7",
-    "jquery-confirm": "^2.7.0",
-    "angular-mocks": "^1.6.1",
-    "angular-payments": "2472bc9befa25678"
+    "angular-mocks": "^1.6.1"
   },
   "resolutions": {
     "angular": "~1.4.8"
