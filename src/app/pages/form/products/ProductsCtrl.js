@@ -8,11 +8,12 @@
         .controller('ProductsCtrl', ProductsCtrl);
 
     /** @ngInject */
-    function ProductsCtrl($log, $scope, baConfig, ProductApi, CampaignApi, $uibModal, $location) {
+    function ProductsCtrl($log, $scope, baConfig, ProductApi, CampaignApi, $uibModal, $location, toastr) {
         var pc = this;
         pc.productInfo = {};
         pc.campaignInfo = {};
         pc.campaignInfo.keywords = [];
+        $scope.cardVerified = false;
 
         $scope.campaignInfo = pc.campaignInfo;
 
@@ -70,6 +71,28 @@
                 console.log('it failed! error: ' + result.error.message);
             } else {
                 console.log('success! token: ' + result.id);
+                // angular.forEach(result, function(obj) {
+                //     console.log('entire result ' + obj);
+                // });
+
+                toastr.success('Payment data verified', 'Success', {
+                    "autoDismiss": false,
+                    "positionClass": "toast-top-center",
+                    "type": "success",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "2000",
+                    "allowHtml": false,
+                    "closeButton": false,
+                    "tapToDismiss": true,
+                    "progressBar": false,
+                    "newestOnTop": true,
+                    "maxOpened": 0,
+                    "preventDuplicates": false,
+                    "preventOpenDuplicates": false
+                });
+                $scope.cardVerified = true;
+                console.log('direction from here? (back to main website?');
+                console.log('add another couple sentences telling user that they will recieve email when the campaign is complete.');
             }
         };
 
@@ -91,6 +114,21 @@
                 CampaignApi.postCampaign(data).then(function (response) {
                     if (response) {
                         $log.info("posting campaign");
+                        toastr.success('Your campaign has been accepted', 'Success', {
+                            "autoDismiss": false,
+                            "positionClass": "toast-top-center",
+                            "type": "success",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "2000",
+                            "allowHtml": false,
+                            "closeButton": false,
+                            "tapToDismiss": true,
+                            "progressBar": false,
+                            "newestOnTop": true,
+                            "maxOpened": 0,
+                            "preventDuplicates": false,
+                            "preventOpenDuplicates": false
+                        })
                     } else {
                         $log.info("Issue posting campaign");
                     }

@@ -21,19 +21,19 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-danger" ng-disabled="lc.personalInfoForm.$invalid">Login</button>
-  <div ng-if="lc.errorMessage">
+  <button type="submit" class="btn btn-danger right login-space" ng-disabled="lc.personalInfoForm.$invalid">Login</button>
+  <div ng-if="lc.errorMessage" class="">
     {{lc.errorMessage}}
   </div>
 </form>
 
-<div ng-if="lc.message">
+<div ng-if="lc.message" class="">
 <hr>
 <span class="help-block">There are no campaigns associated with this account would you like to create a campaign?</span>
   <p class="loginLinks"><a href="#/form/products">Create Campaign</a>  |  <a href="#">Contact Us</a></p>
   <p class="supportText small text-center">If you have not recieved your on-boarding email you will not be able to create a campaign.</p>
 </div>
 <hr>
-<div class="row right">
+<div class="row login-space">
   <h4 ng-click="recoverPassword()">Forget Password?</h4>
 </div>

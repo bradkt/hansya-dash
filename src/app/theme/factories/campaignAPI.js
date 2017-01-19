@@ -27,7 +27,7 @@
             getCampaignMessages: getCampaignMessages,
             getEngagementData: getEngagementData,
             getSentiment: getSentiment,
-            getLocaionSummery: getLocaionSummery
+            getLocationSummery: getLocationSummery
         };
 
         function getCampaignPosters(id) {
@@ -50,7 +50,7 @@
                 .then(complete).catch(failed);
         }
 
-        function getLocaionSummery(id) {
+        function getLocationSummery(id) {
             return $http.get(URL + '/campaignData/locationSummary/' + id)
                 .then(complete).catch(failed);
         }

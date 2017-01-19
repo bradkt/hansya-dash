@@ -24,7 +24,7 @@
             loadConversations(conversation);
           });
         } else {
-          $log.error('unable getcampaignDATA from server');
+          // $log.error('unable getcampaignDATA from server');
         }
       });
     }

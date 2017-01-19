@@ -41,7 +41,7 @@
     function locationSummery() {
       var totalMessages = LocalStorage.getTotalMessages();
 
-      CampaignApi.getLocaionSummery(campaign_id).then(function (response) {
+      CampaignApi.getLocationSummery(campaign_id).then(function (response) {
         if (response){
             $scope.doughnutData = [
               {

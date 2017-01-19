@@ -13,7 +13,7 @@ angular.module('BlurAdmin', [
   'ngJsTree',
   'angular-progress-button-styles',
   'ngFileUpload',
-  // 'angularPayments',
+  'angularPayments',
   'BlurAdmin.theme',
   'BlurAdmin.pages'
 ]);
