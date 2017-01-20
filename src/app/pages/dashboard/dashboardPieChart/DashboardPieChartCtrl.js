@@ -35,7 +35,7 @@
               color: pieColor,
               description: 'Total Likes',
               stats: response.likes,
-              icon: 'person',
+              icon: 'fa fa-twitter-square fa-4x',
               percent: ((response.likes / 5000) * 100).toFixed(0) + '%' //as a percent of total way that people engaged with messaging
           }
           $scope.pieChartsData.push(element);
@@ -60,12 +60,12 @@
             color: pieColor,
             description: 'Engagements',
             stats: (response.averageEngagementRate).toFixed(1),
-            icon: 'face',
+            icon: 'fa fa-check-square-o fa-4x',
             percent: (response.averageEngagementRate).toFixed(0) + '%' //as a percent of total way that people engaged with messaging
           }
           $scope.pieChartsData.push(element);
         } else {
-          $log.info('no response from server');
+          $log.info('no response from server for engagment data');
         }
       });
     }
@@ -121,7 +121,7 @@
         color: pieColor,
         description: 'Average Sentiment',
         stats: (averageSent / totalMessages * 100).toFixed(1) + '%',
-        icon: 'face',
+        icon: 'fa fa-check-square-o fa-4x',
         percent: (averageSent / totalMessages * 100).toFixed(1)
       }
 
@@ -131,7 +131,7 @@
         color: pieColor,
         description: 'Positive Messages',
         stats: positiveMessages,
-        icon: 'face',
+        icon: 'fa fa-thumbs-o-up fa-4x',
         percent: (positiveMessages / totalMessages * 100).toFixed(1)
       }
 
@@ -139,7 +139,7 @@
         color: pieColor,
         description: 'Negative Messages',
         stats: negativeMessages,
-        icon: 'face',
+        icon: 'fa fa-thumbs-o-down fa-4x',
         percent: (negativeMessages / totalMessages * 100).toFixed(1)
       }
 
@@ -156,7 +156,7 @@
             color: pieColor,
             description: 'Keyword:' + response.keywords[0],
             stats: 3215,
-            icon: '',
+            icon: 'fa fa-line-chart fa-4x',
             // icon: 'refresh',
             percent: 21
           }

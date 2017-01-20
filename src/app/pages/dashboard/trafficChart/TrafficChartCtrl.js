@@ -12,8 +12,8 @@
   function TrafficChartCtrl($scope, baConfig, colorHelper, $stateParams, $http, CampaignApi, LocalStorage, $timeout, $log) {
 
     var campaign_id = $stateParams.uid; //getting ui-route parameter
-
     getMessagesCount();
+    setTotalMessages();
 
     $scope.doughnutData = [];
 
@@ -27,6 +27,10 @@
 
     $scope.transparent = baConfig.theme.blur;
     var dashboardColors = baConfig.colors.dashboard;
+
+    function setTotalMessages() {
+      $scope.totalMessages = '10,285';
+    }
 
     function getMessagesCount() {
       CampaignApi.getCampaignMessages(campaign_id).then(function (response) {

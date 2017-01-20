@@ -24,32 +24,3 @@
 //     httpBackend.expectPOST()
 //
 // });
-
-describe('login controller', function() {
-    beforeEach(module('BlurAdmin'));
-    beforeEach(module('BlurAdmin.pages'));
-    var loginCtrl, scope, userAPI, deffered, q, user, lc;
-
-    beforeEach(function () {
-
-    });
-
-    beforeEach(inject(function($rootScope, $controller){
-        scope = $rootScope.$new();
-        loginCtrl = $controller('LayoutsCtrl', {
-            $scope: scope,
-            lc : {
-            personalInfo : {
-            name: 'brad',
-            userID: 34
-            }
-            }
-        });
-    }));
-
-
-
-    it('should define personalInfo', function (){
-        expect(submit).toBeDefined();
-    });
-});

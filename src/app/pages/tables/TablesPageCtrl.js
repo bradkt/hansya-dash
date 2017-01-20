@@ -11,8 +11,8 @@
   /** @ngInject */
   function TablesPageCtrl($scope, $filter, $location, $log, editableOptions, editableThemes, CampaignApi, ProductApi, $timeout, IndustryApi, UserApi, LocalStorage, Upload, toastr) {
     var tc = this;
-    // var URL = "https://test-hansya-consumer-api.herokuapp.com";
-    var URL = "http://localhost:1337";
+    var URL = "https://test-hansya-consumer-api.herokuapp.com";
+    // var URL = "http://localhost:1337";
 
     // scope data
     tc.adminAddCampaign = {};

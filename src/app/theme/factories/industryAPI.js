@@ -10,8 +10,8 @@
     /** @ngInject */
     function IndustryApi($http) {
 
-        // var URL = "https://test-hansya-consumer-api.herokuapp.com";
-        var URL = "http://localhost:1337";
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        // var URL = "http://localhost:1337";
 
         return {
             getIndustries: getIndustries,
