@@ -9,7 +9,7 @@ node{
   sh 'heroku config:set NODE_ENV=ci -a dev-hansya-dashboard'
   sh 'heroku git:remote -a dev-hansya-dashboard'
   sh 'git pull heroku master'
-  sh 'git commit -a -m "merge from heroku master"
+  sh 'git commit -a -m "merge from heroku master"'
   sh 'git push heroku master'
 //  stage 'Turn off dyno instance'
 //  sh 'heroku ps:scale web=0 -a dev-hansya-dashboard'
