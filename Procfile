@@ -1,0 +1,1 @@
+worker: gulp build
