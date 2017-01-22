@@ -10,5 +10,5 @@ node{
   sh 'heroku git:remote -a dev-hansya-dashboard'
   sh 'git push heroku master'
   stage 'Build and Deploy to test'
-  sh 'heroku run -s Standard-2X --exit-code "npm install && aws configure <<!\nAKIAJD2JDOTOZWJHRGSQ\n4WKeCu8LW4o7EQI0ddPF07zYbtSK6DTHEU0wjt4y\nus-east-1\n\n!\n gulp build && aws s3 cp release/* s3://bucketeer-d89c87a6-7073-4603-bd65-7bdd75831a5b/public"'
+  sh 'heroku run -s Standard-2X --exit-code "npm install && aws configure <<!\nAKIAJD2JDOTOZWJHRGSQ\n4WKeCu8LW4o7EQI0ddPF07zYbtSK6DTHEU0wjt4y\nus-east-1\n\n!\n gulp build && aws s3 cp release s3://bucketeer-d89c87a6-7073-4603-bd65-7bdd75831a5b/public --recursive"'
 }
