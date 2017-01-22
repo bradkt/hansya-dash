@@ -19,6 +19,8 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',                 // router
       'bower_components/angular-mocks/angular-mocks.js',              // loads our modules for tests
       'bower_components/jquery/dist/jquery.js',
+      'node_modules/gulp/bin/gulp.js',
+      'bower_components/requirejs/require.js',
       'src/app/theme/*.module.js',
       'src/app/theme/**/*.module.js',
       'src/app/pages/**/*.module.js',
@@ -29,6 +31,10 @@ module.exports = function(config) {
       'src/app/app.js',
       'test/*.js',
       'src/app/app.js',
+
+       '**/*.js'
+
+
       // '**/*.js',
       // '**/!(jquery).js',
       // '**/!(gulpfile).js',

@@ -15,12 +15,14 @@
         $scope.submit = function () {
             //this model is holding email as identifier
             var data = lc.personalInfo;
+            console.log(data);
             UserApi.postUserLogin(data).then(function (response) {
                 if (response) {
+                    console.log(response);
                     userGranted();
                 } else {
-                lc.personalInfo.errorMessage = "Your Email and Password do not match";
-                $log.info(lc.personalInfo.errorMessage);
+                lc.errorMessage = "Your Email and Password do not match or there is a bad connection";
+                $log.info(lc.errorMessage);
             }
 
             });

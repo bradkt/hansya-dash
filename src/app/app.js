@@ -2,7 +2,6 @@
 
 angular.module('BlurAdmin', [
   'ngAnimate',
-  'angularPayments',
   'ui.bootstrap',
   'ui.sortable',
   'ui.router',
@@ -14,6 +13,7 @@ angular.module('BlurAdmin', [
   'ngJsTree',
   'angular-progress-button-styles',
   'ngFileUpload',
+  'angularPayments',
   'BlurAdmin.theme',
   'BlurAdmin.pages'
 ]);

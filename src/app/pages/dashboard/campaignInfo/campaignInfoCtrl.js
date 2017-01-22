@@ -38,9 +38,13 @@
 
       CampaignApi.getCampaign(id).then(function (response) {
         if (response){
-
+          console.log(response);
           displayProductInfo(response.product);
           $scope.keywords = response.keywords;
+          $scope.audience = response.audience;
+          $scope.location = response.location;
+          // $scope.timeframe = response.timeframe;
+          // $scope.intent = response.intent;
         } else {
           $log.info('unable get campaign from server');
         }

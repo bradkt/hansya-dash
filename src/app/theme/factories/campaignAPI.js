@@ -11,6 +11,9 @@
     /** @ngInject */
     function CampaignApi($http) {
 
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        // var URL = "http://localhost:1337";
+
         return {
             getCampaigns: getCampaigns,
             getCampaign: getCampaign,
@@ -24,71 +27,71 @@
             getCampaignMessages: getCampaignMessages,
             getEngagementData: getEngagementData,
             getSentiment: getSentiment,
-            getLocaionSummery: getLocaionSummery
+            getLocationSummery: getLocationSummery
         };
 
         function getCampaignPosters(id) {
-            return $http.get('http://localhost:1337/campaignData/poster/' + id)
+            return $http.get(URL + '/campaignData/poster/' + id)
                 .then(complete).catch(failed);
         }
 
         function getCampaignConversations(id) {
-            return $http.get('http://localhost:1337/campaignData/conversations/' + id)
+            return $http.get(URL + '/campaignData/conversations/' + id)
                 .then(complete).catch(failed);
         }
 
         function getCampaignMessages(id) {
-            return $http.get('http://localhost:1337/campaignData/message/' + id)
+            return $http.get(URL + '/campaignData/message/' + id)
                 .then(complete).catch(failed);
         }
 
         function getSentiment(id) {
-            return $http.get('http://localhost:1337/campaignData/sentiment/' + id)
+            return $http.get(URL + '/campaignData/sentiment/' + id)
                 .then(complete).catch(failed);
         }
 
-        function getLocaionSummery(id) {
-            return $http.get('http://localhost:1337/campaignData/locationSummary/' + id)
+        function getLocationSummery(id) {
+            return $http.get(URL + '/campaignData/locationSummary/' + id)
                 .then(complete).catch(failed);
         }
 
         function getEngagementData(id) {
-            return $http.get('http://localhost:1337/campaignData/engagement/' + id)
+            return $http.get(URL + '/campaignData/engagement/' + id)
                 .then(complete).catch(failed);
         }
 
         function getTotalLikes(id) {
-            return $http.get('http://localhost:1337/campaignData/totalLikes/' + id)
+            return $http.get(URL + '/campaignData/totalLikes/' + id)
                 .then(complete).catch(failed);
         }
 
         function getCampaignData (id) {
-            return $http.get('http://localhost:1337/campaignData/all/' + id)
+            return $http.get(URL + '/campaignData/all/' + id)
                 .then(complete).catch(failed);
         }
 
         function getCampaigns() {
-            return $http.get('http://localhost:1337/campaign/')
+            return $http.get(URL + '/campaign/')
                 .then(complete).catch(failed);
         }
 
         function postDataUpload (data) {
-            return $http.post('http://localhost:1337/campaignData/upload', data)
+            return $http.post(URL + '/campaignData/upload', data)
                 .then(complete).catch(failed);
         }
 
         // function getCampaign(data, id) {
-        //     return $http.get('http://localhost:1337/campaign/' + id, data)
+        //     return $http.get(URL + '/campaign/' + id, data)
         //         .then(complete).catch(failed);
         // }
 
         function getCampaign(id) {
-            return $http.get('http://localhost:1337/campaign/' + id)
+            return $http.get(URL + '/campaign/' + id)
                 .then(complete).catch(failed);
         }
 
         function postCampaign(data) {
-            return $http.post('http://localhost:1337/campaign', data)
+            return $http.post(URL + '/campaign', data)
                 .then(complete).catch(failed);
         }
 

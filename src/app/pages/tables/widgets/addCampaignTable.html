@@ -65,16 +65,16 @@
         <!--</div>-->
     <!--</div>-->
 
-    <div class="form-group has-feedback"
+    <div class="form-group has-feedback col-md-6"
          ng-class="{'has-error': tc.adminAddCampaignForm.productName.$invalid && (tc.adminAddCampaignForm.productName.$dirty || tc.adminAddCampaignForm.$submitted)}">
         <label>Competitive Keywords (At least one required)</label>
-        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[0]" required/>
-        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[1]"/>
-        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[2]"/>
-        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[3]"/>
-        <input type="text" value="" class="form-control" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keywords[4]"/>
+        <input type="text" value="" class="form-control keywords-input" placeholder="Add a Keyword" ng-model="tc.adminAddCampaign.keyword" required/>
+        <span class="keyword-button" ng-click="tc.adminAddCampaign.keywordArray.push(tc.adminAddCampaign.keyword)">ADD</span>
+        <div>
+            <p ng-repeat="item in tc.adminAddCampaign.keywordArray">{{item}}</p>
+        </div>
         <span class="help-block error-block basic-block">Required</span>
     </div>
 
-    <button type="submit" class="btn btn-danger">Submit</button>
+    <button type="submit" class="btn btn-danger right" ng-disabled="tc.adminAddCampaignForm.$invalid">Submit</button>
 </form>

@@ -9,7 +9,7 @@
       .controller('BlurFeedCtrl', BlurFeedCtrl);
 
   /** @ngInject */
-  function BlurFeedCtrl($scope, $stateParams, $http, CampaignApi, $timeout, $filter, $log) {
+  function BlurFeedCtrl($scope, $stateParams, $http, CampaignApi, $timeout, $filter, $log, $q) {
 
     var campaignID = $stateParams.uid; //getting ui-route parameter
 
@@ -24,13 +24,13 @@
             loadConversations(conversation);
           });
         } else {
-          $log.error('unable getcampaignDATA from server');
+          // $log.error('unable getcampaignDATA from server');
         }
       });
     }
 
     function loadConversations(conversation) {
-
+      // $q.deffer();
       angular.forEach(conversation.messages, function(obj, key) {
         obj.message.datetime = moment(obj.message.datetime).format('MMMM Do YYYY, h:mm:ss a');
       });

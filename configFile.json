@@ -1,0 +1,12 @@
+{
+  "local": {
+    "EnvironmentConfig": {
+      "api": "http://localhost:1337"
+    }
+  },
+  "production": {
+    "EnvironmentConfig": {
+      "api": "https://test-hansya-consumer-api.herokuapp.com"
+    }
+  }
+}

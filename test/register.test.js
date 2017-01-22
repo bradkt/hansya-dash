@@ -2,27 +2,36 @@
  * Created by brad on 12/6/16.
  */
 describe('testing user registration', function() {
-    beforeEach(module('form.module'));
+    var $rootscope, $scope, controller;
+
+    beforeEach(function () {
+        module('RegisterCtrl');
+
+        inject(function ($injector) {
+            $rootscope = $injector.get('$rootscope');
+            $scope = $rootscope.$new();
+            controller = $injector.get('$controller')("RegisterCtrl", {$scope: $scope});
+        })
+    });
 
     describe('testing user register controller', function () {
-        var scope, ctrl;
 
-        beforeEach(inject(function ($controller, $rootScope) {
-            scope = $rootScope.$new();
-            ctrl = $controller('RegisterCtrl', {$scope:scope})
-        }));
+        it('should have a test equal to be test', function () {
+                expect($scope.test).toEqual('test');
+            });
 
-        // RegisterCtrl.personalInfo = {
-        //     email: 'brad@email.com',
+        // controller.personalInfo = {
+        //     identifier: 'brad@email.com',
+        //     username: 'brad',
         //     password: 'asdfasdf'
         // };
         //
         // scope.submit();
-
-        // it('should tell a first time user that they need to buy a campaign', function () {
-        //     expect(data).toBe('brad@email.com');
+        //
+        // it('should set the identifer equal to the email', function () {
+        //     expect($scope.personalInfo.email).toBe('brad@email.com');
         // });
 
 
-    })
+    });
 });

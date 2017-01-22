@@ -10,6 +10,9 @@
     /** @ngInject */
     function UserApi($http) {
 
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        // var URL = "http://localhost:1337";
+
         return {
             registerUser: registerUser,
             postUserLogin: postUserLogin,
@@ -18,39 +21,44 @@
             postCompany: postCompany,
             getCompany: getCompany,
             putUserRole: putUserRole,
-            postUserID: postUserID
+            postUserID: postUserID,
+            logout: logout
         };
 
         function postUserID (id, data) {
-            return $http.put('http://localhost:1337/user', + id + '/', data).then(complete).catch(failed);
+            return $http.put(URL + '/user', + id + '/', data).then(complete).catch(failed);
         }
 
         function putUserRole (data) {
-            return $http.put('http://localhost:1337/user/changeRole', data).then(complete).catch(failed);
+            return $http.put(URL + '/user/changeRole', data).then(complete).catch(failed);
         }
 
         function postCompany (data) {
-            return $http.post('http://localhost:1337/company', data).then(complete).catch(failed);
+            return $http.post(URL + '/company', data).then(complete).catch(failed);
+        }
+
+        function logout () {
+            return $http.get(URL + '/logout').then(complete).catch(failed);
         }
 
         function getCompany () {
-            return $http.get('http://localhost:1337/company').then(complete).catch(failed);
+            return $http.get(URL + '/company').then(complete).catch(failed);
         }
 
         function getUsers () {
-            return $http.get('http://localhost:1337/user/all').then(complete).catch(failed);
+            return $http.get(URL + '/user/all').then(complete).catch(failed);
         }
 
         function registerUser(data) {
-            return $http.post('http://localhost:1337/user', data).then(complete).catch(failed);
+            return $http.post(URL + '/user', data).then(complete).catch(failed);
         }
 
         function postUserLogin(data) {
-            return $http.post('http://localhost:1337/auth/local/', data).then(complete).catch(failed);
+            return $http.post(URL + '/auth/local/', data).then(complete).catch(failed);
         }
 
         function getCurrentUser() {
-            return $http.get('http://localhost:1337/user').then(complete).catch(failed);
+            return $http.get(URL + '/user').then(complete).catch(failed);
         }
 
         function complete(response) {

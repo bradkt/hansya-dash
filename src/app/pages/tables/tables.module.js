@@ -15,7 +15,7 @@
           resolve: {
               authorized : function (LocalStorage) {
                   var role = LocalStorage.getUserRole();
-                  if (role == undefined  || role.role == "registered") {
+                  if (role == undefined  || role == "registered") {
                       console.log('tables module route not resolved');
                       $location.url('form/login')
                   } else {

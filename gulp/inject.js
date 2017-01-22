@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gulpNgConfig = require('gulp-ng-config');
 
 var $ = require('gulp-load-plugins')();
 
@@ -71,3 +72,9 @@ var injectAlone = function (options) {
     .pipe(wiredep(_.extend({}, conf.wiredep)))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
 };
+
+gulp.task('injectEnvVars', function () {
+  gulp.src('configFile.json')
+      .pipe(gulpNgConfig('BlurAdmin.config'))
+      .pipe(gulp.dest('./src/app/theme'))
+});
