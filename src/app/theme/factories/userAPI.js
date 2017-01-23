@@ -22,8 +22,19 @@
             getCompany: getCompany,
             putUserRole: putUserRole,
             postUserID: postUserID,
-            logout: logout
+            logout: logout,
+            recoverPassword: recoverPassword,
+            resetPassword: resetPassword
         };
+
+        function resetPassword(data) {
+            return $http.post(URL + '/resetPasswordLink', data).then(complete).catch(failed);
+        }
+
+
+        function recoverPassword(email) {
+            return $http.post(URL + '/forgotPassword', email).then(complete).catch(failed);
+        }
 
         function postUserID (id, data) {
             return $http.put(URL + '/user', + id + '/', data).then(complete).catch(failed);
@@ -38,7 +49,7 @@
         }
 
         function logout () {
-            return $http.get(URL + '/logout').then(complete).catch(failed);
+            return $http.post(URL + '/logout').then(complete).catch(failed);
         }
 
         function getCompany () {

@@ -12,6 +12,8 @@
         var lc = this;
         lc.personalInfo = {};
 
+
+
         $scope.submit = function () {
             //this model is holding email as identifier
             var data = lc.personalInfo;
@@ -21,6 +23,7 @@
                     console.log(response);
                     userGranted();
                 } else {
+                console.log(response);
                 lc.errorMessage = "Your Email and Password do not match or there is a bad connection";
                 $log.info(lc.errorMessage);
             }
@@ -40,8 +43,26 @@
         }
 
         $scope.recoverPassword = function() {
-            //put to /user.password
-            $log.info('recover the password');
+            lc.forgotPasswordMessage = true;
+        };
+
+        $scope.backToLogin = function() {
+            lc.forgotPasswordMessage = false;
+        };
+
+        $scope.sendResetEmail = function () {
+            console.log('Telling server to send an email');
+            var email = {email: lc.personalInfo.identifier};
+            console.log(email);
+            UserApi.recoverPassword(email).then(function (response) {
+                if (response) {
+                    console.log(response);
+
+                } else {
+                    console.log(response);
+                    $log.info('Trouble requesting your reset Email')
+                }
+            });
         };
 
         function trafficDirector(role) {
@@ -52,7 +73,7 @@
                     if (!response) {
                         $log.info('there was an error getting your campaigns');
                     } else if (jQuery.type(response) == "array" && response.length == 0) {
-                        lc.message = true;
+                        lc.noCampaignsMessage = true;
                     } else {
                         LocalStorage.setCurrentCampaign(response[0].id);
                         $location.url('dashboard/' + response[0].id); //direct to most recent campaign

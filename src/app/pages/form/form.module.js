@@ -49,6 +49,16 @@
                 order: 140,
             },
         })
+        .state('form.reset', {
+            url: '/reset/:code',
+            templateUrl: 'app/pages/form/reset/reset.html',
+            controller: 'ResetCtrl',
+            controllerAs: 'rpc',
+            title: 'Reset',
+            sidebarMeta: {
+                order: 150,
+            },
+        })
         .state('form.register', {
               url: '/register',
               templateUrl: 'app/pages/form/register/register.html',
@@ -56,7 +66,7 @@
               controllerAs: 'rc',
               title: 'Register',
               sidebarMeta: {
-                  order: 150,
+                  order: 160,
               },
         });
         // .state('form.wizard',
