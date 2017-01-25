@@ -14,10 +14,18 @@
         $scope.logout = function() {
             UserApi.logout().then(function (response) {
                 if (response) {
-                    console.log(response);
-                    $location.url('/form/login');
+                    try {
+                        console.log(response);
+                        localStorage.clear();
+                        $location.url('/form/login');
+                    }
+                    catch(err) {
+                        $log.info('responce was 404 not found');
+                    }
                 } else {
                     $log.info('trouble while logging out');
+                    localStorage.clear();
+                    $location.url('/form/login');
                 }
             });
 
