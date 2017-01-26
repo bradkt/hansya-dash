@@ -47,21 +47,12 @@
         //use ng-if and create one more scope object to avoid another api call
 
         $scope.addProduct = function (product) {
-            // var clearPrice = document.getElementsByClassName("close");
-            // console.log(clearPrice);
-            // console.log('selected product id');
             pc.selectedProduct = product;
-            console.log(pc.selectedProduct);
             pc.campaignInfo.id = product.id;
             $scope.priceToSubmit = product.price * 100;
-            // console.log($scope.priceToSubmit);
-
-            //product will need to display more obviously that it has been selected
-
         };
         
         $scope.editProductSelection = function () {
-            console.log('fired');
             pc.selectedProduct = {};
         }
 
@@ -70,7 +61,7 @@
             if (result.error) {
                 console.log('it failed! error: ' + result.error.message);
             } else {
-                console.log('success! token: ' + result.id);
+                // console.log('success! token: ' + result.id);
                 // angular.forEach(result, function(obj) {
                 //     console.log('entire result ' + obj);
                 // });
@@ -91,8 +82,8 @@
                     "preventOpenDuplicates": false
                 });
                 $scope.cardVerified = true;
-                console.log('direction from here? (back to main website?');
-                console.log('add another couple sentences telling user that they will recieve email when the campaign is complete.');
+                // console.log('direction from here? (back to main website?');
+                // console.log('add another couple sentences telling user that they will recieve email when the campaign is complete.');
             }
         };
 
@@ -113,7 +104,7 @@
 
                 CampaignApi.postCampaign(data).then(function (response) {
                     if (response) {
-                        $log.info("posting campaign");
+
                         toastr.success('Your campaign has been accepted', 'Success', {
                             "autoDismiss": false,
                             "positionClass": "toast-top-center",

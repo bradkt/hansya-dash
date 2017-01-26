@@ -77,9 +77,9 @@
 
       IndustryApi.postIndustry(data).then(function (response) {
         if (response) {
-          console.log(response);
+          $log.info('industry posted');
         } else {
-          console.log('error posting the industry');
+          $log.info('error posting the industry');
         }
       });
 
@@ -116,11 +116,11 @@
 
         if (response) {
           $log.info("getting users");
-          console.log(response);
+
           tc.clientListTableData = response.data;
         } else {
           $log.info("Issue getting users");
-          console.log(response);
+
         }
 
       });

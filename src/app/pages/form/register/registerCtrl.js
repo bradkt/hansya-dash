@@ -19,7 +19,7 @@
             var company = rc.personalInfo.registerCompany;
 
             UserApi.getCompany().then(function (response) {
-                console.log(response);
+
                 if (response) {
 
                     for (var i = 0; i < response.data.length; i++) {
@@ -50,10 +50,10 @@
             //     "username" : rc.personalInfo.username,
             //     "password" : rc.personalInfo.password
             // };
-            console.log(data);
+            // console.log(data);
 
             UserApi.registerUser(data).then(function (response) {
-                console.log(response);
+
                 if (response) {
                     toastr.success('You have successfully registered', 'Success', {
                         "autoDismiss": false,
