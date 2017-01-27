@@ -9,7 +9,9 @@
       .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider) {
+  function routeConfig($stateProvider, $httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.withCredentials = true;
     $stateProvider
         .state('dashboard', {
           url: '/dashboard/:uid',

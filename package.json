@@ -62,6 +62,7 @@
     "test": "mocha"
   },
   "dependencies": {
+    "gulp-ng-config": "^1.4.0",
     "requirejs": "^2.3.1"
   }
 }
