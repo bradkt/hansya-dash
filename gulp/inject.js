@@ -4,6 +4,9 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 var gulpNgConfig = require('gulp-ng-config');
+var argv = require('yargs').argv;
+// var gulpif = require('gulp-if');
+var rename = require("gulp-rename");
 
 var $ = require('gulp-load-plugins')();
 
@@ -74,7 +77,8 @@ var injectAlone = function (options) {
 };
 
 gulp.task('injectEnvVars', function () {
-  gulp.src('configFile.json')
+  gulp.src(argv.prod == undefined ? 'configDevFile.json' : 'configProdFile.json')
+      .pipe(rename('configFile.json'))
       .pipe(gulpNgConfig('BlurAdmin.config'))
       .pipe(gulp.dest('./src/app/theme'))
 });

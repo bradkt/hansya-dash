@@ -152,12 +152,12 @@
 
 <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
 <!-- inject:js -->
-<script src="app/pages/pages.module.js"></script>
 <script src="app/theme/theme.module.js"></script>
+<script src="app/pages/pages.module.js"></script>
+<script src="app/theme/components/components.module.js"></script>
 <script src="app/pages/dashboard/dashboard.module.js"></script>
 <script src="app/pages/form/form.module.js"></script>
 <script src="app/pages/tables/tables.module.js"></script>
-<script src="app/theme/components/components.module.js"></script>
 <script src="app/app.js"></script>
 <script src="app/theme/configFile.js"></script>
 <script src="app/theme/theme.config.js"></script>
@@ -165,8 +165,6 @@
 <script src="app/theme/theme.constants.js"></script>
 <script src="app/theme/theme.run.js"></script>
 <script src="app/theme/theme.service.js"></script>
-<script src="app/pages/dashboard/DashPageCtrl.js"></script>
-<script src="app/pages/tables/TablesPageCtrl.js"></script>
 <script src="app/theme/components/toastrLibConfig.js"></script>
 <script src="app/theme/directives/animatedChange.js"></script>
 <script src="app/theme/directives/autoExpand.js"></script>
@@ -187,20 +185,8 @@
 <script src="app/theme/services/fileReader.js"></script>
 <script src="app/theme/services/preloader.js"></script>
 <script src="app/theme/services/stopableInterval.js"></script>
-<script src="app/pages/dashboard/blurFeed/BlurFeedCtrl.js"></script>
-<script src="app/pages/dashboard/blurFeed/blurFeed.directive.js"></script>
-<script src="app/pages/dashboard/campaignInfo/campaignInfo.directive.js"></script>
-<script src="app/pages/dashboard/campaignInfo/campaignInfoCtrl.js"></script>
-<script src="app/pages/dashboard/dashboardLineChart/DashboardLineChartCtrl.js"></script>
-<script src="app/pages/dashboard/dashboardLineChart/dashboardLineChart.directive.js"></script>
-<script src="app/pages/dashboard/dashboardPieChart/DashboardPieChartCtrl.js"></script>
-<script src="app/pages/dashboard/dashboardPieChart/dashboardPieChart.directive.js"></script>
-<script src="app/pages/dashboard/trafficChart/TrafficChartCtrl.js"></script>
-<script src="app/pages/dashboard/trafficChart/trafficChart.directive.js"></script>
-<script src="app/pages/form/layouts/layoutsCtrl.js"></script>
-<script src="app/pages/form/products/ProductsCtrl.js"></script>
-<script src="app/pages/form/register/registerCtrl.js"></script>
-<script src="app/pages/form/reset/resetCtrl.js"></script>
+<script src="app/pages/dashboard/DashPageCtrl.js"></script>
+<script src="app/pages/tables/TablesPageCtrl.js"></script>
 <script src="app/theme/components/baPanel/baPanel.directive.js"></script>
 <script src="app/theme/components/baPanel/baPanel.service.js"></script>
 <script src="app/theme/components/baPanel/baPanelBlur.directive.js"></script>
@@ -224,6 +210,20 @@
 <script src="app/theme/filters/image/kameleonImg.js"></script>
 <script src="app/theme/filters/image/profilePicture.js"></script>
 <script src="app/theme/filters/text/removeHtml.js"></script>
+<script src="app/pages/dashboard/blurFeed/BlurFeedCtrl.js"></script>
+<script src="app/pages/dashboard/blurFeed/blurFeed.directive.js"></script>
+<script src="app/pages/dashboard/campaignInfo/campaignInfo.directive.js"></script>
+<script src="app/pages/dashboard/campaignInfo/campaignInfoCtrl.js"></script>
+<script src="app/pages/dashboard/dashboardLineChart/DashboardLineChartCtrl.js"></script>
+<script src="app/pages/dashboard/dashboardLineChart/dashboardLineChart.directive.js"></script>
+<script src="app/pages/dashboard/dashboardPieChart/DashboardPieChartCtrl.js"></script>
+<script src="app/pages/dashboard/dashboardPieChart/dashboardPieChart.directive.js"></script>
+<script src="app/pages/dashboard/trafficChart/TrafficChartCtrl.js"></script>
+<script src="app/pages/dashboard/trafficChart/trafficChart.directive.js"></script>
+<script src="app/pages/form/layouts/layoutsCtrl.js"></script>
+<script src="app/pages/form/products/ProductsCtrl.js"></script>
+<script src="app/pages/form/register/registerCtrl.js"></script>
+<script src="app/pages/form/reset/resetCtrl.js"></script>
 <script src="app/theme/components/backTop/lib/jquery.backTop.min.js"></script>
 <!-- endinject -->
 

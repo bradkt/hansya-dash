@@ -8,9 +8,10 @@
         .factory('UserApi', UserApi);
 
     /** @ngInject */
-    function UserApi($http) {
+    function UserApi($http, config) {
 
-        var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        var URL = config.api;
+        // var URL = "https://test-hansya-consumer-api.herokuapp.com";
         // var URL = "http://localhost:1337";
 
         return {
