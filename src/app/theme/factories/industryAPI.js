@@ -8,10 +8,10 @@
         .factory('IndustryApi', IndustryApi);
 
     /** @ngInject */
-    function IndustryApi($http, config) {
+    function IndustryApi($http) {
 
-        var URL = config.api;
-        // var URL = "https://test-hansya-consumer-api.herokuapp.com";
+        // var URL = config.api;
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
         // var URL = "http://localhost:1337";
 
         return {

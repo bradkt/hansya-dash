@@ -8,7 +8,7 @@
         .factory('LocalStorage', LocalStorage);
 
     /** @ngInject */
-    function LocalStorage(CampaignApi, $window, $rootScope) {
+    function LocalStorage($window, $rootScope) {
 
         angular.element($window).on('storage', function(event) {
             if (event.key === 'hansya-storage') {

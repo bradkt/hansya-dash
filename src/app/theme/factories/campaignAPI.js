@@ -9,10 +9,10 @@
         .factory('CampaignApi', CampaignApi);
 
     /** @ngInject */
-    function CampaignApi($http, config) {
-
-        var URL = config.api;
-        // var URL = "https://test-hansya-consumer-api.herokuapp.com";
+    function CampaignApi($http) {
+        // console.log(ENV.API);
+        // var URL = config.api;
+        var URL = "https://test-hansya-consumer-api.herokuapp.com";
         // var URL = "http://localhost:1337";
 
         return {

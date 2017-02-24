@@ -12,7 +12,7 @@
         var lc = this;
         lc.personalInfo = {};
 
-
+        $scope.name = "getting the test testing";
 
         $scope.submit = function () {
             //this model is holding email as identifier

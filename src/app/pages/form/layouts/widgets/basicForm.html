@@ -1,28 +1,30 @@
 <form ng-submit="submit()"name="lc.personalInfoForm" novalidate>
-  <div class="row">
-    <div class="">
-      <!--<div class="form-group has-feedback"-->
-           <!--ng-class="{'has-error': lc.personalInfoForm.custname.$invalid && (lc.personalInfoForm.custname.$dirty || lc.personalInfoForm.$submitted)}">-->
-        <!--<label for="loginCompanyName">Company name</label>-->
-        <!--<input type="text" class="form-control" id="loginCompanyName" name="companyName" placeholder="Company Name" ng-model="lc.personalInfo.companyName" required>-->
-        <!--<span class="help-block error-block basic-block">Required</span>-->
-      <!--</div>-->
-      <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.email.$invalid && (lc.personalInfoForm.email.$dirty || lc.personalInfoForm.$submitted)}">
-        <label for="loginEmail1">Email address</label>
-        <input type="email" class="form-control" id="loginEmail1" name="email" placeholder="Email" ng-model="lc.personalInfo.identifier" required>
-        <span class="help-block error-block basic-block">Proper email required</span>
+  <div ng-if="!lc.noCampaignsMessage">
+    <div class="row">
+      <div class="">
+        <!--<div class="form-group has-feedback"-->
+             <!--ng-class="{'has-error': lc.personalInfoForm.custname.$invalid && (lc.personalInfoForm.custname.$dirty || lc.personalInfoForm.$submitted)}">-->
+          <!--<label for="loginCompanyName">Company name</label>-->
+          <!--<input type="text" class="form-control" id="loginCompanyName" name="companyName" placeholder="Company Name" ng-model="lc.personalInfo.companyName" required>-->
+          <!--<span class="help-block error-block basic-block">Required</span>-->
+        <!--</div>-->
+        <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.email.$invalid && (lc.personalInfoForm.email.$dirty || lc.personalInfoForm.$submitted)}">
+          <label for="loginEmail1">Email address</label>
+          <input type="email" class="form-control" id="loginEmail1" name="email" placeholder="Email" ng-model="lc.personalInfo.identifier" required>
+          <span class="help-block error-block basic-block">Proper email required</span>
+        </div>
+      </div>
+      <div class="" ng-if="!lc.forgotPasswordMessage">
+        <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.password.$invalid && (lc.personalInfoForm.password.$dirty || lc.personalInfoForm.$submitted)}">
+          <label for="loginPassword">Password</label>
+          <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" ng-model="lc.personalInfo.password" required>
+          <span class="help-block error-block basic-block">Required</span>
+        </div>
       </div>
     </div>
-    <div class="" ng-if="!lc.forgotPasswordMessage">
-      <div class="form-group" ng-class="{'has-error': lc.personalInfoForm.password.$invalid && (lc.personalInfoForm.password.$dirty || lc.personalInfoForm.$submitted)}">
-        <label for="loginPassword">Password</label>
-        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Password" ng-model="lc.personalInfo.password" required>
-        <span class="help-block error-block basic-block">Required</span>
-      </div>
+    <div class="right" ng-if="!lc.forgotPasswordMessage">
+      <button type="submit" class="btn btn-danger login-space" ng-disabled="lc.personalInfoForm.$invalid">Login</button>
     </div>
-  </div>
-  <div class="right" ng-if="!lc.forgotPasswordMessage">
-    <button type="submit" class="btn btn-danger login-space" ng-disabled="lc.personalInfoForm.$invalid">Login</button>
   </div>
   <div ng-if="lc.errorMessage" class="">
     {{lc.errorMessage}}
@@ -31,7 +33,7 @@
 
 <div ng-if="lc.noCampaignsMessage" class="">
 <hr>
-<span class="help-block">There are no campaigns associated with this account would you like to create a campaign?</span>
+<span class="help-block med-text">There are no campaigns associated with this account would you like to create a campaign?</span>
   <p class="loginLinks"><a href="#/form/products">Create Campaign</a>  |  <a href="#">Contact Us</a></p>
   <p class="supportText small text-center">If you have not recieved your on-boarding email you will not be able to create a campaign.</p>
 </div>
@@ -41,7 +43,7 @@
   <p class="supportText small text-center">Once requested the ability to reset your password expires after 30 minutes.</p>
 </div>
 <hr>
-<div class="row login-space" ng-if="!lc.forgotPasswordMessage">
+<div class="row login-space" ng-if="!lc.forgotPasswordMessage && !lc.noCampaignsMessage">
   <h4 ng-click="recoverPassword()">Forget Password?</h4>
 </div>
 <div class="right" ng-if="lc.forgotPasswordMessage">

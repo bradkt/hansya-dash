@@ -75,12 +75,16 @@
 .campaignKeywords .form-control {
   margin: 5px 0; }
 
+.med-text {
+  font-size: 18px; }
+
 .small {
-  font-size: 10px; }
+  font-size: 12px; }
 
 .loginLinks {
-  font-size: 18px;
-  text-align: center; }
+  font-size: 28px;
+  text-align: center;
+  margin: 35px 0; }
 
 .loginLinks a {
   margin: 0 15px; }

@@ -79,6 +79,6 @@ var injectAlone = function (options) {
 gulp.task('injectEnvVars', function () {
   gulp.src(argv.prod == undefined ? 'configDevFile.json' : 'configProdFile.json')
       .pipe(rename('configFile.json'))
-      .pipe(gulpNgConfig('BlurAdmin.config'))
+      // .pipe(gulpNgConfig('BlurAdmin.configEnv'))
       .pipe(gulp.dest('./src/app/theme'))
 });
